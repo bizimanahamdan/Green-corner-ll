@@ -14,9 +14,9 @@ export default function AdminReservations() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold mb-6">Reservation Requests</h1>
+      <h1 className="font-display text-2xl font-semibold mb-6">Order Ahead Requests</h1>
       {loading && <p className="text-cream/50">Loading…</p>}
-      {!loading && rows.length === 0 && <p className="text-cream/50">No reservation requests yet.</p>}
+      {!loading && rows.length === 0 && <p className="text-cream/50">No order requests yet.</p>}
 
       <div className="space-y-3">
         {rows.map((r) => (
@@ -26,7 +26,7 @@ export default function AdminReservations() {
                 {r.name} <span className={`text-xs ml-2 ${statusColors[r.status] || ""}`}>{r.status}</span>
               </p>
               <p className="text-sm text-cream/60">
-                {r.date} at {r.time} · {r.guests} guests · <a href={`tel:${r.phone}`} className="hover:text-ember-400">{r.phone}</a>
+                Pickup {r.date} at {r.time} · qty {r.guests} · <a href={`tel:${r.phone}`} className="hover:text-ember-400">{r.phone}</a>
               </p>
               {r.message && <p className="text-sm text-cream/50 mt-1">"{r.message}"</p>}
             </div>

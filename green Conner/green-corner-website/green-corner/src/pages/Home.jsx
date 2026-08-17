@@ -4,7 +4,7 @@ import SEO from "../components/SEO";
 import LocalBusinessSchema from "../components/LocalBusinessSchema";
 import { businessInfo as demo, hours as demoHours } from "../lib/demoData";
 import { useBusinessInfo, useMenu, useGallery, useHours } from "../lib/useContent";
-import { isIllustration } from "../lib/media";
+import { isIllustration, isPlaceholderText } from "../lib/media";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 
 const whyVisit = [
@@ -74,7 +74,9 @@ export default function Home() {
                       <h3 className="font-display text-lg font-semibold">{item.name}</h3>
                       <span className="text-leaf-600 text-sm whitespace-nowrap">RF {item.price}</span>
                     </div>
-                    <p className="mt-2 text-sm text-ink-700/60">{item.description}</p>
+                    {!isPlaceholderText(item.description) && item.description && (
+                      <p className="mt-2 text-sm text-ink-700/60">{item.description}</p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -117,7 +119,7 @@ export default function Home() {
               <div key={img.id} className={`aspect-square w-full rounded-xl flex items-center justify-center ${isIllustration(img.url) ? "bg-mint p-6" : ""}`}>
                 <img
                   src={img.url}
-                  alt={img.caption}
+                  alt={isPlaceholderText(img.caption) ? "The Green Corner" : img.caption}
                   className={isIllustration(img.url) ? "h-full w-full object-contain" : "h-full w-full rounded-xl object-cover"}
                   loading="lazy"
                 />

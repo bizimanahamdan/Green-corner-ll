@@ -3,6 +3,7 @@ import SEO from "../components/SEO";
 import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo, useReviews } from "../lib/useContent";
 import { useLanguage } from "../lib/i18n/LanguageContext";
+import { isPlaceholderText } from "../lib/media";
 
 function Stars({ rating }) {
   return (
@@ -16,7 +17,8 @@ function Stars({ rating }) {
 export default function Reviews() {
   const { data: info } = useBusinessInfo();
   const b = info || demo;
-  const { data: reviews, loading } = useReviews();
+  const { data: rawReviews, loading } = useReviews();
+  const reviews = (rawReviews || []).filter((r) => !isPlaceholderText(r.quote));
   const { t } = useLanguage();
   const hasRating = Boolean(b.googleRating);
 
@@ -59,7 +61,7 @@ export default function Reviews() {
           </div>
         ) : (
           <div className="max-w-xl mx-auto text-center text-ink-700/50">
-            No reviews yet. Add some from Admin → Reviews once you have real customer quotes.
+            Customer reviews coming soon — come visit us and share your experience!
           </div>
         )}
       </section>

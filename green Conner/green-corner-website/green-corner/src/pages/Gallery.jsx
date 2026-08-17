@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 import { useGallery } from "../lib/useContent";
-import { isIllustration } from "../lib/media";
+import { isIllustration, isPlaceholderText } from "../lib/media";
 
 export default function Gallery() {
   const { data: images, loading } = useGallery();
@@ -22,7 +22,6 @@ export default function Gallery() {
       <PageHeader
         eyebrow={t("pages.galleryEyebrow")}
         title={t("pages.galleryTitle")}
-        description="These are placeholder illustrations, not real photos — replace them with real food and interior photography from the admin Gallery page."
       />
 
       <section className="container-narrow py-12">
@@ -49,12 +48,14 @@ export default function Gallery() {
                 <div className={`aspect-square flex items-center justify-center ${isIllustration(img.url) ? "bg-mint p-8" : ""}`}>
                   <img
                     src={img.url}
-                    alt={img.caption}
+                    alt={isPlaceholderText(img.caption) ? "The Green Corner" : img.caption}
                     className={isIllustration(img.url) ? "h-full w-full object-contain" : "h-full w-full object-cover"}
                     loading="lazy"
                   />
                 </div>
-                <figcaption className="p-3 text-xs text-ink-700/50">{img.caption}</figcaption>
+                {!isPlaceholderText(img.caption) && img.caption && (
+                  <figcaption className="p-3 text-xs text-ink-700/50">{img.caption}</figcaption>
+                )}
               </figure>
             ))}
           </div>

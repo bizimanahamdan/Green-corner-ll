@@ -30,7 +30,7 @@ export default function Contact() {
   const submitReservation = async (e) => {
     e.preventDefault();
     if (!reservation.name || !reservation.phone || !reservation.date || !reservation.time) {
-      setReservationStatus({ ok: false, text: "Please fill in your name, phone, date and time." });
+      setReservationStatus({ ok: false, text: "Please fill in your name, phone, pickup date and pickup time." });
       return;
     }
     setSubmittingReservation(true);
@@ -50,7 +50,7 @@ export default function Contact() {
         ]);
         if (error) throw error;
       }
-      setReservationStatus({ ok: true, text: "Request received! We'll confirm your table by phone or WhatsApp." });
+      setReservationStatus({ ok: true, text: "Order request received! We'll confirm by phone or WhatsApp before your pickup time." });
       setReservation(emptyReservation);
     } catch (err) {
       setReservationStatus({ ok: false, text: "Something went wrong. Please try WhatsApp or call us directly." });
@@ -83,7 +83,7 @@ export default function Contact() {
     }
   };
 
-  const waMessage = encodeURIComponent("Hi Green Corner! I'd like to reserve a table.");
+  const waMessage = encodeURIComponent("Hi Green Corner! I'd like to place an order for pickup.");
 
   return (
     <>
@@ -158,10 +158,11 @@ export default function Contact() {
           </div>
 
           <div>
-            <label className="text-sm text-ink-700/70" htmlFor="r-message">{t("contact.message")}</label>
+            <label className="text-sm text-ink-700/70" htmlFor="r-message">{t("contact.orderDetails")}</label>
             <textarea
               id="r-message"
               rows={3}
+              placeholder={t("contact.orderDetailsPlaceholder")}
               value={reservation.message}
               onChange={(e) => setReservation({ ...reservation, message: e.target.value })}
               className="mt-1 w-full rounded-lg bg-white border border-ink-900/15 px-3 py-2 text-sm outline-none focus:border-leaf-500"

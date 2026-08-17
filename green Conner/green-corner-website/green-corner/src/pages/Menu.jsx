@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 import { useMenu } from "../lib/useContent";
-import { isIllustration } from "../lib/media";
+import { isIllustration, isPlaceholderText } from "../lib/media";
 
 export default function Menu() {
   const { data: categories, loading } = useMenu();
@@ -23,7 +23,7 @@ export default function Menu() {
       <PageHeader
         eyebrow={t("pages.menuEyebrow")}
         title={t("pages.menuTitle")}
-        description="Prices are in Rwandan Francs (RF). Items marked PLACEHOLDER are sample entries pending confirmation from the owner."
+        description="Prices are in Rwandan Francs (RF)."
       />
 
       <section className="container-narrow py-12">
@@ -81,10 +81,12 @@ export default function Menu() {
                             )}
                           </h3>
                           <span className="text-leaf-600 text-sm whitespace-nowrap">
-                            {item.price === "PLACEHOLDER" ? "Ask staff" : `RF ${item.price}`}
+                            {isPlaceholderText(item.price) ? "Ask staff" : `RF ${item.price}`}
                           </span>
                         </div>
-                        <p className="mt-1 text-sm text-ink-700/60">{item.description}</p>
+                        {!isPlaceholderText(item.description) && item.description && (
+                          <p className="mt-1 text-sm text-ink-700/60">{item.description}</p>
+                        )}
                       </div>
                     </div>
                   ))}

@@ -2,7 +2,7 @@ import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 import { useSpecials } from "../lib/useContent";
-import { isIllustration } from "../lib/media";
+import { isIllustration, isPlaceholderText } from "../lib/media";
 
 export default function Specials() {
   const { data: specials, loading } = useSpecials();
@@ -18,7 +18,6 @@ export default function Specials() {
       <PageHeader
         eyebrow={t("pages.specialsEyebrow")}
         title={t("pages.specialsTitle")}
-        description="Items marked 'Sample idea' are suggestions only. Everything here should be confirmed with the business before publishing to real customers."
       />
 
       <section className="container-narrow py-12">
@@ -39,9 +38,13 @@ export default function Specials() {
                   </div>
                 )}
                 <div className="p-5">
-                  <span className="eyebrow">{s.tag}</span>
+                  {s.tag && !isPlaceholderText(s.tag) && s.tag !== "Sample idea" && s.tag !== "Confirm details" && (
+                    <span className="eyebrow">{s.tag}</span>
+                  )}
                   <h3 className="font-display text-lg font-semibold mt-2">{s.title}</h3>
-                  <p className="mt-2 text-sm text-ink-700/65">{s.description}</p>
+                  {!isPlaceholderText(s.description) && s.description && (
+                    <p className="mt-2 text-sm text-ink-700/65">{s.description}</p>
+                  )}
                 </div>
               </div>
             ))}

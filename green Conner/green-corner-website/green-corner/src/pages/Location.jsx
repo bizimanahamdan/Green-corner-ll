@@ -53,10 +53,6 @@ export default function Location() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-ink-700/40">
-              Hours shown are placeholders. Please confirm final opening hours with the business
-              before publishing this site.
-            </p>
           </div>
         </div>
 

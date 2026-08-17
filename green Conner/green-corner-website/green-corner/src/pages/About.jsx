@@ -33,10 +33,6 @@ export default function About() {
             its own identity and pace of life. It's built for anyone who wants something fresh and
             simple — a smoothie on the way to work, a salad on a lunch break, a juice to cool down.
           </p>
-          <p className="text-sm text-ink-700/40">
-            This page is placeholder copy. The real story — when it opened, who runs it, what makes
-            it unique — should come directly from the owner.
-          </p>
         </div>
 
         <div className="rounded-2xl bg-mint flex items-center justify-center p-12">

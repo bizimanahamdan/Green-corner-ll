@@ -73,6 +73,10 @@ export default {
         pulseSoft: {
           "0%, 100%": { opacity: "0.5", transform: "scale(1)" },
           "50%": { opacity: "0.85", transform: "scale(1.08)" }
+        },
+        modalIn: {
+          "0%": { opacity: "0", transform: "translateY(12px) scale(0.98)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" }
         }
       },
       animation: {
@@ -80,7 +84,8 @@ export default {
         floatSlow: "floatSlow 8s ease-in-out infinite",
         bob: "bob 3.5s ease-in-out infinite",
         spinSlow: "spinSlow 18s linear infinite",
-        pulseSoft: "pulseSoft 4s ease-in-out infinite"
+        pulseSoft: "pulseSoft 4s ease-in-out infinite",
+        modalIn: "modalIn 0.2s ease-out"
       }
     }
   },

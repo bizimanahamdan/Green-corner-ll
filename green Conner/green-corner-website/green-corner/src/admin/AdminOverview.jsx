@@ -24,7 +24,7 @@ export default function AdminOverview() {
       <h1 className="font-display text-2xl font-semibold mb-6">Overview</h1>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-10">
-        <StatCard label="New reservation requests" value={newReservations.length} to="/admin/reservations" />
+        <StatCard label="New order requests" value={newReservations.length} to="/admin/reservations" />
         <StatCard label="New inquiries" value={newInquiries.length} to="/admin/inquiries" />
         <StatCard label="Menu items" value={menuItems.length} to="/admin/menu" />
         <StatCard label="Gallery images" value={gallery.length} to="/admin/gallery" />

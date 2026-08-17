@@ -12,7 +12,7 @@ const items = [
   { to: "/admin/hours", label: "Hours" },
   { to: "/admin/business-info", label: "Business Info" },
   { to: "/admin/media", label: "Logo & Hero Media" },
-  { to: "/admin/reservations", label: "Reservations" },
+  { to: "/admin/reservations", label: "Orders" },
   { to: "/admin/inquiries", label: "Inquiries" }
 ];
 

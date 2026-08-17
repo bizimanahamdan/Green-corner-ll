@@ -76,7 +76,6 @@ export default function Footer() {
       <div className="border-t border-ink-900/8 py-6">
         <div className="container-narrow flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-ink-700/40">
           <p>© {year} The Green Corner. {t("footer.rights")}</p>
-          <p>{t("footer.demoNotice")}</p>
         </div>
       </div>
     </footer>

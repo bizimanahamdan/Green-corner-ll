@@ -33,8 +33,7 @@ export const translations = {
       visit: "Visit",
       order: "Order",
       orderNote: "Order ahead or send us a message and we'll confirm by phone or WhatsApp.",
-      rights: "All rights reserved.",
-      demoNotice: "Demo site — content marked as placeholder pending confirmation from the business."
+      rights: "All rights reserved."
     },
     pages: {
       menuEyebrow: "Our Menu",
@@ -57,13 +56,25 @@ export const translations = {
       sendMessageHeading: "Send a Message",
       name: "Name",
       phone: "Phone",
-      date: "Date",
-      time: "Time",
-      people: "Number of people",
+      date: "Pickup date",
+      time: "Pickup time",
+      people: "Number of items",
+      orderDetails: "What would you like to order? (item names, any special requests)",
+      orderDetailsPlaceholder: "e.g. 2x Green Corner Classic, 1x House Green Salad — no onions",
       message: "Message (optional)",
       submitOrder: "Send Order Request",
       submitMessage: "Send Message",
       sending: "Sending…"
+    },
+    whatsappModal: {
+      heading: "How can we help?",
+      quickOrderLabel: "Quick Order",
+      quickOrderMessage: "Hello Green Corner! I'd like to place an order for pickup. Please help me with today's menu.",
+      cateringLabel: "Catering / Large Order",
+      cateringMessage: "Hello Green Corner! I'd like to make a larger order for an event. Please let me know your available options.",
+      pickupLabel: "Pickup / Availability",
+      pickupMessage: "Hello Green Corner! I'd like to check what's available for pickup today.",
+      close: "Close"
     }
   },
   rw: {
@@ -95,8 +106,7 @@ export const translations = {
       visit: "Sura",
       order: "Tumiza",
       orderNote: "Tumiza mbere cyangwa utwandikire, tuzahamagara cyangwa tukwandikire kuri WhatsApp.",
-      rights: "Uburenganzira bwose burafitwe.",
-      demoNotice: "Urubuga rw'icyitegererezo — ibirimo bimwe biracyategereje kwemezwa n'ubucuruzi."
+      rights: "Uburenganzira bwose burafitwe."
     },
     pages: {
       menuEyebrow: "Ibiribwa Byacu",
@@ -119,13 +129,25 @@ export const translations = {
       sendMessageHeading: "Twandikire Ubutumwa",
       name: "Amazina",
       phone: "Telefone",
-      date: "Itariki",
-      time: "Isaha",
-      people: "Umubare w'abantu",
+      date: "Itariki uzabikura",
+      time: "Isaha uzabikura",
+      people: "Umubare w'ibintu",
+      orderDetails: "Ni ibiki ushaka gutumiza? (amazina y'ibiribwa, icyo wifuza cyihariye)",
+      orderDetailsPlaceholder: "urugero: 2x Green Corner Classic, 1x House Green Salad — nta gitunguru",
       message: "Ubutumwa (si ngombwa)",
       submitOrder: "Ohereza Ubusabe",
       submitMessage: "Ohereza Ubutumwa",
       sending: "Turimo kohereza…"
+    },
+    whatsappModal: {
+      heading: "Twagufasha gute?",
+      quickOrderLabel: "Gutumiza vuba",
+      quickOrderMessage: "Muraho Green Corner! Ndashaka gutumiza kugira nzafate ibyo natumije. Mumfashe kumenya ibiri kuri menu uyu munsi.",
+      cateringLabel: "Itumizwa rinini / Ibirori",
+      cateringMessage: "Muraho Green Corner! Ndashaka gutumiza umubare munini w'ibiryo ku bw'igikorwa runaka. Mumbwire uburyo mufite bwo kunyunganira.",
+      pickupLabel: "Kureba ibiriho",
+      pickupMessage: "Muraho Green Corner! Ndashaka kumenya ibiriho uyu munsi kugira nzabifate.",
+      close: "Funga"
     }
   }
 };

@@ -2,8 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import WhatsAppModal from "./components/WhatsAppModal";
 import MobileActionBar from "./components/MobileActionBar";
 import ScrollToTop from "./components/ScrollToTop";
+import { WhatsAppModalProvider } from "./lib/WhatsAppModalContext";
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -31,13 +33,14 @@ import ProtectedRoute from "./admin/ProtectedRoute";
 
 function PublicLayout({ children }) {
   return (
-    <>
+    <WhatsAppModalProvider>
       <Navbar />
       <main className="pb-16 sm:pb-0">{children}</main>
       <Footer />
       <WhatsAppButton />
       <MobileActionBar />
-    </>
+      <WhatsAppModal />
+    </WhatsAppModalProvider>
   );
 }
 
