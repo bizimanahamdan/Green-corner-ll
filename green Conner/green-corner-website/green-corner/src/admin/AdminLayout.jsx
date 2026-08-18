@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 import SEO from "../components/SEO";
 import { useAdminNotifications } from "../lib/useAdminNotifications";
 import { useAdminTable } from "./useAdminTable";
+import { isBackgroundPushEnabled, refreshBackgroundPush } from "../lib/push";
 
 const items = [
   { to: "/admin", label: "Overview", end: true },
@@ -20,9 +21,23 @@ const items = [
 ];
 
 export default function AdminLayout() {
-  const { signOut } = useAuth();
+  const { signOut, session } = useAuth();
   const [open, setOpen] = useState(false);
   useAdminNotifications();
+
+  const [pushOn, setPushOn] = useState(isBackgroundPushEnabled());
+
+  useEffect(() => {
+    if (session?.user?.id) refreshBackgroundPush(session.user.id);
+  }, [session?.user?.id]);
+
+  useEffect(() => {
+    const sync = () => setPushOn(isBackgroundPushEnabled());
+    window.addEventListener("green-corner:push", sync);
+    return () => window.removeEventListener("green-corner:push", sync);
+  }, []);
+
+  const showPushHint = !pushOn;
   const { rows: reservations } = useAdminTable("reservations", { orderBy: "created_at", ascending: false });
   const { rows: inquiries } = useAdminTable("inquiries", { orderBy: "created_at", ascending: false });
   const newOrders = reservations.filter((r) => r.status === "new").length;
@@ -94,6 +109,15 @@ export default function AdminLayout() {
       </aside>
 
       <main className="flex-1 p-5 sm:p-8 overflow-x-hidden">
+        {showPushHint && (
+          <div className="mb-5 rounded-xl border border-ember-400/30 bg-ember-500/10 px-4 py-3 text-sm text-cream/80">
+            Background alerts are off on this device.{" "}
+            <NavLink to="/admin/settings" className="text-ember-400 underline underline-offset-2">
+              Enable push
+            </NavLink>{" "}
+            so a new order reaches you after you close this tab.
+          </div>
+        )}
         <Outlet />
       </main>
     </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "./supabaseClient";
 import { notifyAdminEvent } from "./notifications";
+import { isBackgroundPushEnabled } from "./push";
 
 function reservationBody(row) {
   const when = [row.date, row.time].filter(Boolean).join(" at ");
@@ -22,13 +23,16 @@ export function useAdminNotifications() {
         (payload) => {
           if (!ready.current) return;
           const row = payload.new || {};
-          notifyAdminEvent({
-            id: `reservation-${row.id}`,
-            title: "New order request",
-            body: reservationBody(row),
-            url: "/admin/reservations",
-            tag: `reservation-${row.id}`
-          });
+          const pageOpen = typeof document !== "undefined" && document.visibilityState === "visible";
+          if (pageOpen || !isBackgroundPushEnabled()) {
+            notifyAdminEvent({
+              id: `reservation-${row.id}`,
+              title: "New order request",
+              body: reservationBody(row),
+              url: "/admin/reservations",
+              tag: `reservation-${row.id}`
+            });
+          }
           window.dispatchEvent(new CustomEvent("green-corner:inbox", { detail: { table: "reservations", row } }));
         }
       )
@@ -38,13 +42,16 @@ export function useAdminNotifications() {
         (payload) => {
           if (!ready.current) return;
           const row = payload.new || {};
-          notifyAdminEvent({
-            id: `inquiry-${row.id}`,
-            title: "New customer message",
-            body: `${row.name || "A customer"}: ${(row.message || "").slice(0, 90)}`,
-            url: "/admin/inquiries",
-            tag: `inquiry-${row.id}`
-          });
+          const pageOpen = typeof document !== "undefined" && document.visibilityState === "visible";
+          if (pageOpen || !isBackgroundPushEnabled()) {
+            notifyAdminEvent({
+              id: `inquiry-${row.id}`,
+              title: "New customer message",
+              body: `${row.name || "A customer"}: ${(row.message || "").slice(0, 90)}`,
+              url: "/admin/inquiries",
+              tag: `inquiry-${row.id}`
+            });
+          }
           window.dispatchEvent(new CustomEvent("green-corner:inbox", { detail: { table: "inquiries", row } }));
         }
       )

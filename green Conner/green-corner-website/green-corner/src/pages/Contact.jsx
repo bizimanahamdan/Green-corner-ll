@@ -16,6 +16,7 @@ import {
   telHref,
   whatsappHref
 } from "../lib/business";
+import { requestBackgroundPush } from "../lib/notifyAdmin";
 
 const emptyInquiry = { name: "", contact: "", message: "" };
 
@@ -100,6 +101,14 @@ export default function Contact() {
       }
       if (error) throw error;
 
+      requestBackgroundPush({
+        table: "reservations",
+        name: payload.name,
+        phone: payload.phone,
+        date: payload.date,
+        time: payload.time
+      });
+
       setOrderStatus({ ok: true, text: t("contact.orderSaved") });
       setDetails({ name: "", phone: "", date: todayISO(), time: "", notes: "" });
       clear();
@@ -132,6 +141,11 @@ export default function Contact() {
         }
       ]);
       if (error) throw error;
+      requestBackgroundPush({
+        table: "inquiries",
+        name: inquiry.name.trim(),
+        contact: inquiry.contact.trim()
+      });
       setInquiryStatus({ ok: true, text: t("contact.messageSaved") });
       setInquiry(emptyInquiry);
     } catch {

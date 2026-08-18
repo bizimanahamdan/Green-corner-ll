@@ -47,6 +47,7 @@ Open the printed URL. The public site works on local demo data.
    - `supabase/004_reviews_and_social.sql`
    - `supabase/005_reset_content_grill_pub.sql` (if this project already had older seed data)
    - `supabase/006_realtime_and_orders.sql`
+   - `supabase/007_push_notifications.sql`
 3. Copy **Project URL** and **anon public key** into `.env` (see `.env.example`).
    Never put the service-role key in the frontend.
 4. Authentication → Users → Add user. That login is `/admin`.
@@ -60,10 +61,36 @@ Open the printed URL. The public site works on local demo data.
 - Menu, gallery, specials, reviews, hours, business info, logo/hero media
 - Incoming pickup orders (with line items when the customer built a cart)
 - Incoming messages
-- Browser notifications + optional chime (**Notifications**)
+- In-tab alerts + optional chime while the dashboard is open
+- **Background Web Push** so a new order can reach the phone after the tab is closed
 
-Notifications only fire while the admin tab is open. They are not background
-push. Enabling them asks the browser for permission first.
+### Background push setup
+
+This is real Web Push (service worker + VAPID). The normal Notification API
+cannot do this by itself.
+
+1. Run `npm run vapid` and copy the key pair.
+2. In Netlify (or `.env` for local):
+   - `VITE_VAPID_PUBLIC_KEY` — public key (safe in the frontend)
+   - `VAPID_PRIVATE_KEY` — private key (**server only**)
+   - `VAPID_SUBJECT` — `mailto:you@example.com` or the site URL
+   - `SUPABASE_SERVICE_ROLE_KEY` — **server only**, never `VITE_`
+3. Redeploy, then open `/admin` → **Notifications** → **Enable on this device**.
+4. Use **Test background push**, then close the tab. The test should still appear.
+
+Optional but more reliable: in Supabase, add Database Webhooks on INSERT for
+`reservations` and `inquiries` pointing at
+
+`https://YOUR-SITE.netlify.app/.netlify/functions/push-notify`
+
+with header `x-webhook-secret` matching `PUSH_WEBHOOK_SECRET`. That still
+fires if the customer's browser drops after the order is saved.
+
+iPhone: add the site to the Home Screen first (Safari → Share → Add to Home
+Screen). iOS only delivers Web Push to installed PWAs.
+
+Local `npm run dev` can send push too, as long as the same server secrets are
+in `.env`.
 
 ## 5. What the owner still needs to provide
 

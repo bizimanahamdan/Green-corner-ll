@@ -1,0 +1,23 @@
+{
+  "name": "The Green Corner Admin",
+  "short_name": "Green Corner",
+  "description": "Orders and messages for The Green Corner grill pub.",
+  "start_url": "/admin",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#0fa02a",
+  "icons": [
+    {
+      "src": "/images/mark-bowl.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

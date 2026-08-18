@@ -81,9 +81,8 @@ export function playNotificationChime() {
 }
 
 /**
- * Browser notification for the admin dashboard.
- * This is not background push — it only fires while the admin tab is open
- * (or recently focused, depending on the browser).
+ * In-tab browser notification. This is not background push.
+ * Closed-tab alerts go through the service worker in public/sw.js.
  */
 export function showSystemNotification(title, body, { url, tag, id } = {}) {
   if (id && hasSeenNotification(id)) return false;
