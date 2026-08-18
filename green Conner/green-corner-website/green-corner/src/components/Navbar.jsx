@@ -13,7 +13,6 @@ export default function Navbar() {
   const { t, language, toggleLanguage } = useLanguage();
   const { count, openCart } = useCart();
   const location = useLocation();
-  const overHero = location.pathname === "/" && !scrolled && !open;
 
   const links = [
     { to: "/menu", label: t("nav.menu") },
@@ -50,27 +49,21 @@ export default function Navbar() {
   }, [open]);
 
   const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors ${
-      isActive
-        ? overHero
-          ? "text-citrus-400"
-          : "text-leaf-600"
-        : overHero
-          ? "text-white/80 hover:text-white"
-          : "text-ink-700/80 hover:text-ink-900"
+    `text-sm font-medium tracking-wide transition-colors ${
+      isActive ? "text-ember-400" : "text-paper/75 hover:text-paper"
     }`;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        overHero ? "bg-transparent" : "bg-cream/95 backdrop-blur border-b border-ink-900/8"
+        scrolled || open ? "bg-char-950/95 backdrop-blur border-b border-white/10" : "bg-char-950/70 backdrop-blur-sm"
       }`}
     >
       <div className="container-narrow flex items-center justify-between py-3 sm:py-4">
         <NavLink to="/" className="flex items-center gap-2.5 min-w-0">
-          <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-white rounded-full p-1" />
-          <span className={`font-display text-lg sm:text-xl font-semibold truncate ${overHero ? "text-white" : "text-ink-900"}`}>
-            <span className={overHero ? "text-leaf-100" : "text-leaf-600"}>Green</span> Corner
+          <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-paper rounded-full p-1" />
+          <span className="font-display text-lg sm:text-xl font-semibold tracking-wide truncate text-paper">
+            <span className="text-leaf-400">Green</span> Corner
           </span>
           <span className="sr-only">{b.name}</span>
         </NavLink>
@@ -83,23 +76,15 @@ export default function Navbar() {
           ))}
           <button
             onClick={toggleLanguage}
-            className={`text-xs font-semibold border rounded-full px-3 py-1.5 transition-colors min-h-[36px] ${
-              overHero
-                ? "border-white/25 text-white/80 hover:border-white"
-                : "border-ink-900/15 text-ink-700/70 hover:border-leaf-500 hover:text-leaf-600"
-            }`}
+            className="text-xs font-semibold border border-white/20 rounded-full px-3 py-1.5 text-paper/75 hover:border-ember-400 hover:text-ember-400 transition-colors min-h-[36px]"
             aria-label="Switch language"
           >
             {language === "en" ? "RW" : "EN"}
           </button>
           {count > 0 && (
-            <button
-              type="button"
-              onClick={openCart}
-              className={`relative text-sm font-medium ${overHero ? "text-white" : "text-ink-800"}`}
-            >
+            <button type="button" onClick={openCart} className="relative text-sm font-medium text-paper">
               Order
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-citrus-500 px-1 text-[11px] font-bold text-ink-900">
+              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-citrus-500 px-1 text-[11px] font-bold text-char-950">
                 {count}
               </span>
             </button>
@@ -114,29 +99,27 @@ export default function Navbar() {
             <button
               type="button"
               onClick={openCart}
-              className={`relative p-2 ${overHero ? "text-white" : "text-ink-900"}`}
+              className="relative p-2 text-paper"
               aria-label={`Open order, ${count} items`}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 6h18M16 10a4 4 0 0 1-8 0" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="absolute top-0.5 right-0.5 h-4 min-w-[1rem] rounded-full bg-citrus-500 px-1 text-[10px] font-bold text-ink-900">
+              <span className="absolute top-0.5 right-0.5 h-4 min-w-[1rem] rounded-full bg-citrus-500 px-1 text-[10px] font-bold text-char-950">
                 {count}
               </span>
             </button>
           )}
           <button
             onClick={toggleLanguage}
-            className={`text-xs font-semibold border rounded-full px-2.5 py-1 min-h-[36px] ${
-              overHero ? "border-white/25 text-white/80" : "border-ink-900/15 text-ink-700/70"
-            }`}
+            className="text-xs font-semibold border border-white/20 rounded-full px-2.5 py-1 min-h-[36px] text-paper/75"
             aria-label="Switch language"
           >
             {language === "en" ? "RW" : "EN"}
           </button>
           <button
-            className={`p-2 ${overHero ? "text-white" : "text-ink-900"}`}
+            className="p-2 text-paper"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
@@ -156,14 +139,14 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-nav-drawer" className="lg:hidden bg-cream border-t border-ink-900/8">
+        <div id="mobile-nav-drawer" className="lg:hidden bg-char-950 border-t border-white/10">
           <nav className="container-narrow flex flex-col py-3 pb-6">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `py-3 text-base border-b border-ink-900/5 ${isActive ? "text-leaf-600" : "text-ink-800"}`
+                  `py-3 text-base border-b border-white/10 ${isActive ? "text-ember-400" : "text-paper"}`
                 }
               >
                 {link.label}

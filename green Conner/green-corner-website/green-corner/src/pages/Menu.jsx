@@ -37,7 +37,7 @@ export default function Menu() {
           <button
             onClick={() => setActive("all")}
             className={`rounded-full px-4 py-2 text-sm border min-h-[40px] ${
-              active === "all" ? "bg-leaf-500 border-leaf-500 text-white" : "border-ink-900/15 text-ink-700/70"
+              active === "all" ? "bg-leaf-500 border-leaf-500 text-white" : "border-white/15 text-mute"
             }`}
           >
             All
@@ -47,7 +47,7 @@ export default function Menu() {
               key={c.id}
               onClick={() => setActive(c.id)}
               className={`rounded-full px-4 py-2 text-sm border min-h-[40px] ${
-                active === c.id ? "bg-leaf-500 border-leaf-500 text-white" : "border-ink-900/15 text-ink-700/70"
+                active === c.id ? "bg-leaf-500 border-leaf-500 text-white" : "border-white/15 text-mute"
               }`}
             >
               {c.name}
@@ -56,12 +56,12 @@ export default function Menu() {
         </div>
 
         {loading ? (
-          <p className="text-ink-700/50">{t("common.loading")}</p>
+          <p className="text-mute">{t("common.loading")}</p>
         ) : (
           <div className="space-y-14">
             {visibleCategories.map((cat) => (
               <div key={cat.id}>
-                <h2 className="font-display text-2xl font-semibold mb-6 text-leaf-600">{cat.name}</h2>
+                <h2 className="font-display text-2xl font-semibold mb-6 text-leaf-400">{cat.name}</h2>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {cat.items.map((item) => {
                     const unavailable = item.available === false;
@@ -71,7 +71,7 @@ export default function Menu() {
                         className={`card-surface p-4 sm:p-5 flex gap-4 ${unavailable ? "opacity-50" : ""}`}
                       >
                         {item.image && (
-                          <div className={`h-20 w-20 rounded-lg flex-shrink-0 overflow-hidden ${isIllustration(item.image) ? "bg-mint p-2" : ""}`}>
+                          <div className={`h-20 w-20 rounded-lg flex-shrink-0 overflow-hidden ${isIllustration(item.image) ? "bg-char-800 p-2" : ""}`}>
                             <img
                               src={item.image}
                               alt={item.name}
@@ -85,18 +85,18 @@ export default function Menu() {
                             <h3 className="font-semibold leading-snug">
                               {item.name}
                               {unavailable && (
-                                <span className="ml-2 text-xs font-normal text-ink-700/40">(currently unavailable)</span>
+                                <span className="ml-2 text-xs font-normal text-mute/70">(currently unavailable)</span>
                               )}
                             </h3>
-                            <span className="text-leaf-600 text-sm whitespace-nowrap">
+                            <span className="text-leaf-400 text-sm whitespace-nowrap">
                               {isPlaceholderText(item.price) ? "Ask staff" : displayPrice(item.price)}
                             </span>
                           </div>
                           {!isPlaceholderText(item.description) && item.description && (
-                            <p className="mt-1 text-sm text-ink-700/60">{item.description}</p>
+                            <p className="mt-1 text-sm text-mute">{item.description}</p>
                           )}
                           {!unavailable && (
-                            <button type="button" onClick={() => addItem(item)} className="mt-3 text-sm font-semibold text-leaf-600 hover:text-leaf-700">
+                            <button type="button" onClick={() => addItem(item)} className="mt-3 text-sm font-semibold text-leaf-400 hover:text-leaf-300">
                               + {t("common.addToOrder")}
                             </button>
                           )}

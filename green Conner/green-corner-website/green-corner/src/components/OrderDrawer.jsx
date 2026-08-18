@@ -30,17 +30,17 @@ export default function OrderDrawer() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="order-drawer-heading"
-        className="h-full w-full max-w-md bg-cream shadow-2xl flex flex-col animate-modalIn motion-reduce:animate-none"
+        className="h-full w-full max-w-md bg-char-950 text-paper shadow-2xl flex flex-col animate-modalIn motion-reduce:animate-none border-l border-white/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b border-ink-900/10">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
           <h2 id="order-drawer-heading" className="font-display text-lg font-semibold">
             {t("cart.title")}
             {count > 0 ? ` · ${count}` : ""}
           </h2>
           <button
             onClick={closeCart}
-            className="h-10 w-10 rounded-full hover:bg-ink-900/5"
+            className="h-10 w-10 rounded-full hover:bg-white/5"
             aria-label={t("common.close")}
           >
             ×
@@ -49,19 +49,19 @@ export default function OrderDrawer() {
 
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {items.length === 0 ? (
-            <p className="text-sm text-ink-700/60">{t("cart.empty")}</p>
+            <p className="text-sm text-mute">{t("cart.empty")}</p>
           ) : (
             <ul className="space-y-4">
               {items.map((item) => (
                 <li key={item.id} className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-medium text-sm">{item.name}</p>
-                    <p className="text-xs text-leaf-600 mt-0.5">{displayPrice(item.price)}</p>
+                    <p className="text-xs text-leaf-400 mt-0.5">{displayPrice(item.price)}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      className="h-9 w-9 rounded-full border border-ink-900/15"
+                      className="h-9 w-9 rounded-full border border-white/15"
                       onClick={() => setQty(item.id, item.qty - 1)}
                       aria-label="Decrease quantity"
                     >
@@ -70,7 +70,7 @@ export default function OrderDrawer() {
                     <span className="w-6 text-center text-sm font-semibold">{item.qty}</span>
                     <button
                       type="button"
-                      className="h-9 w-9 rounded-full border border-ink-900/15"
+                      className="h-9 w-9 rounded-full border border-white/15"
                       onClick={() => setQty(item.id, item.qty + 1)}
                       aria-label="Increase quantity"
                     >
@@ -83,10 +83,10 @@ export default function OrderDrawer() {
           )}
         </div>
 
-        <div className="border-t border-ink-900/10 p-5 space-y-3">
+        <div className="border-t border-white/10 p-5 space-y-3">
           {items.length > 0 && (
             <div className="flex items-center justify-between text-sm">
-              <span className="text-ink-700/60">{t("cart.total")}</span>
+              <span className="text-mute">{t("cart.total")}</span>
               <span className="font-semibold">{formatPrice(total)}</span>
             </div>
           )}

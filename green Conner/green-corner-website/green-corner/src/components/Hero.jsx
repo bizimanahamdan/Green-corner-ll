@@ -16,7 +16,7 @@ export default function Hero() {
   const backdrop = b.heroImage1 || "/images/hero-embers.jpg";
 
   return (
-    <section className="relative min-h-[88vh] sm:min-h-[92vh] flex items-end overflow-hidden bg-ink-900 text-white">
+    <section className="relative min-h-[88vh] sm:min-h-[92vh] flex items-end overflow-hidden bg-char-950 text-paper">
       {videoOn ? (
         <video
           src={b.heroVideoUrl}
@@ -43,15 +43,15 @@ export default function Hero() {
             <p className="eyebrow text-leaf-100/90">
               {b.neighborhood}, {b.city}
             </p>
-            <OpenStatusBadge hours={hours || demoHours} invert />
+            <OpenStatusBadge hours={hours || demoHours} />
           </div>
 
-          <h1 className="mt-5 font-display text-[2.35rem] sm:text-5xl lg:text-6xl font-semibold leading-[1.05]">
+          <h1 className="mt-5 font-display text-[2.4rem] sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight uppercase">
             Fire-grilled fish
-            <span className="italic text-citrus-400"> &amp; brochettes.</span>
+            <span className="text-citrus-400"> &amp; brochettes.</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
+          <p className="mt-5 max-w-xl text-base sm:text-lg text-paper/75 leading-relaxed">
             {b.description}
           </p>
 

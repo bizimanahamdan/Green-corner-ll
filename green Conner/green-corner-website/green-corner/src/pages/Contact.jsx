@@ -23,7 +23,7 @@ const emptyInquiry = { name: "", contact: "", message: "" };
 function FormStatus({ status }) {
   if (!status) return null;
   return (
-    <p className={`mt-3 text-sm ${status.ok ? "text-leaf-600" : "text-red-600"}`} role="status">
+    <p className={`mt-3 text-sm ${status.ok ? "text-leaf-400" : "text-red-600"}`} role="status">
       {status.text}
     </p>
   );
@@ -173,64 +173,64 @@ export default function Contact() {
           <div>
             <p className="text-sm font-medium mb-2">{t("contact.yourOrder")}</p>
             {items.length === 0 ? (
-              <p className="text-sm text-ink-700/55 mb-3">{t("cart.empty")}</p>
+              <p className="text-sm text-mute mb-3">{t("cart.empty")}</p>
             ) : (
               <ul className="space-y-2 mb-3">
                 {items.map((item) => (
                   <li key={item.id} className="flex items-center justify-between gap-3 text-sm">
                     <span className="min-w-0 truncate">{item.name}</span>
                     <span className="flex items-center gap-2 flex-shrink-0">
-                      <button type="button" className="h-8 w-8 rounded-full border border-ink-900/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label="Decrease">−</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-white/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label="Decrease">−</button>
                       <span className="w-5 text-center">{item.qty}</span>
-                      <button type="button" className="h-8 w-8 rounded-full border border-ink-900/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label="Increase">+</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-white/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label="Increase">+</button>
                     </span>
                   </li>
                 ))}
               </ul>
             )}
             {count > 0 && (
-              <p className="text-sm font-semibold text-leaf-600 mb-3">{formatPrice(total)}</p>
+              <p className="text-sm font-semibold text-leaf-400 mb-3">{formatPrice(total)}</p>
             )}
-            <details className="rounded-xl border border-ink-900/10 p-3">
+            <details className="rounded-xl border border-white/10 p-3">
               <summary className="cursor-pointer text-sm font-medium">{t("contact.addFromMenu")}</summary>
               <ul className="mt-3 space-y-2 max-h-48 overflow-y-auto">
                 {flatMenu.map((item) => (
                   <li key={item.id} className="flex items-center justify-between gap-3 text-sm">
                     <span className="min-w-0">
                       <span className="block truncate">{item.name}</span>
-                      <span className="text-ink-700/50">{displayPrice(item.price)}</span>
+                      <span className="text-mute">{displayPrice(item.price)}</span>
                     </span>
-                    <button type="button" onClick={() => addItem(item, { reveal: false })} className="text-leaf-600 font-semibold flex-shrink-0">
+                    <button type="button" onClick={() => addItem(item, { reveal: false })} className="text-leaf-400 font-semibold flex-shrink-0">
                       + {t("common.addToOrder")}
                     </button>
                   </li>
                 ))}
               </ul>
-              <Link to="/menu" className="mt-3 inline-block text-sm text-leaf-600">{t("home.fullMenu")}</Link>
+              <Link to="/menu" className="mt-3 inline-block text-sm text-leaf-400">{t("home.fullMenu")}</Link>
             </details>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="text-sm text-ink-700/70" htmlFor="r-name">{t("contact.name")}</label>
+              <label className="text-sm text-mute" htmlFor="r-name">{t("contact.name")}</label>
               <input id="r-name" required value={details.name} onChange={(e) => setDetails({ ...details, name: e.target.value })} className="field-input" />
             </div>
             <div>
-              <label className="text-sm text-ink-700/70" htmlFor="r-phone">{t("contact.phone")}</label>
+              <label className="text-sm text-mute" htmlFor="r-phone">{t("contact.phone")}</label>
               <input id="r-phone" required type="tel" value={details.phone} onChange={(e) => setDetails({ ...details, phone: e.target.value })} className="field-input" />
             </div>
             <div>
-              <label className="text-sm text-ink-700/70" htmlFor="r-date">{t("contact.date")}</label>
+              <label className="text-sm text-mute" htmlFor="r-date">{t("contact.date")}</label>
               <input id="r-date" required type="date" min={todayISO()} value={details.date} onChange={(e) => setDetails({ ...details, date: e.target.value })} className="field-input" />
             </div>
             <div>
-              <label className="text-sm text-ink-700/70" htmlFor="r-time">{t("contact.time")}</label>
+              <label className="text-sm text-mute" htmlFor="r-time">{t("contact.time")}</label>
               <input id="r-time" required type="time" value={details.time} onChange={(e) => setDetails({ ...details, time: e.target.value })} className="field-input" />
             </div>
           </div>
 
           <div>
-            <label className="text-sm text-ink-700/70" htmlFor="r-message">{t("contact.orderDetails")}</label>
+            <label className="text-sm text-mute" htmlFor="r-message">{t("contact.orderDetails")}</label>
             <textarea
               id="r-message"
               rows={3}
@@ -263,15 +263,15 @@ export default function Contact() {
         <form onSubmit={submitInquiry} className="card-surface p-5 sm:p-8 space-y-4 h-fit" noValidate>
           <h2 className="font-display text-xl font-semibold">{t("contact.sendMessageHeading")}</h2>
           <div>
-            <label className="text-sm text-ink-700/70" htmlFor="i-name">{t("contact.name")}</label>
+            <label className="text-sm text-mute" htmlFor="i-name">{t("contact.name")}</label>
             <input id="i-name" required value={inquiry.name} onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })} className="field-input" />
           </div>
           <div>
-            <label className="text-sm text-ink-700/70" htmlFor="i-contact">Phone or Email</label>
+            <label className="text-sm text-mute" htmlFor="i-contact">Phone or Email</label>
             <input id="i-contact" required value={inquiry.contact} onChange={(e) => setInquiry({ ...inquiry, contact: e.target.value })} className="field-input" />
           </div>
           <div>
-            <label className="text-sm text-ink-700/70" htmlFor="i-message">{t("contact.message")}</label>
+            <label className="text-sm text-mute" htmlFor="i-message">{t("contact.message")}</label>
             <textarea id="i-message" required rows={4} value={inquiry.message} onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })} className="field-input min-h-[112px]" />
           </div>
           <button type="submit" disabled={submittingInquiry} className="btn-primary w-full disabled:opacity-60">

@@ -13,11 +13,11 @@ export default function Footer() {
   const ig = instagramHref(b.instagram);
 
   return (
-    <footer className="bg-ink-900 text-white">
+    <footer className="bg-char-950 text-paper border-t border-white/10">
       <div className="container-narrow py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5 mb-3">
-            <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-white rounded-full p-1" />
+            <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-paper rounded-full p-1" />
             <p className="font-display text-xl font-semibold">
               <span className="text-leaf-400">Green</span> Corner
             </p>

@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: #0b0a08;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -21,17 +23,17 @@ html {
 }
 
 ::selection {
-  background: #0fa02a;
-  color: #f7f3ea;
+  background: #f2960c;
+  color: #0b0a08;
 }
 
 :focus-visible {
-  outline: 2px solid #0fa02a;
+  outline: 2px solid #f2960c;
   outline-offset: 3px;
 }
 
 .eyebrow {
-  @apply text-[11px] tracking-[0.26em] uppercase text-leaf-600 font-semibold;
+  @apply text-[11px] tracking-[0.28em] uppercase text-ember-400 font-semibold font-display;
 }
 
 .container-narrow {
@@ -39,23 +41,23 @@ html {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-leaf-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-leaf-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-leaf-600 active:translate-y-0 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-leaf-500 px-6 py-3 text-sm font-semibold tracking-wide text-white transition-colors duration-200 hover:bg-leaf-600 active:bg-leaf-700 min-h-[44px];
 }
 
 .btn-citrus {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold text-ink-900 shadow-sm shadow-citrus-500/25 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-citrus-400 active:translate-y-0 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold tracking-wide text-char-950 transition-colors duration-200 hover:bg-citrus-400 active:bg-citrus-600 min-h-[44px];
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/20 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors duration-200 hover:border-leaf-500 hover:text-leaf-600 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors duration-200 hover:border-ember-400 hover:text-ember-400 min-h-[44px];
 }
 
 .btn-ghost-light {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors duration-200 hover:border-white hover:bg-white/5 min-h-[44px];
 }
 
 .card-surface {
-  @apply rounded-2xl border border-ink-900/10 bg-white shadow-sm shadow-ink-900/5;
+  @apply rounded-2xl border border-white/10 bg-char-900;
 }
 
 .admin-card {
@@ -75,13 +77,21 @@ html {
 }
 
 .section-heading {
-  @apply font-display text-[1.75rem] sm:text-4xl font-semibold text-ink-900 leading-tight;
+  @apply font-display text-[1.7rem] sm:text-4xl font-semibold text-paper leading-[1.15] tracking-tight;
 }
 
 .chip {
-  @apply rounded-full border border-ink-900/10 bg-white px-3.5 py-1.5 text-xs text-ink-700/80;
+  @apply rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs text-paper/80;
 }
 
 .field-input {
-  @apply mt-1 w-full rounded-lg bg-white border border-ink-900/15 px-3 py-2.5 text-sm outline-none focus:border-leaf-500 min-h-[44px];
+  @apply mt-1 w-full rounded-lg bg-char-950 border border-white/15 px-3 py-2.5 text-sm text-paper placeholder:text-mute/70 outline-none focus:border-ember-400 min-h-[44px];
+}
+
+.band {
+  @apply bg-char-900 border-y border-white/10;
+}
+
+.text-muted {
+  @apply text-mute;
 }

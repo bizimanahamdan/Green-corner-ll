@@ -27,10 +27,10 @@ export default function Location() {
         <div>
           <div className="card-surface p-6 mb-6">
             <h2 className="font-display text-lg font-semibold mb-3">Address</h2>
-            <p className="text-ink-700/70">{b.neighborhood}, {b.city}</p>
+            <p className="text-mute">{b.neighborhood}, {b.city}</p>
             {phoneHref && isConfirmedPhone(b.phone) && (
-              <p className="text-ink-700/70 mt-1">
-                <a href={phoneHref} className="hover:text-leaf-600">{b.phone}</a>
+              <p className="text-mute mt-1">
+                <a href={phoneHref} className="hover:text-leaf-400">{b.phone}</a>
               </p>
             )}
             <a
@@ -46,11 +46,11 @@ export default function Location() {
           <div className="card-surface p-6">
             <h2 className="font-display text-lg font-semibold mb-3">Opening Hours</h2>
             {dayHours.length === 0 ? (
-              <p className="text-sm text-ink-700/60">{t("empty.hours")}</p>
+              <p className="text-sm text-mute">{t("empty.hours")}</p>
             ) : (
               <ul className="divide-y divide-ink-900/8">
                 {dayHours.map((h) => (
-                  <li key={h.day} className="flex justify-between py-2.5 text-sm text-ink-700/70 gap-3">
+                  <li key={h.day} className="flex justify-between py-2.5 text-sm text-mute gap-3">
                     <span>{h.day}</span>
                     <span className="text-right">{h.open} – {h.close}</span>
                   </li>
@@ -60,7 +60,7 @@ export default function Location() {
           </div>
         </div>
 
-        <div className="rounded-2xl overflow-hidden border border-ink-900/8 min-h-[360px]">
+        <div className="rounded-2xl overflow-hidden border border-white/10 min-h-[360px]">
           <iframe
             title="The Green Corner location map"
             className="h-full w-full min-h-[360px]"

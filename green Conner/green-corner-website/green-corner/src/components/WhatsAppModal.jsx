@@ -62,16 +62,16 @@ export default function WhatsAppModal() {
         aria-modal="true"
         aria-labelledby="whatsapp-modal-heading"
         onClick={(e) => e.stopPropagation()}
-        className="w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] shadow-xl shadow-ink-900/20 animate-modalIn motion-reduce:animate-none"
+        className="w-full sm:max-w-sm bg-char-900 text-paper rounded-t-3xl sm:rounded-3xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] shadow-xl animate-modalIn motion-reduce:animate-none border border-white/10"
       >
         <div className="flex items-center justify-between mb-5">
-          <h2 id="whatsapp-modal-heading" className="font-display text-lg font-semibold text-ink-900">
+          <h2 id="whatsapp-modal-heading" className="font-display text-lg font-semibold text-paper">
             {selected ? copy[selected.labelKey] : copy.heading}
           </h2>
           <button
             onClick={closeModal}
             aria-label={copy.close}
-            className="h-10 w-10 flex items-center justify-center rounded-full text-ink-700/50 hover:bg-ink-900/5 hover:text-ink-900"
+            className="h-10 w-10 flex items-center justify-center rounded-full text-mute hover:bg-ink-900/5 hover:text-paper"
           >
             <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
@@ -86,7 +86,7 @@ export default function WhatsAppModal() {
                 key={opt.key}
                 ref={i === 0 ? firstOptionRef : undefined}
                 onClick={() => setSelected(opt)}
-                className="w-full flex items-center gap-3 rounded-xl border border-ink-900/10 px-4 py-3.5 text-left text-sm font-medium text-ink-900 hover:border-leaf-500 hover:bg-leaf-50 transition-colors min-h-[48px]"
+                className="w-full flex items-center gap-3 rounded-xl border border-white/10 px-4 py-3.5 text-left text-sm font-medium text-paper hover:border-leaf-500 hover:bg-char-900 transition-colors min-h-[48px]"
               >
                 <span className="text-xl" aria-hidden="true">{opt.emoji}</span>
                 {copy[opt.labelKey]}
@@ -95,7 +95,7 @@ export default function WhatsAppModal() {
           </div>
         ) : (
           <div>
-            <p className="text-sm text-ink-700/60 mb-4">{t("whatsappModal.languagePrompt")}</p>
+            <p className="text-sm text-mute mb-4">{t("whatsappModal.languagePrompt")}</p>
             <div className="grid grid-cols-2 gap-3">
               <button onClick={() => sendMessage("en")} className="btn-primary justify-center">
                 English
@@ -106,7 +106,7 @@ export default function WhatsAppModal() {
             </div>
             <button
               onClick={() => setSelected(null)}
-              className="mt-4 text-sm text-ink-700/50 hover:text-leaf-600"
+              className="mt-4 text-sm text-mute hover:text-leaf-400"
             >
               ← {t("common.back")}
             </button>

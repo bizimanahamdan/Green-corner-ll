@@ -23,15 +23,17 @@ export default {
           800: "#242424",
           700: "#333333"
         },
-        cream: "#f7f3ea",
-        mint: "#f3f6ef",
+        cream: "#efe7d6",
+        mint: "#16140f",
+        paper: "#efe7d6",
+        mute: "#b7ad9c",
         // Aliases kept so the (intentionally dark) admin dashboard keeps its
         // own look without duplicating the public-site palette everywhere.
         char: {
-          950: "#141414",
-          900: "#1a1a1a",
-          800: "#242424",
-          700: "#333333"
+          950: "#0b0a08",
+          900: "#14120e",
+          800: "#1c1914",
+          700: "#2a261f"
         },
         ember: {
           500: "#f2960c",
@@ -50,8 +52,8 @@ export default {
         }
       },
       fontFamily: {
-        display: ["Fraunces", "serif"],
-        body: ["Work Sans", "sans-serif"]
+        display: ["Oswald", "Impact", "sans-serif"],
+        body: ["Source Sans 3", "Segoe UI", "sans-serif"]
       },
       keyframes: {
         float: {

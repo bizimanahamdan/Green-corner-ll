@@ -24,7 +24,7 @@ export default function Specials() {
 
       <section className="container-narrow py-10 sm:py-12">
         {loading ? (
-          <p className="text-ink-700/50">{t("common.loading")}</p>
+          <p className="text-mute">{t("common.loading")}</p>
         ) : real.length === 0 ? (
           <EmptyState body={t("empty.specials")} />
         ) : (
@@ -32,7 +32,7 @@ export default function Specials() {
             {real.map((s) => (
               <article key={s.id} className="card-surface overflow-hidden">
                 {s.image && (
-                  <div className={`h-44 w-full ${isIllustration(s.image) ? "bg-mint p-8 flex items-center justify-center" : ""}`}>
+                  <div className={`h-44 w-full ${isIllustration(s.image) ? "bg-char-800 p-8 flex items-center justify-center" : ""}`}>
                     <img
                       src={s.image}
                       alt={s.title}
@@ -44,7 +44,7 @@ export default function Specials() {
                 <div className="p-5">
                   {s.tag && !isPlaceholderText(s.tag) && <span className="eyebrow">{s.tag}</span>}
                   <h3 className="font-display text-lg font-semibold mt-2">{s.title}</h3>
-                  <p className="mt-2 text-sm text-ink-700/65">{s.description}</p>
+                  <p className="mt-2 text-sm text-mute">{s.description}</p>
                 </div>
               </article>
             ))}

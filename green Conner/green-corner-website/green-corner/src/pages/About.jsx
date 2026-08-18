@@ -26,7 +26,7 @@ export default function About() {
       <PageHeader eyebrow={t("pages.aboutEyebrow")} title={t("pages.aboutTitle")} />
 
       <section className="container-narrow py-12 sm:py-14 grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div className="space-y-5 text-ink-700/75 leading-relaxed">
+        <div className="space-y-5 text-mute leading-relaxed">
           <p>{b.description}</p>
           <p>
             The Green Corner sits in {b.neighborhood}, a lively, residential part of Kigali known for
@@ -45,14 +45,14 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-white border-y border-ink-900/8 py-14 sm:py-16">
+      <section className="band py-14 sm:py-16">
         <div className="container-narrow">
           <h2 className="section-heading mb-8">What defines the experience</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             {pillars.map((p) => (
               <div key={p.title} className="card-surface p-6">
-                <h3 className="font-display text-lg font-semibold text-leaf-600">{p.title}</h3>
-                <p className="mt-2 text-sm text-ink-700/65">{p.body}</p>
+                <h3 className="font-display text-lg font-semibold text-leaf-400">{p.title}</h3>
+                <p className="mt-2 text-sm text-mute">{p.body}</p>
               </div>
             ))}
           </div>
