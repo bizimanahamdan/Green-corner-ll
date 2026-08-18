@@ -26,8 +26,12 @@ export function AuthProvider({ children }) {
     if (!isSupabaseConfigured) {
       return { error: { message: "Supabase is not connected yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env" } };
     }
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error };
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      return { error };
+    } catch (error) {
+      return { error: { message: error?.message || "Failed to reach Supabase." } };
+    }
   };
 
   const signOut = async () => {
