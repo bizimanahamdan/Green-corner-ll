@@ -5,6 +5,7 @@ import SEO from "../components/SEO";
 import { useAdminNotifications } from "../lib/useAdminNotifications";
 import { useAdminTable } from "./useAdminTable";
 import { isBackgroundPushEnabled, refreshBackgroundPush } from "../lib/push";
+import AdminErrorBoundary from "./AdminErrorBoundary";
 
 const items = [
   { to: "/admin", label: "Overview", end: true },
@@ -28,7 +29,9 @@ export default function AdminLayout() {
   const [pushOn, setPushOn] = useState(isBackgroundPushEnabled());
 
   useEffect(() => {
-    if (session?.user?.id) refreshBackgroundPush(session.user.id);
+    if (!session?.user?.id) return undefined;
+    refreshBackgroundPush(session.user.id).catch(() => {});
+    return undefined;
   }, [session?.user?.id]);
 
   useEffect(() => {
@@ -118,7 +121,9 @@ export default function AdminLayout() {
             so a new order reaches you after you close this tab.
           </div>
         )}
-        <Outlet />
+        <AdminErrorBoundary>
+          <Outlet />
+        </AdminErrorBoundary>
       </main>
     </div>
   );

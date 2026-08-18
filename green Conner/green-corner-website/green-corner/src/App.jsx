@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -19,21 +18,21 @@ import Reviews from "./pages/Reviews";
 import Location from "./pages/Location";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./admin/ProtectedRoute";
 
-const AdminLogin = lazy(() => import("./admin/AdminLogin"));
-const AdminLayout = lazy(() => import("./admin/AdminLayout"));
-const AdminOverview = lazy(() => import("./admin/AdminOverview"));
-const AdminMenu = lazy(() => import("./admin/AdminMenu"));
-const AdminGallery = lazy(() => import("./admin/AdminGallery"));
-const AdminSpecials = lazy(() => import("./admin/AdminSpecials"));
-const AdminReviews = lazy(() => import("./admin/AdminReviews"));
-const AdminHours = lazy(() => import("./admin/AdminHours"));
-const AdminBusinessInfo = lazy(() => import("./admin/AdminBusinessInfo"));
-const AdminMedia = lazy(() => import("./admin/AdminMedia"));
-const AdminReservations = lazy(() => import("./admin/AdminReservations"));
-const AdminInquiries = lazy(() => import("./admin/AdminInquiries"));
-const AdminSettings = lazy(() => import("./admin/AdminSettings"));
+import ProtectedRoute from "./admin/ProtectedRoute";
+import AdminLogin from "./admin/AdminLogin";
+import AdminLayout from "./admin/AdminLayout";
+import AdminOverview from "./admin/AdminOverview";
+import AdminMenu from "./admin/AdminMenu";
+import AdminGallery from "./admin/AdminGallery";
+import AdminSpecials from "./admin/AdminSpecials";
+import AdminReviews from "./admin/AdminReviews";
+import AdminHours from "./admin/AdminHours";
+import AdminBusinessInfo from "./admin/AdminBusinessInfo";
+import AdminMedia from "./admin/AdminMedia";
+import AdminReservations from "./admin/AdminReservations";
+import AdminInquiries from "./admin/AdminInquiries";
+import AdminSettings from "./admin/AdminSettings";
 
 function PublicLayout({ children }) {
   return (
@@ -51,14 +50,6 @@ function PublicLayout({ children }) {
   );
 }
 
-function AdminFallback() {
-  return (
-    <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex items-center justify-center">
-      Loading…
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <>
@@ -73,21 +64,12 @@ export default function App() {
         <Route path="/location" element={<PublicLayout><Location /></PublicLayout>} />
         <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
 
-        <Route
-          path="/admin/login"
-          element={
-            <Suspense fallback={<AdminFallback />}>
-              <AdminLogin />
-            </Suspense>
-          }
-        />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
           element={
             <ProtectedRoute>
-              <Suspense fallback={<AdminFallback />}>
-                <AdminLayout />
-              </Suspense>
+              <AdminLayout />
             </ProtectedRoute>
           }
         >

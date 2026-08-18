@@ -9,15 +9,26 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
   const [error, setError] = useState("");
 
   const refresh = useCallback(async () => {
+    if (!supabase) {
+      setRows([]);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError("");
-    const query = supabase.from(table).select("*");
-    const { data, error: fetchError } = orderBy
-      ? await query.order(orderBy, { ascending })
-      : await query;
-    if (fetchError) setError(fetchError.message);
-    setRows(data || []);
-    setLoading(false);
+    try {
+      const query = supabase.from(table).select("*");
+      const { data, error: fetchError } = orderBy
+        ? await query.order(orderBy, { ascending })
+        : await query;
+      if (fetchError) setError(fetchError.message);
+      setRows(data || []);
+    } catch (err) {
+      setError(err.message || "Could not load this table.");
+      setRows([]);
+    } finally {
+      setLoading(false);
+    }
   }, [table, orderBy, ascending]);
 
   useEffect(() => {
