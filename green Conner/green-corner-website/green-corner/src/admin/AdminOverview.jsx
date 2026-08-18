@@ -32,12 +32,15 @@ export default function AdminOverview() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="admin-card p-6">
-          <h2 className="font-semibold mb-4">Latest reservation requests</h2>
+          <h2 className="font-semibold mb-4">Latest order requests</h2>
           {newReservations.length === 0 && <p className="text-sm text-cream/50">No new requests.</p>}
           <ul className="space-y-3">
             {newReservations.slice(0, 5).map((r) => (
               <li key={r.id} className="text-sm border-b border-cream/10 pb-2">
-                <span className="font-medium">{r.name}</span> · {r.date} at {r.time} · {r.guests} guests
+                <span className="font-medium">{r.name}</span>
+                {" · "}
+                {r.date} at {r.time}
+                {r.guests ? ` · ${r.guests} item${r.guests === 1 ? "" : "s"}` : ""}
               </li>
             ))}
           </ul>

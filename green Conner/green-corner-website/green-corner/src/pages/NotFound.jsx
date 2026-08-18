@@ -3,7 +3,7 @@ import SEO from "../components/SEO";
 
 export default function NotFound() {
   return (
-    <section className="container-narrow py-32 text-center">
+    <section className="container-narrow pt-32 pb-24 text-center">
       <SEO title="Page Not Found" path="/404" noindex />
       <p className="eyebrow mb-3">404</p>
       <h1 className="section-heading mb-4">This table isn't set.</h1>

@@ -20,7 +20,8 @@ export default function LocalBusinessSchema({ business, hours }) {
     "@type": "Restaurant",
     name: business.name,
     url: SITE_URL,
-    image: `${SITE_URL}${business.logoUrl || "/images/logo.png"}`
+    image: `${SITE_URL}${business.logoUrl || "/images/logo.png"}`,
+    servesCuisine: ["Rwandan", "Grill"]
   };
 
   if (!isPlaceholder(business.description)) data.description = business.description;
@@ -49,14 +50,17 @@ export default function LocalBusinessSchema({ business, hours }) {
       Monday: "Mo", Tuesday: "Tu", Wednesday: "We", Thursday: "Th",
       Friday: "Fr", Saturday: "Sa", Sunday: "Su"
     };
-    data.openingHoursSpecification = hours
-      .filter((h) => dayMap[h.day] && h.open && h.close)
-      .map((h) => ({
+    const usable = hours.filter(
+      (h) => dayMap[h.day] && h.open && h.close && !/closed/i.test(h.open) && !/placeholder/i.test(h.open)
+    );
+    if (usable.length) {
+      data.openingHoursSpecification = usable.map((h) => ({
         "@type": "OpeningHoursSpecification",
         dayOfWeek: `https://schema.org/${h.day}`,
         opens: to24h(h.open),
         closes: to24h(h.close)
       }));
+    }
   }
 
   return (

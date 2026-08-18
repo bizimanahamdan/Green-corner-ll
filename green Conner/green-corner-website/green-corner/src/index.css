@@ -22,7 +22,7 @@ html {
 
 ::selection {
   background: #0fa02a;
-  color: #fdfdf8;
+  color: #f7f3ea;
 }
 
 :focus-visible {
@@ -31,30 +31,33 @@ html {
 }
 
 .eyebrow {
-  @apply text-xs tracking-[0.28em] uppercase text-leaf-600 font-semibold;
+  @apply text-[11px] tracking-[0.26em] uppercase text-leaf-600 font-semibold;
 }
 
 .container-narrow {
-  @apply mx-auto max-w-6xl px-5 sm:px-8;
+  @apply mx-auto max-w-6xl px-4 sm:px-8;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-leaf-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-leaf-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-leaf-600 active:translate-y-0;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-leaf-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-leaf-500/20 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-leaf-600 active:translate-y-0 min-h-[44px];
 }
 
 .btn-citrus {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold text-ink-900 shadow-sm shadow-citrus-500/25 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-citrus-400 active:translate-y-0;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold text-ink-900 shadow-sm shadow-citrus-500/25 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-citrus-400 active:translate-y-0 min-h-[44px];
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/20 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors duration-200 hover:border-leaf-500 hover:text-leaf-600;
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/20 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors duration-200 hover:border-leaf-500 hover:text-leaf-600 min-h-[44px];
+}
+
+.btn-ghost-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10 min-h-[44px];
 }
 
 .card-surface {
   @apply rounded-2xl border border-ink-900/10 bg-white shadow-sm shadow-ink-900/5;
 }
 
-/* Admin dashboard keeps its own dark theme, separate from the public site. */
 .admin-card {
   @apply rounded-2xl border border-cream/10 bg-char-800/60;
 }
@@ -68,9 +71,17 @@ html {
 }
 
 .admin-btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-cream/25 px-6 py-3 text-sm font-semibold text-cream transition-colors duration-200 hover:border-ember-400 hover:text-ember-400;
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-cream/25 px-6 py-3 text-sm font-semibold text-cream transition-colors duration-200 hover:border-ember-400 hover:text-ember-400 min-h-[44px];
 }
 
 .section-heading {
-  @apply font-display text-3xl sm:text-4xl font-semibold text-ink-900;
+  @apply font-display text-[1.75rem] sm:text-4xl font-semibold text-ink-900 leading-tight;
+}
+
+.chip {
+  @apply rounded-full border border-ink-900/10 bg-white px-3.5 py-1.5 text-xs text-ink-700/80;
+}
+
+.field-input {
+  @apply mt-1 w-full rounded-lg bg-white border border-ink-900/15 px-3 py-2.5 text-sm outline-none focus:border-leaf-500 min-h-[44px];
 }

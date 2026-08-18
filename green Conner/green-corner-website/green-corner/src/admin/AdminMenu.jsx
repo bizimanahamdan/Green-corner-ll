@@ -179,6 +179,14 @@ export default function AdminMenu() {
                   />
                   Available
                 </label>
+                <label className="flex items-center gap-2 text-sm text-cream/70">
+                  <input
+                    type="checkbox"
+                    checked={!!editItem.is_specialty}
+                    onChange={(e) => setEditItem({ ...editItem, is_specialty: e.target.checked })}
+                  />
+                  Featured on homepage
+                </label>
                 <div className="flex gap-2">
                   <button onClick={saveEdit} disabled={busy} className="btn-primary">Save</button>
                   <button onClick={() => setEditingItemId(null)} className="admin-btn-outline">Cancel</button>
@@ -240,6 +248,14 @@ export default function AdminMenu() {
             onChange={(e) => setNewItem({ ...newItem, image_url: e.target.value })}
             className="admin-input"
           />
+          <label className="flex items-center gap-2 text-sm text-cream/70">
+            <input
+              type="checkbox"
+              checked={newItem.is_specialty}
+              onChange={(e) => setNewItem({ ...newItem, is_specialty: e.target.checked })}
+            />
+            Featured on homepage
+          </label>
           <button disabled={busy} className="btn-primary">Add Item</button>
         </form>
       </section>

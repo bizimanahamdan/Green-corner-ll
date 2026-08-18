@@ -38,6 +38,6 @@ create policy "admin delete media bucket"
 update business_info set
   logo_url = '/images/logo.png',
   hero_media_type = 'images',
-  hero_image_1 = '/images/illustrations/smoothie-glass.svg',
-  hero_image_2 = '/images/illustrations/salad-bowl.svg',
-  hero_image_3 = '/images/illustrations/citrus-slice.svg';
+  hero_image_1 = '/images/hero-embers.jpg',
+  hero_image_2 = null,
+  hero_image_3 = null;

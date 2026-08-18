@@ -88,7 +88,7 @@ export default function AdminSpecials() {
           className="admin-input"
         />
         <input
-          placeholder="Tag (e.g. Sample idea)"
+          placeholder="Tag (e.g. Tonight, Weekend)"
           value={form.tag}
           onChange={(e) => setForm({ ...form, tag: e.target.value })}
           className="admin-input"

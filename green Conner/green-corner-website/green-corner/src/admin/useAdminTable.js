@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 // Generic CRUD helper for a single Supabase table, used by every admin screen.
+// Subscribes to realtime changes so two open dashboards stay in sync.
 export function useAdminTable(table, { orderBy = "sort_order", ascending = true } = {}) {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +23,42 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  useEffect(() => {
+    if (!supabase) return undefined;
+    const channel = supabase
+      .channel(`admin-table-${table}`)
+      .on("postgres_changes", { event: "*", schema: "public", table }, (payload) => {
+        setRows((prev) => {
+          if (payload.eventType === "INSERT") {
+            if (prev.some((row) => row.id === payload.new.id)) return prev;
+            const next = [payload.new, ...prev];
+            if (!orderBy) return next;
+            return [...next].sort((a, b) => {
+              const av = a[orderBy];
+              const bv = b[orderBy];
+              if (av === bv) return 0;
+              if (av == null) return 1;
+              if (bv == null) return -1;
+              if (av > bv) return ascending ? 1 : -1;
+              return ascending ? -1 : 1;
+            });
+          }
+          if (payload.eventType === "UPDATE") {
+            return prev.map((row) => (row.id === payload.new.id ? payload.new : row));
+          }
+          if (payload.eventType === "DELETE") {
+            return prev.filter((row) => row.id !== payload.old.id);
+          }
+          return prev;
+        });
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [table, orderBy, ascending]);
 
   const insert = async (values) => {
     const { error: insertError } = await supabase.from(table).insert([values]);

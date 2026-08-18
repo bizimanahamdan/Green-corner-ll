@@ -32,17 +32,8 @@ insert into menu_items (category_id, name, description, price, image_url, is_spe
   ('a3333333-3333-3333-3333-333333333333', 'Fried Plantains (Mizuzu)', 'Sweet, golden-brown fried plantains.', '2,500', 'https://images.unsplash.com/photo-1662993888358-db809fdb89a9?q=80&w=800', false, 2),
   ('a4444444-4444-4444-4444-444444444444', 'Ice Cold Local Beers', 'Perfectly chilled Skol, Mutzig, or Primus.', '1,500', 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800', false, 1);
 
-insert into gallery (url, caption, category, sort_order) values
-  ('https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800', 'PLACEHOLDER — the big grilled fish', 'Fish', 1),
-  ('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800', 'PLACEHOLDER — goat brochettes on the grill', 'Grilled Meats', 2),
-  ('https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=800', 'PLACEHOLDER — beef brochette', 'Grilled Meats', 3),
-  ('https://images.unsplash.com/photo-1633494541571-0814fdbfa54b?q=80&w=800', 'PLACEHOLDER — roasted potatoes', 'Sides', 4),
-  ('https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800', 'PLACEHOLDER — cold local beer', 'Drinks', 5);
-
-insert into specials (title, description, tag, image_url, active, sort_order) values
-  ('Happy Hour Brochettes', 'PLACEHOLDER — sample idea: discounted brochettes during early evening hours. Confirm timing and pricing with the owner.', 'Sample idea', 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800', true, 1),
-  ('Fish & Beer Combo', 'PLACEHOLDER — sample idea: grilled fish plus a cold beer for a set combo price. Confirm concept and pricing with the owner.', 'Sample idea', 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800', true, 2),
-  ('Weekend Grill Night', 'PLACEHOLDER — sample idea: extended grill menu and live atmosphere on weekend evenings. Confirm concept with the owner.', 'Sample idea', 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800', true, 3);
+-- Gallery and specials stay empty until the owner adds real ones in admin.
+-- Do not seed stock photos or sample promotions as if they belong to the venue.
 
 -- Update business_info in place (works whether or not you'd already customized it)
 update business_info set
@@ -52,8 +43,12 @@ update business_info set
   neighborhood = 'Nyamirambo',
   city = 'Kigali, Rwanda',
   maps_query = 'Nyamirambo, Kigali, Rwanda',
+  phone = '',
+  whatsapp = '',
+  instagram = '',
+  price_range = '',
   logo_url = '/images/logo.png',
   hero_media_type = 'images',
-  hero_image_1 = 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800',
-  hero_image_2 = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800',
-  hero_image_3 = 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800';
+  hero_image_1 = '/images/hero-embers.jpg',
+  hero_image_2 = null,
+  hero_image_3 = null;

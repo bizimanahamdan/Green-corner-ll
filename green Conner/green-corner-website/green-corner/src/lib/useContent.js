@@ -8,8 +8,9 @@ import {
   specials as demoSpecials,
   reviews as demoReviews
 } from "./demoData";
+import { isPlaceholderText } from "./media";
 
-function useLive(fetcher, fallback, deps = []) {
+function useLive(fetcher, fallback, { allowEmpty = false } = {}) {
   const [data, setData] = useState(fallback);
   const [loading, setLoading] = useState(isSupabaseConfigured);
   const [usingLiveData, setUsingLiveData] = useState(false);
@@ -25,7 +26,8 @@ function useLive(fetcher, fallback, deps = []) {
     fetcher()
       .then((result) => {
         if (cancelled) return;
-        if (result && (!Array.isArray(result) || result.length > 0)) {
+        const hasRows = Array.isArray(result) ? result.length > 0 : Boolean(result);
+        if (result != null && (hasRows || allowEmpty)) {
           setData(result);
           setUsingLiveData(true);
         } else {
@@ -42,12 +44,11 @@ function useLive(fetcher, fallback, deps = []) {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, []);
 
   return { data, loading, usingLiveData };
 }
 
-// Supabase returns snake_case columns; the app uses camelCase everywhere else.
 function normalizeBusinessInfo(row) {
   if (!row) return row;
   return {
@@ -77,14 +78,11 @@ function normalizeBusinessInfo(row) {
 }
 
 export function useBusinessInfo() {
-  return useLive(
-    async () => {
-      const { data, error } = await supabase.from("business_info").select("*").single();
-      if (error) throw error;
-      return normalizeBusinessInfo(data);
-    },
-    demoBusinessInfo
-  );
+  return useLive(async () => {
+    const { data, error } = await supabase.from("business_info").select("*").single();
+    if (error) throw error;
+    return normalizeBusinessInfo(data);
+  }, demoBusinessInfo);
 }
 
 export function useHours() {
@@ -92,9 +90,10 @@ export function useHours() {
     async () => {
       const { data, error } = await supabase.from("hours").select("*").order("sort_order");
       if (error) throw error;
-      return data;
+      return data || [];
     },
-    demoHours
+    demoHours,
+    { allowEmpty: true }
   );
 }
 
@@ -103,9 +102,10 @@ export function useGallery() {
     async () => {
       const { data, error } = await supabase.from("gallery").select("*").order("sort_order");
       if (error) throw error;
-      return data;
+      return (data || []).filter((img) => img.url && !isPlaceholderText(img.caption));
     },
-    demoGallery
+    demoGallery,
+    { allowEmpty: true }
   );
 }
 
@@ -114,10 +114,12 @@ export function useSpecials() {
     async () => {
       const { data, error } = await supabase.from("specials").select("*").eq("active", true).order("sort_order");
       if (error) throw error;
-      // Normalize db's image_url to the "image" field the UI expects (matches demo data shape).
-      return data.map((s) => ({ ...s, image: s.image_url }));
+      return (data || [])
+        .filter((s) => !isPlaceholderText(s.description) && s.tag !== "Sample idea")
+        .map((s) => ({ ...s, image: s.image_url }));
     },
-    demoSpecials
+    demoSpecials,
+    { allowEmpty: true }
   );
 }
 
@@ -126,39 +128,31 @@ export function useReviews() {
     async () => {
       const { data, error } = await supabase.from("reviews").select("*").eq("visible", true).order("sort_order");
       if (error) throw error;
-      return data;
+      return (data || []).filter((r) => !isPlaceholderText(r.quote));
     },
-    demoReviews
+    demoReviews,
+    { allowEmpty: true }
   );
 }
 
 export function useMenu() {
-  return useLive(
-    async () => {
-      const { data: categories, error: catError } = await supabase
-        .from("menu_categories")
-        .select("*")
-        .order("sort_order");
-      if (catError) throw catError;
-      const { data: items, error: itemError } = await supabase
-        .from("menu_items")
-        .select("*")
-        .order("sort_order");
-      if (itemError) throw itemError;
-      // Normalize db snake_case columns to the same shape the demo data uses
-      // (image, specialty, available) so every page that consumes menu items
-      // works the same whether it's reading live or demo data.
-      const normalizedItems = items.map((item) => ({
-        ...item,
-        image: item.image_url,
-        specialty: item.is_specialty,
-        available: item.is_available
-      }));
-      return categories.map((cat) => ({
-        ...cat,
-        items: normalizedItems.filter((item) => item.category_id === cat.id)
-      }));
-    },
-    demoMenu
-  );
+  return useLive(async () => {
+    const { data: categories, error: catError } = await supabase
+      .from("menu_categories")
+      .select("*")
+      .order("sort_order");
+    if (catError) throw catError;
+    const { data: items, error: itemError } = await supabase.from("menu_items").select("*").order("sort_order");
+    if (itemError) throw itemError;
+    const normalizedItems = items.map((item) => ({
+      ...item,
+      image: item.image_url,
+      specialty: item.is_specialty,
+      available: item.is_available
+    }));
+    return categories.map((cat) => ({
+      ...cat,
+      items: normalizedItems.filter((item) => item.category_id === cat.id)
+    }));
+  }, demoMenu);
 }

@@ -1,55 +1,92 @@
-// Covers the site's own chrome — nav, buttons, section headers, footer, form
-// labels. Content typed into the admin dashboard (business description, menu
-// items, specials, reviews) stays in whatever language it was entered in;
-// translating free-form owner content automatically isn't in scope here.
+// Site chrome only. Owner-entered content (menu, reviews, hours, description)
+// stays in the language it was typed in.
 
 export const translations = {
   en: {
-    nav: { menu: "Menu", about: "About", gallery: "Gallery", specials: "Specials", reviews: "Reviews", location: "Location", orderAhead: "Order Ahead" },
-    openStatus: { openNow: "Open now", closes: "closes", closed: "Closed", opens: "opens" },
+    nav: {
+      menu: "Menu",
+      about: "About",
+      gallery: "Gallery",
+      specials: "Specials",
+      reviews: "Reviews",
+      location: "Location",
+      orderAhead: "Order Ahead"
+    },
+    openStatus: {
+      openNow: "Open now",
+      closes: "closes",
+      closed: "Closed",
+      opens: "opens",
+      closedToday: "Closed today"
+    },
     common: {
       viewMenu: "View Menu",
       getDirections: "Get Directions",
       orderAhead: "Order Ahead",
+      addToOrder: "Add",
+      added: "Added",
       call: "Call",
       whatsapp: "WhatsApp",
       readMore: "Read more",
-      loading: "Loading…"
+      loading: "Loading…",
+      close: "Close",
+      back: "Back"
     },
     home: {
       whySection: "Why visit",
-      whyHeading: "What makes The Green Corner different",
-      featuredSection: "Fan favorites",
-      featuredHeading: "Featured on the Menu",
+      whyHeading: "What to expect at the grill",
+      featuredSection: "From the grill",
+      featuredHeading: "What people come for",
       fullMenu: "Full menu →",
       gallerySection: "A closer look",
       galleryHeading: "From the counter",
       fullGallery: "Full gallery →",
       findUsSection: "Find us",
-      orderNote: "Stop by, or order ahead and pick up when it's ready."
+      orderNote: "Stop by, or order ahead and pick up when it's ready.",
+      specialsSection: "Tonight",
+      specialsHeading: "What's on",
+      reviewsSection: "From guests",
+      reviewsHeading: "What people say",
+      ctaHeading: "Hungry? Order ahead or come through.",
+      ctaBody: "Build an order on the menu, or message us and we'll have it ready."
+    },
+    cart: {
+      title: "Your order",
+      empty: "Nothing in the order yet. Add items from the menu.",
+      checkout: "Continue to order",
+      clear: "Clear",
+      total: "Estimated total",
+      qty: "Qty"
     },
     footer: {
       explore: "Explore",
       visit: "Visit",
       order: "Order",
-      orderNote: "Order ahead or send us a message and we'll confirm by phone or WhatsApp.",
+      orderNote: "Order ahead or send us a message and we'll confirm before pickup.",
       rights: "All rights reserved."
     },
     pages: {
       menuEyebrow: "Our Menu",
-      menuTitle: "The Best Grilled Fish & Brochettes in Nyamirambo",
+      menuTitle: "Grilled fish, brochettes & cold drinks",
       aboutEyebrow: "About",
-      aboutTitle: "The Green Corner story",
+      aboutTitle: "A neighborhood grill in Nyamirambo",
       galleryEyebrow: "Gallery",
       galleryTitle: "A look at The Green Corner",
       specialsEyebrow: "Specials",
-      specialsTitle: "Combos, promotions & featured picks",
+      specialsTitle: "What's on at the grill",
       reviewsEyebrow: "Reviews",
       reviewsTitle: "What customers say",
       locationEyebrow: "Location & Hours",
       locationTitle: "Find The Green Corner",
-      contactEyebrow: "Contact",
+      contactEyebrow: "Order & contact",
       contactTitle: "Order ahead or send a message"
+    },
+    empty: {
+      gallery: "Photos of the grill and the plates will appear here.",
+      specials: "No promotions running right now. Check the menu or message us.",
+      reviews: "Customer reviews will appear here once they're added.",
+      hours: "Hours aren't posted yet. Message us to check if the grill is on today.",
+      phone: "Phone number will appear here once it's listed."
     },
     contact: {
       orderAheadHeading: "Order Ahead",
@@ -59,47 +96,92 @@ export const translations = {
       date: "Pickup date",
       time: "Pickup time",
       people: "Number of items",
-      orderDetails: "What would you like to order? (item names, any special requests)",
-      orderDetailsPlaceholder: "e.g. 1x Big Grilled Fish, 3x Goat Brochette — extra spicy",
-      message: "Message (optional)",
-      submitOrder: "Send Order Request",
-      submitMessage: "Send Message",
-      sending: "Sending…"
+      orderDetails: "Anything else we should know?",
+      orderDetailsPlaceholder: "e.g. extra spicy, no onions, call when ready",
+      message: "Message",
+      submitOrder: "Send order request",
+      submitMessage: "Send message",
+      sending: "Sending…",
+      orderSaved: "Order request received. We'll confirm by phone or WhatsApp before pickup.",
+      messageSaved: "Message sent. We'll get back to you soon.",
+      needDetails: "Please fill in your name, phone, pickup date and pickup time.",
+      needAll: "Please fill in all fields.",
+      failed: "Something went wrong. Please try WhatsApp, or visit us in Nyamirambo.",
+      noBackend: "Online requests aren't connected yet. Send this order on WhatsApp, or visit us in Nyamirambo.",
+      sendWhatsApp: "Send this order on WhatsApp",
+      yourOrder: "Your order",
+      addFromMenu: "Add from the menu",
+      emptyOrder: "Add at least one menu item, or describe what you'd like below."
     },
     whatsappModal: {
       heading: "How can we help?",
-      quickOrderLabel: "Quick Order",
-      quickOrderMessage: "Hello Green Corner! I'd like to place an order for pickup. Please help me with today's menu.",
-      cateringLabel: "Catering / Large Order",
-      cateringMessage: "Hello Green Corner! I'd like to make a larger order for an event. Please let me know your available options.",
-      pickupLabel: "Pickup / Availability",
-      pickupMessage: "Hello Green Corner! I'd like to check what's available for pickup today.",
+      languagePrompt: "Choose a language / Hitamo ururimi",
+      quickOrderLabel: "Quick order",
+      quickOrderMessage: "Hello Green Corner! I'd like to place an order for pickup. Please help me with today's grill menu.",
+      tableLabel: "Group / tonight",
+      tableMessage: "Hello Green Corner! We're a group planning to come tonight. Can you tell me what's on the grill and how long it usually takes?",
+      cateringLabel: "Catering / large order",
+      cateringMessage: "Hello Green Corner! I'd like to make a larger order for an event. Please let me know what you can prepare.",
+      questionLabel: "A question",
+      questionMessage: "Hello Green Corner! I have a question.",
       close: "Close"
     }
   },
   rw: {
-    nav: { menu: "Ibiribwa", about: "Abo turi bo", gallery: "Amafoto", specials: "Ibihariwe", reviews: "Ibitekerezo", location: "Aho tuherereye", orderAhead: "Gutumiza" },
-    openStatus: { openNow: "Turafunguye", closes: "tuzafunga saa", closed: "Tufunze", opens: "tuzafungura saa" },
+    nav: {
+      menu: "Ibiribwa",
+      about: "Abo turi bo",
+      gallery: "Amafoto",
+      specials: "Ibihariwe",
+      reviews: "Ibitekerezo",
+      location: "Aho tuherereye",
+      orderAhead: "Gutumiza"
+    },
+    openStatus: {
+      openNow: "Turafunguye",
+      closes: "tuzafunga saa",
+      closed: "Tufunze",
+      opens: "tuzafungura saa",
+      closedToday: "Uyu munsi ntiturafunguye"
+    },
     common: {
       viewMenu: "Reba Ibiribwa",
       getDirections: "Menya Aho Tuherereye",
       orderAhead: "Gutumiza",
+      addToOrder: "Ongeraho",
+      added: "Byongeweho",
       call: "Hamagara",
       whatsapp: "WhatsApp",
       readMore: "Soma Byinshi",
-      loading: "Turimo gutegura…"
+      loading: "Turimo gutegura…",
+      close: "Funga",
+      back: "Subira inyuma"
     },
     home: {
       whySection: "Impamvu",
-      whyHeading: "Icyatandukanya The Green Corner",
-      featuredSection: "Ibikunzwe",
-      featuredHeading: "Ibiribwa Byihariye",
+      whyHeading: "Icyo usanga ku ziko",
+      featuredSection: "Ku ziko",
+      featuredHeading: "Ibyo abantu baza gushaka",
       fullMenu: "Ibiribwa byose →",
       gallerySection: "Reba neza",
       galleryHeading: "Mu kazi kacu",
       fullGallery: "Amafoto yose →",
       findUsSection: "Aho tuherereye",
-      orderNote: "Ndeka udukatuze, cyangwa utumize mbere maze ubufate igihe biteguye."
+      orderNote: "Ndeka udukatuze, cyangwa utumize mbere maze ubufate igihe biteguye.",
+      specialsSection: "Uyu munsi",
+      specialsHeading: "Ibihariwe",
+      reviewsSection: "Ibitekerezo",
+      reviewsHeading: "Icyo abashyitsi bavuga",
+      ctaHeading: "Urashonje? Tumiza mbere cyangwa uze.",
+      ctaBody: "Hitamo ibiribwa kuri menu, cyangwa utwandikire tuzabitegura."
+    },
+    cart: {
+      title: "Ibyo watumije",
+      empty: "Nta kiribwa mu itumizwa. Ongeraho ibiribwa kuri menu.",
+      checkout: "Komeza gutumiza",
+      clear: "Siba",
+      total: "Igiteranyo",
+      qty: "Umubare"
     },
     footer: {
       explore: "Reba",
@@ -110,19 +192,26 @@ export const translations = {
     },
     pages: {
       menuEyebrow: "Ibiribwa Byacu",
-      menuTitle: "Amafi n'Inyama Zokye Ziruta Izindi i Nyamirambo",
+      menuTitle: "Amafi n'inyama zokye n'ibinyobwa bikonje",
       aboutEyebrow: "Abo turi bo",
-      aboutTitle: "Inkuru ya The Green Corner",
+      aboutTitle: "Ikarito yo mu gace ka Nyamirambo",
       galleryEyebrow: "Amafoto",
       galleryTitle: "Reba The Green Corner",
       specialsEyebrow: "Ibihariwe",
-      specialsTitle: "Ibihariwe n'ibyatoranyijwe",
+      specialsTitle: "Ibihariwe ku ziko",
       reviewsEyebrow: "Ibitekerezo",
       reviewsTitle: "Icyo abakiriya bavuga",
       locationEyebrow: "Aho tuherereye & Amasaha",
       locationTitle: "Menya Aho The Green Corner Iherereye",
-      contactEyebrow: "Twandikire",
+      contactEyebrow: "Gutumiza no kutwandikira",
       contactTitle: "Tumiza mbere cyangwa utwandikire"
+    },
+    empty: {
+      gallery: "Amafoto y'iziko n'ibiryo azagaragara hano.",
+      specials: "Nta bihariwe ubu. Reba menu cyangwa utwandikire.",
+      reviews: "Ibitekerezo by'abakiriya bizagaragara hano iyo byongeweho.",
+      hours: "Amasaha ntabwo yashyizweho. Twandikire urebe niba iziko ririmo uyu munsi.",
+      phone: "Numero ya telefone izagaragara hano iyo yashyizweho."
     },
     contact: {
       orderAheadHeading: "Gutumiza Mbere",
@@ -132,21 +221,34 @@ export const translations = {
       date: "Itariki uzabikura",
       time: "Isaha uzabikura",
       people: "Umubare w'ibintu",
-      orderDetails: "Ni ibiki ushaka gutumiza? (amazina y'ibiribwa, icyo wifuza cyihariye)",
-      orderDetailsPlaceholder: "urugero: 1x Amafi Manini, 3x Zingalo — birabije cyane",
-      message: "Ubutumwa (si ngombwa)",
-      submitOrder: "Ohereza Ubusabe",
-      submitMessage: "Ohereza Ubutumwa",
-      sending: "Turimo kohereza…"
+      orderDetails: "Hari ikindi twamenya?",
+      orderDetailsPlaceholder: "urugero: birabije, nta nyanya, muhamagare iyo biteguye",
+      message: "Ubutumwa",
+      submitOrder: "Ohereza ubusabe",
+      submitMessage: "Ohereza ubutumwa",
+      sending: "Turimo kohereza…",
+      orderSaved: "Ubusabe bwakiriwe. Tuzahamagara cyangwa dukwandikire kuri WhatsApp mbere yo kubikura.",
+      messageSaved: "Ubutumwa bwoherejwe. Tuzagusubiza vuba.",
+      needDetails: "Uzuza amazina, telefone, itariki n'isaha yo kubikura.",
+      needAll: "Uzuza imyanya yose.",
+      failed: "Habaye ikibazo. Gerageza WhatsApp, cyangwa udusure i Nyamirambo.",
+      noBackend: "Gutumiza kuri interineti ntabwo byahuwe. Ohereza kuri WhatsApp, cyangwa udusure i Nyamirambo.",
+      sendWhatsApp: "Ohereza iri tumiza kuri WhatsApp",
+      yourOrder: "Ibyo watumije",
+      addFromMenu: "Ongeraho kuri menu",
+      emptyOrder: "Ongeraho ikiribwa kimwe, cyangwa wandike ibyo ushaka hepfo."
     },
     whatsappModal: {
       heading: "Twagufasha gute?",
+      languagePrompt: "Hitamo ururimi / Choose a language",
       quickOrderLabel: "Gutumiza vuba",
-      quickOrderMessage: "Muraho Green Corner! Ndashaka gutumiza kugira nzafate ibyo natumije. Mumfashe kumenya ibiri kuri menu uyu munsi.",
-      cateringLabel: "Itumizwa rinini / Ibirori",
-      cateringMessage: "Muraho Green Corner! Ndashaka gutumiza umubare munini w'ibiryo ku bw'igikorwa runaka. Mumbwire uburyo mufite bwo kunyunganira.",
-      pickupLabel: "Kureba ibiriho",
-      pickupMessage: "Muraho Green Corner! Ndashaka kumenya ibiriho uyu munsi kugira nzabifate.",
+      quickOrderMessage: "Muraho Green Corner! Ndashaka gutumiza kugira nzafate ibyo natumije. Mumfashe kumenya ibiri ku ziko uyu munsi.",
+      tableLabel: "Itsinda / uyu mugoroba",
+      tableMessage: "Muraho Green Corner! Turi itsinda tugiye kuza uyu mugoroba. Mumbwire ibiri ku ziko n'igihe bimatwara.",
+      cateringLabel: "Itumizwa rinini / ibirori",
+      cateringMessage: "Muraho Green Corner! Ndashaka gutumiza umubare munini w'ibiryo ku bw'igikorwa. Mumbwire ibyo mushobora gutegura.",
+      questionLabel: "Ikibazo",
+      questionMessage: "Muraho Green Corner! Mfite ikibazo.",
       close: "Funga"
     }
   }

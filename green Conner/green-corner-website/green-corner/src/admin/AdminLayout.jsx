@@ -2,9 +2,13 @@ import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 import SEO from "../components/SEO";
+import { useAdminNotifications } from "../lib/useAdminNotifications";
+import { useAdminTable } from "./useAdminTable";
 
 const items = [
   { to: "/admin", label: "Overview", end: true },
+  { to: "/admin/reservations", label: "Orders", badge: "orders" },
+  { to: "/admin/inquiries", label: "Inquiries", badge: "inquiries" },
   { to: "/admin/menu", label: "Menu" },
   { to: "/admin/gallery", label: "Gallery" },
   { to: "/admin/specials", label: "Specials" },
@@ -12,13 +16,23 @@ const items = [
   { to: "/admin/hours", label: "Hours" },
   { to: "/admin/business-info", label: "Business Info" },
   { to: "/admin/media", label: "Logo & Hero Media" },
-  { to: "/admin/reservations", label: "Orders" },
-  { to: "/admin/inquiries", label: "Inquiries" }
+  { to: "/admin/settings", label: "Notifications" }
 ];
 
 export default function AdminLayout() {
   const { signOut } = useAuth();
   const [open, setOpen] = useState(false);
+  useAdminNotifications();
+  const { rows: reservations } = useAdminTable("reservations", { orderBy: "created_at", ascending: false });
+  const { rows: inquiries } = useAdminTable("inquiries", { orderBy: "created_at", ascending: false });
+  const newOrders = reservations.filter((r) => r.status === "new").length;
+  const newInquiries = inquiries.filter((i) => i.status === "new").length;
+
+  const badgeFor = (key) => {
+    if (key === "orders" && newOrders) return newOrders;
+    if (key === "inquiries" && newInquiries) return newInquiries;
+    return 0;
+  };
 
   const NavItems = ({ onClick }) => (
     <>
@@ -29,12 +43,17 @@ export default function AdminLayout() {
           end={item.end}
           onClick={onClick}
           className={({ isActive }) =>
-            `block rounded-lg px-3 py-2 text-sm ${
+            `flex items-center justify-between rounded-lg px-3 py-2 text-sm min-h-[40px] ${
               isActive ? "bg-ember-500 text-char-950 font-semibold" : "text-cream/70 hover:bg-char-800"
             }`
           }
         >
-          {item.label}
+          <span>{item.label}</span>
+          {badgeFor(item.badge) > 0 && (
+            <span className="ml-2 rounded-full bg-ember-400 text-char-950 text-[11px] font-bold px-1.5">
+              {badgeFor(item.badge)}
+            </span>
+          )}
         </NavLink>
       ))}
     </>
@@ -43,7 +62,6 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen bg-char-950 text-cream flex flex-col md:flex-row">
       <SEO title="Admin Dashboard" path="/admin" noindex />
-      {/* Mobile top bar */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-cream/10">
         <p className="font-display font-semibold">
           <span className="text-ember-400">Green</span> Corner Admin
@@ -63,7 +81,6 @@ export default function AdminLayout() {
         </div>
       )}
 
-      {/* Desktop sidebar */}
       <aside className="hidden md:flex md:flex-col w-64 border-r border-cream/10 p-5">
         <p className="font-display font-semibold mb-6">
           <span className="text-ember-400">Green</span> Corner Admin

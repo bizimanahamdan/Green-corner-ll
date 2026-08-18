@@ -1,0 +1,9 @@
+{
+  "name": "green-corner-ll",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix \"green Conner/green-corner-website/green-corner\" run dev",
+    "build": "npm --prefix \"green Conner/green-corner-website/green-corner\" run build",
+    "preview": "npm --prefix \"green Conner/green-corner-website/green-corner\" run preview"
+  }
+}

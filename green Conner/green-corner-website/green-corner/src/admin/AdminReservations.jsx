@@ -14,21 +14,35 @@ export default function AdminReservations() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold mb-6">Order Ahead Requests</h1>
+      <h1 className="font-display text-2xl font-semibold mb-2">Order Ahead Requests</h1>
+      <p className="text-sm text-cream/50 mb-6">New requests appear here live. Confirm them by phone or WhatsApp before pickup.</p>
       {loading && <p className="text-cream/50">Loading…</p>}
       {!loading && rows.length === 0 && <p className="text-cream/50">No order requests yet.</p>}
 
       <div className="space-y-3">
         {rows.map((r) => (
-          <div key={r.id} className="admin-card p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div>
+          <div key={r.id} className="admin-card p-5 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+            <div className="min-w-0">
               <p className="font-medium">
                 {r.name} <span className={`text-xs ml-2 ${statusColors[r.status] || ""}`}>{r.status}</span>
               </p>
               <p className="text-sm text-cream/60">
-                Pickup {r.date} at {r.time} · qty {r.guests} · <a href={`tel:${r.phone}`} className="hover:text-ember-400">{r.phone}</a>
+                Pickup {r.date} at {r.time}
+                {r.guests ? ` · ${r.guests} item${r.guests === 1 ? "" : "s"}` : ""}
+                {" · "}
+                <a href={`tel:${r.phone}`} className="hover:text-ember-400">{r.phone}</a>
               </p>
-              {r.message && <p className="text-sm text-cream/50 mt-1">"{r.message}"</p>}
+              {Array.isArray(r.order_items) && r.order_items.length > 0 && (
+                <ul className="mt-2 text-sm text-cream/70 space-y-0.5">
+                  {r.order_items.map((item) => (
+                    <li key={`${r.id}-${item.id}`}>
+                      {item.qty}× {item.name}
+                      {item.price ? ` · RF ${item.price}` : ""}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {r.message && <p className="text-sm text-cream/50 mt-2 whitespace-pre-line">{r.message}</p>}
             </div>
             <div className="flex gap-2 flex-shrink-0">
               <select

@@ -8,7 +8,7 @@ const pillars = [
   { title: "Kigali, Nyamirambo", body: "Set in one of Kigali's most characterful neighborhoods, known for its own rhythm and street life." },
   { title: "Fire-grilled, not fried", body: "Fish, goat and beef cooked over an open flame, seasoned with local spices." },
   { title: "Grill pub", body: "A lively spot for good food and a cold drink, not a quiet sit-down restaurant." },
-  { title: "Order ahead", body: "Message ahead on WhatsApp and pick up when it's ready." }
+  { title: "Order ahead", body: "Build an order on the site, or message ahead and pick up when it's ready." }
 ];
 
 export default function About() {
@@ -25,7 +25,7 @@ export default function About() {
       />
       <PageHeader eyebrow={t("pages.aboutEyebrow")} title={t("pages.aboutTitle")} />
 
-      <section className="container-narrow py-14 grid gap-12 lg:grid-cols-2 lg:items-start">
+      <section className="container-narrow py-12 sm:py-14 grid gap-10 lg:grid-cols-2 lg:items-center">
         <div className="space-y-5 text-ink-700/75 leading-relaxed">
           <p>{b.description}</p>
           <p>
@@ -35,20 +35,20 @@ export default function About() {
           </p>
         </div>
 
-        <div className="rounded-2xl bg-mint flex items-center justify-center overflow-hidden">
+        <div className="rounded-2xl overflow-hidden bg-ink-900 min-h-[240px]">
           <img
-            src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800"
-            alt="Fire-grilled fish at The Green Corner"
+            src="/images/hero-embers.jpg"
+            alt="Charcoal grill fire"
             className="w-full h-full max-h-96 object-cover"
             loading="lazy"
           />
         </div>
       </section>
 
-      <section className="bg-white border-y border-ink-900/8 py-16">
+      <section className="bg-white border-y border-ink-900/8 py-14 sm:py-16">
         <div className="container-narrow">
-          <h2 className="section-heading mb-10">What defines the experience</h2>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <h2 className="section-heading mb-8">What defines the experience</h2>
+          <div className="grid gap-5 sm:grid-cols-2">
             {pillars.map((p) => (
               <div key={p.title} className="card-surface p-6">
                 <h3 className="font-display text-lg font-semibold text-leaf-600">{p.title}</h3>

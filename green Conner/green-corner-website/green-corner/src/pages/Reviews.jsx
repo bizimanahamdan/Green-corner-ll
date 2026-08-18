@@ -1,5 +1,6 @@
 import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
+import EmptyState from "../components/EmptyState";
 import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo, useReviews } from "../lib/useContent";
 import { useLanguage } from "../lib/i18n/LanguageContext";
@@ -20,7 +21,7 @@ export default function Reviews() {
   const { data: rawReviews, loading } = useReviews();
   const reviews = (rawReviews || []).filter((r) => !isPlaceholderText(r.quote));
   const { t } = useLanguage();
-  const hasRating = Boolean(b.googleRating);
+  const hasRating = Boolean(b.googleRating && b.googleReviewCount);
 
   return (
     <>
@@ -31,38 +32,28 @@ export default function Reviews() {
       />
       <PageHeader eyebrow={t("pages.reviewsEyebrow")} title={t("pages.reviewsTitle")} />
 
-      <section className="container-narrow py-14">
+      <section className="container-narrow py-12 sm:py-14">
         {hasRating && (
           <div className="card-surface p-10 text-center max-w-xl mx-auto mb-12">
             <p className="font-display text-6xl font-semibold text-citrus-500">{b.googleRating}★</p>
             <p className="mt-3 text-ink-700/70">Based on {b.googleReviewCount} Google reviews</p>
-            <a
-              href="https://www.google.com/search?q=the+green+corner+kigali"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-block btn-outline"
-            >
-              Find us on Google
-            </a>
           </div>
         )}
 
         {loading ? (
-          <p className="text-ink-700/50 text-center">Loading…</p>
+          <p className="text-ink-700/50 text-center">{t("common.loading")}</p>
         ) : reviews.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+          <div className="grid gap-5 sm:grid-cols-2 max-w-3xl mx-auto">
             {reviews.map((r) => (
-              <div key={r.id} className="card-surface p-6">
+              <blockquote key={r.id} className="card-surface p-6">
                 <Stars rating={r.rating} />
-                <p className="mt-3 text-ink-700/75 leading-relaxed">"{r.quote}"</p>
-                <p className="mt-4 text-sm font-medium text-ink-900">{r.author_name}</p>
-              </div>
+                <p className="mt-3 text-ink-700/75 leading-relaxed">“{r.quote}”</p>
+                <footer className="mt-4 text-sm font-medium text-ink-900">{r.author_name}</footer>
+              </blockquote>
             ))}
           </div>
         ) : (
-          <div className="max-w-xl mx-auto text-center text-ink-700/50">
-            Customer reviews coming soon — come visit us and share your experience!
-          </div>
+          <EmptyState body={t("empty.reviews")} />
         )}
       </section>
     </>

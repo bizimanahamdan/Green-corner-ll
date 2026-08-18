@@ -23,8 +23,8 @@ export default {
           800: "#242424",
           700: "#333333"
         },
-        cream: "#fdfdf8",
-        mint: "#f2faf3",
+        cream: "#f7f3ea",
+        mint: "#f3f6ef",
         // Aliases kept so the (intentionally dark) admin dashboard keeps its
         // own look without duplicating the public-site palette everywhere.
         char: {

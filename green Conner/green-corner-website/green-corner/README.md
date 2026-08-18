@@ -1,24 +1,24 @@
 # The Green Corner — Website & Admin Dashboard
 
-A premium website + real admin dashboard for The Green Corner, a grill pub
-in Nyamirambo, Kigali. Built with React (Vite) + Tailwind CSS on the
-frontend and Supabase (Postgres + Auth + Storage) on the backend.
+A production website and admin dashboard for **The Green Corner**, a grill pub
+in Nyamirambo, Kigali. React (Vite) + Tailwind on the frontend, Supabase
+(Postgres + Auth + Storage + Realtime) on the backend.
 
-The public site works immediately with placeholder content — nothing to set up.
-Connecting Supabase (free tier, ~5 minutes) turns on the admin dashboard,
-order storage, real image uploads, and lets the site pull live
-content instead of demo data.
+The public site runs immediately on confirmed menu content. Connecting
+Supabase turns on the admin dashboard, live content, order storage, image
+uploads, realtime inbox updates, and browser notifications.
 
-**A note on content:** this project's concept has changed twice during
-development — it started as a bar & grill idea, was pivoted to a smoothie &
-salad bar, and is now back to a grill pub (fire-grilled fish, brochettes,
-sides, drinks — confirmed by the owner). Because of that, we don't have a
-verified Google listing for this version — phone number, exact hours and
-pricing tier are placeholders clearly marked `PLACEHOLDER` throughout the
-code and the UI. None of it should be shown to a real customer until the
-owner confirms it. Menu items themselves (names, prices, descriptions) are
-confirmed real content from the owner, using stock photos as stand-ins until
-real food photography is available.
+**What is confirmed:** the grill-pub concept, neighborhood, and the Signature
+Fish / Grilled Meats / Sides / Drinks menu (names, prices, descriptions).
+
+**What is deliberately empty until the owner adds it in Admin:** phone,
+WhatsApp, Instagram, Facebook, TikTok, opening hours, promotions, reviews,
+and venue photography. Those fields stay hidden on the public site rather
+than showing placeholder copy.
+
+The bundled logo still reads “Smoothie & Salad Bar” because that is the file
+in this repository. Upload a current lockup from **Admin → Logo & Hero Media**
+when you have one.
 
 ---
 
@@ -29,108 +29,76 @@ npm install
 npm run dev
 ```
 
-Open the printed local URL. The whole public site works right away on demo data.
+Open the printed URL. The public site works on local demo data.
 
-## 2. Deploy for free (Netlify)
+## 2. Deploy (Netlify)
 
-1. Push this folder to a GitHub repo.
-2. In Netlify: **Add new site → Import an existing project → pick the repo.**
-3. Build command: `npm run build` — Publish directory: `dist` (already set in `netlify.toml`).
-4. Deploy. You'll get a free `*.netlify.app` URL for demos.
+1. Set the site’s base directory to `green Conner/green-corner-website/green-corner`
+   (or deploy from that folder).
+2. Build command: `npm run build` — publish directory: `dist`.
+3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` if you have them.
 
-## 3. Connect Supabase (turns on the real admin dashboard)
+## 3. Connect Supabase
 
-1. Go to [supabase.com](https://supabase.com) → New project (free tier is enough).
-2. Open **SQL Editor → New query**, paste the entire contents of
-   `supabase/schema.sql`, and run it. Then run `supabase/002_media.sql` the
-   same way — this adds logo/hero-video support, a storage bucket for
-   uploads, and sets sensible default hero images. Then run
-   `supabase/004_reviews_and_social.sql` — this adds the reviews table and
-   Facebook/TikTok fields. **Then run `supabase/005_reset_content_grill_pub.sql`**
-   — `schema.sql` still seeds its original smoothie & salad bar sample data,
-   so this step is required (not optional) to bring the database in line
-   with the current grill pub concept (fire-grilled fish, brochettes, sides,
-   drinks). The older `supabase/003_reset_content.sql` is kept for reference
-   only — don't run it, it reintroduces the smoothie/salad content.
-3. Go to **Project Settings → API** and copy the **Project URL** and **anon public key**.
-4. In this project, copy `.env.example` to `.env` and paste those two values in.
-5. In Netlify, add the same two variables under **Site settings → Environment variables**,
-   then redeploy.
-6. Create your admin login: Supabase dashboard → **Authentication → Users → Add user**
-   (use the owner's email + a password). That's what you'll log in with at `/admin`.
+1. Create a free project at [supabase.com](https://supabase.com).
+2. SQL Editor → run, in order:
+   - `supabase/schema.sql`
+   - `supabase/002_media.sql`
+   - `supabase/004_reviews_and_social.sql`
+   - `supabase/005_reset_content_grill_pub.sql` (if this project already had older seed data)
+   - `supabase/006_realtime_and_orders.sql`
+3. Copy **Project URL** and **anon public key** into `.env` (see `.env.example`).
+   Never put the service-role key in the frontend.
+4. Authentication → Users → Add user. That login is `/admin`.
 
-Once connected:
-- The public site automatically switches from demo data to live Supabase data.
-- `/admin` becomes a real, working dashboard — no more "not connected" message.
-- Order/inquiry forms save directly to the database.
-- The **Logo & Hero Media** admin page lets you upload real photos or a short
-  video to replace the illustrated placeholders.
+`003_reset_content.sql` is outdated (smoothie/salad seed). Do not run it.
 
-## 4. Using the admin dashboard
+## 4. Admin dashboard
 
-Go to `yoursite.com/admin`, log in with the email/password you created in step 6 above.
+`yoursite.com/admin`
 
-You can manage, without touching code:
-- Menu categories & items (name, description, price, image, availability)
-- Gallery images
-- Specials / promotions (activate or deactivate)
-- Opening hours
-- Business info (phone, WhatsApp, Instagram, description)
-- Logo and hero photos/video (real file uploads via Supabase Storage)
-- Reviews — add real customer testimonials with a star rating, show/hide individually
-- Facebook and TikTok links (Instagram was already there)
-- Incoming order requests (mark confirmed/cancelled)
-- Incoming customer inquiries (mark replied/closed)
+- Menu, gallery, specials, reviews, hours, business info, logo/hero media
+- Incoming pickup orders (with line items when the customer built a cart)
+- Incoming messages
+- Browser notifications + optional chime (**Notifications**)
 
-The dashboard is responsive and fully usable from a phone.
+Notifications only fire while the admin tab is open. They are not background
+push. Enabling them asks the browser for permission first.
 
-## 5. What the real business owner needs to provide
+## 5. What the owner still needs to provide
 
-- Real phone number and WhatsApp number
+- Real phone number and WhatsApp number (digits with country code, e.g. `2507…`)
 - Confirmed opening hours
-- Real menu items, ingredients and prices (everything is currently a sample)
-- Real food/interior photography, or a short hero video, to replace the
-  illustrated placeholders
-- Confirmation this is in fact the business's logo and concept
-- The correct pinned Google Maps location
+- Real food / interior photos (menu photos are stock stand-ins)
+- A current logo if the smoothie-bar lockup is retired
+- The exact Google Maps pin
+- Any promotions or customer quotes they have permission to publish
 
-## 6. Known placeholders (clearly marked in the UI, not hidden)
+Public listings for a Green Corner in Nyamirambo often show
+`+250 788 752 721`. That number is **not** written into this site. Confirm it
+in Admin → Business Info before it goes live.
 
-- All menu items and prices
-- Phone number and price range
-- Opening hours
-- Gallery images (flat illustrations, not real photos)
-- The two "specials" — sample ideas only
-- Google rating (not shown until a real one is confirmed)
+## 6. Customer features
 
-## 7. Other features
+- English / Kinyarwanda chrome
+- Live Open / Closed badge once hours exist
+- Menu with add-to-order
+- Order-ahead form (saved to Supabase when connected)
+- Smart WhatsApp flows (order, group/tonight, catering, question) — only if a
+  real WhatsApp number is set
+- Sticky mobile actions
 
-- **Live "Open Now / Closed" badge** on the homepage, computed automatically from your opening hours — no manual toggling needed.
-- **English / Kinyarwanda language switcher** (top right of the nav). This translates the site's own text (navigation, buttons, section headers, form labels) — content you type into the admin dashboard (menu items, descriptions, reviews) stays in whichever language you entered it in. The Kinyarwanda translations are a first pass — have a native speaker review them before launch.
-- **Sticky mobile action bar** (Call / WhatsApp / Order) fixed to the bottom of the screen on phones, so the most important actions are always one tap away.
+## 7. SEO
 
-## 8. SEO
-
-The site includes:
-- Per-page titles, meta descriptions, canonical URLs and Open Graph/Twitter tags (`src/components/SEO.jsx`, used on every page)
-- `LocalBusiness`/`Restaurant` structured data on the homepage (`src/components/LocalBusinessSchema.jsx`) — it only includes fields that aren't marked `PLACEHOLDER`, so it won't tell Google incorrect information
-- `robots.txt` and `sitemap.xml` in `/public`, with `/admin` excluded from indexing
-- Semantic heading structure (one `<h1>` per page), descriptive `alt` text on every image
-
-**Before this goes live, update the placeholder domain** in three places —
-search for `the-green-corner.netlify.app` and replace with your real URL:
-- `src/lib/siteConfig.js` (`SITE_URL`)
-- `public/robots.txt`
-- `public/sitemap.xml`
-- `index.html` (canonical link)
-
-As real menu items, hours, and a phone number are added via the admin
-dashboard, the structured data on the homepage will automatically pick them
-up — no code changes needed.
+Per-page titles, descriptions, canonicals, Open Graph, `LocalBusiness`
+structured data (only confirmed fields), `robots.txt`, `sitemap.xml`.
+Replace `the-green-corner.netlify.app` in `src/lib/siteConfig.js`,
+`public/robots.txt`, `public/sitemap.xml`, and `index.html` when the real
+domain is known.
 
 ## Tech stack
 
 - React 18 + Vite + React Router
-- Tailwind CSS (palette sampled from the real logo)
-- Supabase (Postgres, Auth, Storage, Row Level Security)
-- Deploy target: Netlify (free tier)
+- Tailwind CSS (green / ember palette from the logo)
+- Supabase (Postgres, Auth, Storage, RLS, Realtime)
+- Deploy target: Netlify
