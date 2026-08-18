@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 import SEO from "../components/SEO";
-import { useAdminNotifications } from "../lib/useAdminNotifications";
 import { useAdminTable } from "./useAdminTable";
 import { isBackgroundPushEnabled, refreshBackgroundPush } from "../lib/push";
 import AdminErrorBoundary from "./AdminErrorBoundary";
+import AdminRealtime from "./AdminRealtime";
 
 const items = [
   { to: "/admin", label: "Overview", end: true },
@@ -24,7 +24,6 @@ const items = [
 export default function AdminLayout() {
   const { signOut, session } = useAuth();
   const [open, setOpen] = useState(false);
-  useAdminNotifications();
 
   const [pushOn, setPushOn] = useState(isBackgroundPushEnabled());
 
@@ -62,13 +61,13 @@ export default function AdminLayout() {
           onClick={onClick}
           className={({ isActive }) =>
             `flex items-center justify-between rounded-lg px-3 py-2 text-sm min-h-[40px] ${
-              isActive ? "bg-ember-500 text-char-950 font-semibold" : "text-cream/70 hover:bg-char-800"
+              isActive ? "bg-ember-500 text-[#0b0a08] font-semibold" : "text-cream/70 hover:bg-[#1c1914]"
             }`
           }
         >
           <span>{item.label}</span>
           {badgeFor(item.badge) > 0 && (
-            <span className="ml-2 rounded-full bg-ember-400 text-char-950 text-[11px] font-bold px-1.5">
+            <span className="ml-2 rounded-full bg-ember-400 text-[#0b0a08] text-[11px] font-bold px-1.5">
               {badgeFor(item.badge)}
             </span>
           )}
@@ -78,7 +77,14 @@ export default function AdminLayout() {
   );
 
   return (
-    <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex flex-col md:flex-row">
+    <div
+      data-theme="dark"
+      className="min-h-screen flex flex-col md:flex-row"
+      style={{ background: "#0b0a08", color: "#efe7d6", minHeight: "100vh" }}
+    >
+      <AdminErrorBoundary>
+        <AdminRealtime />
+      </AdminErrorBoundary>
       <SEO title="Admin Dashboard" path="/admin" noindex />
       <div className="md:hidden flex items-center justify-between p-4 border-b border-cream/10">
         <p className="font-display font-semibold">

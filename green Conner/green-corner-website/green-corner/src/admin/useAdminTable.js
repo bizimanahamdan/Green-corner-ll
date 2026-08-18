@@ -38,7 +38,7 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
   useEffect(() => {
     if (!supabase) return undefined;
     const channel = supabase
-      .channel(`admin-table-${table}`)
+      .channel(`admin-table-${table}-${Math.random().toString(36).slice(2, 7)}`)
       .on("postgres_changes", { event: "*", schema: "public", table }, (payload) => {
         setRows((prev) => {
           if (payload.eventType === "INSERT") {

@@ -65,25 +65,20 @@ export default function App() {
         <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<AdminOverview />} />
-          <Route path="menu" element={<AdminMenu />} />
-          <Route path="gallery" element={<AdminGallery />} />
-          <Route path="specials" element={<AdminSpecials />} />
-          <Route path="reviews" element={<AdminReviews />} />
-          <Route path="hours" element={<AdminHours />} />
-          <Route path="business-info" element={<AdminBusinessInfo />} />
-          <Route path="media" element={<AdminMedia />} />
-          <Route path="reservations" element={<AdminReservations />} />
-          <Route path="inquiries" element={<AdminInquiries />} />
-          <Route path="settings" element={<AdminSettings />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminOverview />} />
+            <Route path="menu" element={<AdminMenu />} />
+            <Route path="gallery" element={<AdminGallery />} />
+            <Route path="specials" element={<AdminSpecials />} />
+            <Route path="reviews" element={<AdminReviews />} />
+            <Route path="hours" element={<AdminHours />} />
+            <Route path="business-info" element={<AdminBusinessInfo />} />
+            <Route path="media" element={<AdminMedia />} />
+            <Route path="reservations" element={<AdminReservations />} />
+            <Route path="inquiries" element={<AdminInquiries />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
