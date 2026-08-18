@@ -37,7 +37,7 @@ export default function Menu() {
           <button
             onClick={() => setActive("all")}
             className={`rounded-full px-4 py-2 text-sm border min-h-[40px] ${
-              active === "all" ? "bg-leaf-500 border-leaf-500 text-white" : "border-white/15 text-mute"
+              active === "all" ? "bg-leaf-500 border-leaf-500 text-white" : "border-line/15 text-mute"
             }`}
           >
             All
@@ -47,7 +47,7 @@ export default function Menu() {
               key={c.id}
               onClick={() => setActive(c.id)}
               className={`rounded-full px-4 py-2 text-sm border min-h-[40px] ${
-                active === c.id ? "bg-leaf-500 border-leaf-500 text-white" : "border-white/15 text-mute"
+                active === c.id ? "bg-leaf-500 border-leaf-500 text-white" : "border-line/15 text-mute"
               }`}
             >
               {c.name}

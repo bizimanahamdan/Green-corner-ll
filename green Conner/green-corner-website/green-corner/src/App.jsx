@@ -53,7 +53,7 @@ function PublicLayout({ children }) {
 
 function AdminFallback() {
   return (
-    <div className="min-h-screen bg-char-950 text-cream flex items-center justify-center">
+    <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex items-center justify-center">
       Loading…
     </div>
   );

@@ -2,10 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root,
+[data-theme="dark"] {
+  --gc-bg: 11 10 8;
+  --gc-surface: 20 18 14;
+  --gc-elevated: 28 25 20;
+  --gc-elevated-2: 42 38 31;
+  --gc-text: 239 231 214;
+  --gc-muted: 183 173 156;
+  --gc-line: 255 255 255;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --gc-bg: 246 241 230;
+  --gc-surface: 255 255 255;
+  --gc-elevated: 239 232 216;
+  --gc-elevated-2: 226 216 196;
+  --gc-text: 26 22 18;
+  --gc-muted: 94 87 76;
+  --gc-line: 26 22 18;
+  color-scheme: light;
+}
+
 html {
   scroll-behavior: smooth;
-  background: #0b0a08;
-  color-scheme: dark;
+  background: rgb(var(--gc-bg));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,27 +67,27 @@ html {
 }
 
 .btn-citrus {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold tracking-wide text-char-950 transition-colors duration-200 hover:bg-citrus-400 active:bg-citrus-600 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-citrus-500 px-6 py-3 text-sm font-semibold tracking-wide text-soot transition-colors duration-200 hover:bg-citrus-400 active:bg-citrus-600 min-h-[44px];
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors duration-200 hover:border-ember-400 hover:text-ember-400 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-line/20 px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors duration-200 hover:border-ember-400 hover:text-ember-400 min-h-[44px];
 }
 
 .btn-ghost-light {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold tracking-wide text-paper transition-colors duration-200 hover:border-white hover:bg-white/5 min-h-[44px];
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold tracking-wide text-white transition-colors duration-200 hover:border-white hover:bg-white/5 min-h-[44px];
 }
 
 .card-surface {
-  @apply rounded-2xl border border-white/10 bg-char-900;
+  @apply rounded-2xl border border-line/10 bg-char-900;
 }
 
 .admin-card {
-  @apply rounded-2xl border border-cream/10 bg-char-800/60;
+  @apply rounded-2xl border border-cream/10 bg-[#1c1914]/80;
 }
 
 .admin-input {
-  @apply w-full rounded-lg bg-char-950 border border-cream/15 px-3 py-2 text-sm text-cream placeholder:text-cream/30 outline-none focus:border-ember-400;
+  @apply w-full rounded-lg bg-[#0b0a08] border border-cream/15 px-3 py-2 text-sm text-cream placeholder:text-cream/30 outline-none focus:border-ember-400;
 }
 
 .admin-label {
@@ -81,15 +103,15 @@ html {
 }
 
 .chip {
-  @apply rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs text-paper/80;
+  @apply rounded-full border border-line/15 bg-line/5 px-3.5 py-1.5 text-xs text-paper/80;
 }
 
 .field-input {
-  @apply mt-1 w-full rounded-lg bg-char-950 border border-white/15 px-3 py-2.5 text-sm text-paper placeholder:text-mute/70 outline-none focus:border-ember-400 min-h-[44px];
+  @apply mt-1 w-full rounded-lg bg-char-950 border border-line/15 px-3 py-2.5 text-sm text-paper placeholder:text-mute/70 outline-none focus:border-ember-400 min-h-[44px];
 }
 
 .band {
-  @apply bg-char-900 border-y border-white/10;
+  @apply bg-char-900 border-y border-line/10;
 }
 
 .text-muted {

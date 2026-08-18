@@ -75,7 +75,7 @@ export default function AdminLayout() {
   );
 
   return (
-    <div className="min-h-screen bg-char-950 text-cream flex flex-col md:flex-row">
+    <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex flex-col md:flex-row">
       <SEO title="Admin Dashboard" path="/admin" noindex />
       <div className="md:hidden flex items-center justify-between p-4 border-b border-cream/10">
         <p className="font-display font-semibold">

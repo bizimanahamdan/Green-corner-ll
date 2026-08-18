@@ -4,6 +4,7 @@ import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo } from "../lib/useContent";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 import { useCart } from "../lib/CartContext";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -56,12 +57,12 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled || open ? "bg-char-950/95 backdrop-blur border-b border-white/10" : "bg-char-950/70 backdrop-blur-sm"
+        scrolled || open ? "bg-char-950/95 backdrop-blur border-b border-line/10" : "bg-char-950/70 backdrop-blur-sm"
       }`}
     >
       <div className="container-narrow flex items-center justify-between py-3 sm:py-4">
         <NavLink to="/" className="flex items-center gap-2.5 min-w-0">
-          <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-paper rounded-full p-1" />
+          <img src="/images/mark-bowl.png" alt="" className="h-9 w-9 object-contain bg-white rounded-full p-1" />
           <span className="font-display text-lg sm:text-xl font-semibold tracking-wide truncate text-paper">
             <span className="text-leaf-400">Green</span> Corner
           </span>
@@ -74,9 +75,10 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <ThemeToggle />
           <button
             onClick={toggleLanguage}
-            className="text-xs font-semibold border border-white/20 rounded-full px-3 py-1.5 text-paper/75 hover:border-ember-400 hover:text-ember-400 transition-colors min-h-[36px]"
+            className="text-xs font-semibold border border-line/20 rounded-full px-3 py-1.5 text-paper/75 hover:border-ember-400 hover:text-ember-400 transition-colors min-h-[36px]"
             aria-label="Switch language"
           >
             {language === "en" ? "RW" : "EN"}
@@ -84,7 +86,7 @@ export default function Navbar() {
           {count > 0 && (
             <button type="button" onClick={openCart} className="relative text-sm font-medium text-paper">
               Order
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-citrus-500 px-1 text-[11px] font-bold text-char-950">
+              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-citrus-500 px-1 text-[11px] font-bold text-soot">
                 {count}
               </span>
             </button>
@@ -106,14 +108,15 @@ export default function Navbar() {
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M3 6h18M16 10a4 4 0 0 1-8 0" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="absolute top-0.5 right-0.5 h-4 min-w-[1rem] rounded-full bg-citrus-500 px-1 text-[10px] font-bold text-char-950">
+              <span className="absolute top-0.5 right-0.5 h-4 min-w-[1rem] rounded-full bg-citrus-500 px-1 text-[10px] font-bold text-soot">
                 {count}
               </span>
             </button>
           )}
+          <ThemeToggle />
           <button
             onClick={toggleLanguage}
-            className="text-xs font-semibold border border-white/20 rounded-full px-2.5 py-1 min-h-[36px] text-paper/75"
+            className="text-xs font-semibold border border-line/20 rounded-full px-2.5 py-1 min-h-[36px] text-paper/75"
             aria-label="Switch language"
           >
             {language === "en" ? "RW" : "EN"}
@@ -139,14 +142,14 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-nav-drawer" className="lg:hidden bg-char-950 border-t border-white/10">
+        <div id="mobile-nav-drawer" className="lg:hidden bg-char-950 border-t border-line/10">
           <nav className="container-narrow flex flex-col py-3 pb-6">
             {links.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `py-3 text-base border-b border-white/10 ${isActive ? "text-ember-400" : "text-paper"}`
+                  `py-3 text-base border-b border-line/10 ${isActive ? "text-ember-400" : "text-paper"}`
                 }
               >
                 {link.label}

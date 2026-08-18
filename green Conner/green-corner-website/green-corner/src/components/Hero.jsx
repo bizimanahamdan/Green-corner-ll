@@ -16,7 +16,7 @@ export default function Hero() {
   const backdrop = b.heroImage1 || "/images/hero-embers.jpg";
 
   return (
-    <section className="relative min-h-[88vh] sm:min-h-[92vh] flex items-end overflow-hidden bg-char-950 text-paper">
+    <section className="relative min-h-[88vh] sm:min-h-[92vh] flex items-end overflow-hidden bg-soot text-white">
       {videoOn ? (
         <video
           src={b.heroVideoUrl}
@@ -51,7 +51,7 @@ export default function Hero() {
             <span className="text-citrus-400"> &amp; brochettes.</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-paper/75 leading-relaxed">
+          <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
             {b.description}
           </p>
 

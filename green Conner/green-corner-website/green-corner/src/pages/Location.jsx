@@ -60,7 +60,7 @@ export default function Location() {
           </div>
         </div>
 
-        <div className="rounded-2xl overflow-hidden border border-white/10 min-h-[360px]">
+        <div className="rounded-2xl overflow-hidden border border-line/10 min-h-[360px]">
           <iframe
             title="The Green Corner location map"
             className="h-full w-full min-h-[360px]"

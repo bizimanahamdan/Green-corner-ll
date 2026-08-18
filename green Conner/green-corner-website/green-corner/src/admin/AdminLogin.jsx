@@ -22,7 +22,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-char-950 text-cream flex items-center justify-center p-6">
+    <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex items-center justify-center p-6">
       <SEO title="Admin Login" path="/admin/login" noindex />
       <form onSubmit={handleSubmit} className="w-full max-w-sm admin-card p-8 space-y-4">
         <div className="text-center mb-2">

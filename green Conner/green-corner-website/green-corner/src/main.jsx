@@ -5,18 +5,21 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import { AuthProvider } from "./lib/AuthContext";
 import { LanguageProvider } from "./lib/i18n/LanguageContext";
+import { ThemeProvider } from "./lib/ThemeContext";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
-      <LanguageProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </BrowserRouter>
-      </LanguageProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </BrowserRouter>
+        </LanguageProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

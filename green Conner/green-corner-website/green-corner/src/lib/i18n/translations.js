@@ -30,7 +30,9 @@ export const translations = {
       readMore: "Read more",
       loading: "Loading…",
       close: "Close",
-      back: "Back"
+      back: "Back",
+      lightTheme: "Switch to light theme",
+      darkTheme: "Switch to dark theme"
     },
     home: {
       whySection: "Why visit",
@@ -155,7 +157,9 @@ export const translations = {
       readMore: "Soma Byinshi",
       loading: "Turimo gutegura…",
       close: "Funga",
-      back: "Subira inyuma"
+      back: "Subira inyuma",
+      lightTheme: "Hindura ujye ku cyeru",
+      darkTheme: "Hindura ujye ku kiririmbwe"
     },
     home: {
       whySection: "Impamvu",

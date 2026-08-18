@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children }) {
 
   if (!isSupabaseConfigured) {
     return (
-      <div className="min-h-screen bg-char-950 text-cream flex items-center justify-center p-6">
+      <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex items-center justify-center p-6">
         <div className="max-w-md text-center admin-card p-8">
           <h1 className="font-display text-xl font-semibold mb-3">Admin not connected yet</h1>
           <p className="text-sm text-cream/60">
@@ -22,7 +22,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-char-950 text-cream flex items-center justify-center">
+      <div data-theme="dark" className="min-h-screen bg-[#0b0a08] text-cream flex items-center justify-center">
         <p className="text-cream/50">Loading…</p>
       </div>
     );

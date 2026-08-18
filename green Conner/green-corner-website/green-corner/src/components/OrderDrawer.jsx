@@ -30,10 +30,10 @@ export default function OrderDrawer() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="order-drawer-heading"
-        className="h-full w-full max-w-md bg-char-950 text-paper shadow-2xl flex flex-col animate-modalIn motion-reduce:animate-none border-l border-white/10"
+        className="h-full w-full max-w-md bg-char-950 text-paper shadow-2xl flex flex-col animate-modalIn motion-reduce:animate-none border-l border-line/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-line/10">
           <h2 id="order-drawer-heading" className="font-display text-lg font-semibold">
             {t("cart.title")}
             {count > 0 ? ` · ${count}` : ""}
@@ -61,7 +61,7 @@ export default function OrderDrawer() {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      className="h-9 w-9 rounded-full border border-white/15"
+                      className="h-9 w-9 rounded-full border border-line/15"
                       onClick={() => setQty(item.id, item.qty - 1)}
                       aria-label="Decrease quantity"
                     >
@@ -70,7 +70,7 @@ export default function OrderDrawer() {
                     <span className="w-6 text-center text-sm font-semibold">{item.qty}</span>
                     <button
                       type="button"
-                      className="h-9 w-9 rounded-full border border-white/15"
+                      className="h-9 w-9 rounded-full border border-line/15"
                       onClick={() => setQty(item.id, item.qty + 1)}
                       aria-label="Increase quantity"
                     >
@@ -83,7 +83,7 @@ export default function OrderDrawer() {
           )}
         </div>
 
-        <div className="border-t border-white/10 p-5 space-y-3">
+        <div className="border-t border-line/10 p-5 space-y-3">
           {items.length > 0 && (
             <div className="flex items-center justify-between text-sm">
               <span className="text-mute">{t("cart.total")}</span>

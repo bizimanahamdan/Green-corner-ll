@@ -39,7 +39,7 @@ export default function Gallery() {
                   key={c}
                   onClick={() => setFilter(c)}
                   className={`rounded-full px-4 py-2 text-sm border min-h-[40px] ${
-                    filter === c ? "bg-leaf-500 border-leaf-500 text-white" : "border-white/15 text-mute"
+                    filter === c ? "bg-leaf-500 border-leaf-500 text-white" : "border-line/15 text-mute"
                   }`}
                 >
                   {c}

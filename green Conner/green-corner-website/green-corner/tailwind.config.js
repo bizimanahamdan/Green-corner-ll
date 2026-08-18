@@ -25,15 +25,15 @@ export default {
         },
         cream: "#efe7d6",
         mint: "#16140f",
-        paper: "#efe7d6",
-        mute: "#b7ad9c",
-        // Aliases kept so the (intentionally dark) admin dashboard keeps its
-        // own look without duplicating the public-site palette everywhere.
+        soot: "#0b0a08",
+        paper: "rgb(var(--gc-text) / <alpha-value>)",
+        mute: "rgb(var(--gc-muted) / <alpha-value>)",
+        line: "rgb(var(--gc-line) / <alpha-value>)",
         char: {
-          950: "#0b0a08",
-          900: "#14120e",
-          800: "#1c1914",
-          700: "#2a261f"
+          950: "rgb(var(--gc-bg) / <alpha-value>)",
+          900: "rgb(var(--gc-surface) / <alpha-value>)",
+          800: "rgb(var(--gc-elevated) / <alpha-value>)",
+          700: "rgb(var(--gc-elevated-2) / <alpha-value>)"
         },
         ember: {
           500: "#f2960c",

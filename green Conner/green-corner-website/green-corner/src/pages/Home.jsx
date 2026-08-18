@@ -19,7 +19,7 @@ function Stars({ rating }) {
   return (
     <span className="text-citrus-500" aria-label={`${rating} out of 5 stars`}>
       {"★".repeat(rating)}
-      <span className="text-white/20">{"★".repeat(5 - rating)}</span>
+      <span className="text-line/20">{"★".repeat(5 - rating)}</span>
     </span>
   );
 }
@@ -212,7 +212,7 @@ export default function Home() {
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapsQuery || `${b.neighborhood}, ${b.city}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-2xl overflow-hidden border border-white/10 h-52 sm:h-64"
+            className="block rounded-2xl overflow-hidden border border-line/10 h-52 sm:h-64"
             aria-label="Open location in Google Maps"
           >
             <iframe
@@ -226,9 +226,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-char-950 text-paper py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-soot text-white py-16 sm:py-20">
         <img src="/images/hero-embers.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" />
-        <div className="absolute inset-0 bg-char-950/75" />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="container-narrow relative text-center max-w-2xl">
           <h2 className="font-display text-3xl sm:text-4xl font-semibold">{t("home.ctaHeading")}</h2>
           <p className="mt-3 text-white/70">{t("home.ctaBody")}</p>

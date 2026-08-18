@@ -62,7 +62,7 @@ export default function WhatsAppModal() {
         aria-modal="true"
         aria-labelledby="whatsapp-modal-heading"
         onClick={(e) => e.stopPropagation()}
-        className="w-full sm:max-w-sm bg-char-900 text-paper rounded-t-3xl sm:rounded-3xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] shadow-xl animate-modalIn motion-reduce:animate-none border border-white/10"
+        className="w-full sm:max-w-sm bg-char-900 text-paper rounded-t-3xl sm:rounded-3xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] shadow-xl animate-modalIn motion-reduce:animate-none border border-line/10"
       >
         <div className="flex items-center justify-between mb-5">
           <h2 id="whatsapp-modal-heading" className="font-display text-lg font-semibold text-paper">
@@ -86,7 +86,7 @@ export default function WhatsAppModal() {
                 key={opt.key}
                 ref={i === 0 ? firstOptionRef : undefined}
                 onClick={() => setSelected(opt)}
-                className="w-full flex items-center gap-3 rounded-xl border border-white/10 px-4 py-3.5 text-left text-sm font-medium text-paper hover:border-leaf-500 hover:bg-char-900 transition-colors min-h-[48px]"
+                className="w-full flex items-center gap-3 rounded-xl border border-line/10 px-4 py-3.5 text-left text-sm font-medium text-paper hover:border-leaf-500 hover:bg-char-900 transition-colors min-h-[48px]"
               >
                 <span className="text-xl" aria-hidden="true">{opt.emoji}</span>
                 {copy[opt.labelKey]}

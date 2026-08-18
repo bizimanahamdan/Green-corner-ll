@@ -180,9 +180,9 @@ export default function Contact() {
                   <li key={item.id} className="flex items-center justify-between gap-3 text-sm">
                     <span className="min-w-0 truncate">{item.name}</span>
                     <span className="flex items-center gap-2 flex-shrink-0">
-                      <button type="button" className="h-8 w-8 rounded-full border border-white/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label="Decrease">−</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label="Decrease">−</button>
                       <span className="w-5 text-center">{item.qty}</span>
-                      <button type="button" className="h-8 w-8 rounded-full border border-white/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label="Increase">+</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label="Increase">+</button>
                     </span>
                   </li>
                 ))}
@@ -191,7 +191,7 @@ export default function Contact() {
             {count > 0 && (
               <p className="text-sm font-semibold text-leaf-400 mb-3">{formatPrice(total)}</p>
             )}
-            <details className="rounded-xl border border-white/10 p-3">
+            <details className="rounded-xl border border-line/10 p-3">
               <summary className="cursor-pointer text-sm font-medium">{t("contact.addFromMenu")}</summary>
               <ul className="mt-3 space-y-2 max-h-48 overflow-y-auto">
                 {flatMenu.map((item) => (
