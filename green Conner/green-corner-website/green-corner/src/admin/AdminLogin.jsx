@@ -2,8 +2,24 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 import { isSupabaseConfigured } from "../lib/supabaseClient";
-import { explainAuthError } from "../lib/authErrors";
 import SEO from "../components/SEO";
+
+function loginErrorMessage(error) {
+  const raw = (error?.message || "").toLowerCase();
+  if (raw.includes("invalid login") || raw.includes("invalid credentials") || raw.includes("user not found")) {
+    return "Incorrect email or password.";
+  }
+  if (raw.includes("email not confirmed")) {
+    return "This account is not confirmed yet.";
+  }
+  if (raw.includes("too many requests") || raw.includes("rate limit")) {
+    return "Too many attempts. Please wait a moment and try again.";
+  }
+  if (raw.includes("fetch") || raw.includes("network") || raw.includes("failed to fetch") || raw.includes("not connected")) {
+    return "Could not sign in right now. Please try again.";
+  }
+  return "Could not sign in. Check your email and password.";
+}
 
 export default function AdminLogin() {
   const { session, signIn } = useAuth();
@@ -20,9 +36,9 @@ export default function AdminLogin() {
     setLoading(true);
     try {
       const { error: signInError } = await signIn(email.trim(), password);
-      if (signInError) setError(explainAuthError(signInError));
+      if (signInError) setError(loginErrorMessage(signInError));
     } catch (err) {
-      setError(explainAuthError(err));
+      setError(loginErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -38,19 +54,6 @@ export default function AdminLogin() {
           </p>
           <p className="text-sm text-cream/50 mt-1">Admin dashboard</p>
         </div>
-
-        <p className={`text-xs text-center rounded-full px-3 py-1 ${isSupabaseConfigured ? "bg-leaf-500/15 text-leaf-300" : "bg-ember-500/15 text-ember-300"}`}>
-          {isSupabaseConfigured ? "Supabase is connected" : "Supabase keys are missing on this deploy"}
-        </p>
-
-        {!isSupabaseConfigured && (
-          <p className="text-sm text-cream/60">
-            In Netlify → Site settings → Environment variables, add{" "}
-            <code className="text-ember-400">VITE_SUPABASE_URL</code> and{" "}
-            <code className="text-ember-400">VITE_SUPABASE_ANON_KEY</code>, then
-            trigger a new deploy. Vite only reads those keys at build time.
-          </p>
-        )}
 
         <div>
           <label className="text-sm text-cream/70" htmlFor="email">Email</label>
@@ -82,11 +85,6 @@ export default function AdminLogin() {
         <button type="submit" disabled={loading || !isSupabaseConfigured} className="btn-primary w-full disabled:opacity-60">
           {loading ? "Signing in…" : "Sign In"}
         </button>
-
-        <p className="text-xs text-cream/45 leading-relaxed">
-          Use a user from Supabase → Authentication → Users, not the Supabase
-          dashboard password. When adding the user, tick Auto Confirm User.
-        </p>
       </form>
     </div>
   );
