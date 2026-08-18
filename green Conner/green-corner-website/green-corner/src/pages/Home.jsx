@@ -8,9 +8,9 @@ import { isIllustration, isPlaceholderText } from "../lib/media";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 
 const whyVisit = [
-  { title: "Made to order", body: "Every smoothie and salad is blended or tossed fresh when you order — nothing pre-made." },
-  { title: "Whole, real ingredients", body: "Fruit, vegetables and simple add-ins. No shortcuts, no invented health claims." },
-  { title: "Quick & easy", body: "A fast, friendly stop in Nyamirambo for something that actually makes you feel good." }
+  { title: "Fire-grilled to order", body: "Fish and brochettes go straight from the flame to your plate — nothing pre-cooked or reheated." },
+  { title: "Real Rwandan flavor", body: "Local spices, onions and garlic, cooked the way it's done in Nyamirambo." },
+  { title: "A place to unwind", body: "Good food, cold drinks, and a lively atmosphere in the heart of Nyamirambo." }
 ];
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Fresh Smoothies & Salads in Nyamirambo, Kigali"
+        title="Grilled Fish & Brochettes in Nyamirambo, Kigali"
         description={b.description}
         path="/"
       />
@@ -37,7 +37,7 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Nyamirambo, Kigali</p>
-            <h2 className="section-heading">A fresh corner in the neighborhood.</h2>
+            <h2 className="section-heading">A neighborhood grill worth the trip.</h2>
           </div>
           <p className="text-ink-700/70 leading-relaxed">{b.description}</p>
         </div>

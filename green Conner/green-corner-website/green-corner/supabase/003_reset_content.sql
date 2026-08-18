@@ -1,3 +1,7 @@
+-- ⚠️ OUTDATED — DO NOT RUN. Kept for historical reference only.
+-- This migration seeds the smoothie & salad bar concept, which is no longer
+-- current. Use supabase/005_reset_content_grill_pub.sql instead.
+--
 -- Green Corner — migration 003: reset content to the smoothie & salad bar concept
 --
 -- Run this ONLY if your Supabase project already has the old "bar & grill"

@@ -26,7 +26,7 @@ export default function Reviews() {
     <>
       <SEO
         title="Reviews"
-        description="What customers say about The Green Corner smoothie and salad bar in Nyamirambo, Kigali."
+        description="What customers say about The Green Corner grill pub in Nyamirambo, Kigali."
         path="/reviews"
       />
       <PageHeader eyebrow={t("pages.reviewsEyebrow")} title={t("pages.reviewsTitle")} />

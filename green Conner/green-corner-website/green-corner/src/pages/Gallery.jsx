@@ -16,7 +16,7 @@ export default function Gallery() {
     <>
       <SEO
         title="Gallery"
-        description="A look at The Green Corner — smoothies, salads, juices and bowls in Nyamirambo, Kigali."
+        description="A look at The Green Corner — fire-grilled fish, brochettes and drinks in Nyamirambo, Kigali."
         path="/gallery"
       />
       <PageHeader

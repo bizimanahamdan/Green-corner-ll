@@ -33,9 +33,9 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] text-ink-900">
-            Fresh, blended,
+            Fire-grilled,
             <br />
-            <span className="italic text-leaf-600">made to feel good.</span>
+            <span className="italic text-leaf-600">made the Rwandan way.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base sm:text-lg text-ink-700/75 mx-auto lg:mx-0">
@@ -73,29 +73,35 @@ export default function Hero() {
             <>
               <div className="absolute inset-6 rounded-[2.5rem] bg-white shadow-xl shadow-ink-900/5 border border-ink-900/5" />
 
-              <img
-                src={b.heroImage1}
-                alt="Illustration of a fresh smoothie"
-                className="absolute left-4 top-2 w-2/5 drop-shadow-lg animate-float"
-                loading="eager"
-              />
-              <img
-                src={b.heroImage2}
-                alt="Illustration of a fresh salad bowl"
-                className="absolute right-2 top-20 w-2/5 drop-shadow-lg animate-floatSlow"
-                loading="eager"
-              />
-              <img
-                src={b.heroImage3}
-                alt="Illustration of a citrus slice"
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-1/4 drop-shadow-lg animate-spinSlow"
-                loading="lazy"
-              />
+              <div className="absolute left-4 top-2 w-2/5 aspect-square rounded-2xl overflow-hidden border-4 border-white shadow-lg animate-float">
+                <img
+                  src={b.heroImage1}
+                  alt="Fire-grilled fish at The Green Corner"
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+              <div className="absolute right-2 top-20 w-2/5 aspect-square rounded-2xl overflow-hidden border-4 border-white shadow-lg animate-floatSlow">
+                <img
+                  src={b.heroImage2}
+                  alt="Goat brochettes grilling over an open flame"
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-1/3 aspect-square rounded-full overflow-hidden border-4 border-white shadow-lg animate-bob">
+                <img
+                  src={b.heroImage3}
+                  alt="Ice-cold local beer"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </>
           )}
 
           <div className="absolute -bottom-4 right-4 rounded-xl bg-white border border-leaf-500/20 px-4 py-2 text-xs text-ink-700 shadow-md">
-            <span className="text-leaf-600 font-semibold">Made fresh</span> · to order
+            <span className="text-leaf-600 font-semibold">Fire-grilled</span> · to order
           </div>
         </div>
       </div>

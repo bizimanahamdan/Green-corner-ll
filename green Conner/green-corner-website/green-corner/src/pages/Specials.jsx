@@ -12,7 +12,7 @@ export default function Specials() {
     <>
       <SEO
         title="Specials"
-        description="Combos, promotions and featured picks at The Green Corner smoothie and salad bar in Nyamirambo, Kigali."
+        description="Combos, promotions and featured picks at The Green Corner grill pub in Nyamirambo, Kigali."
         path="/specials"
       />
       <PageHeader

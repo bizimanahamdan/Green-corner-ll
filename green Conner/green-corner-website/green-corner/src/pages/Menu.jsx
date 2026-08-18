@@ -17,7 +17,7 @@ export default function Menu() {
     <>
       <SEO
         title="Menu"
-        description="Smoothies, cold-pressed juices, salads and smoothie bowls at The Green Corner in Nyamirambo, Kigali."
+        description="Fire-grilled fish, goat and beef brochettes, and cold drinks at The Green Corner in Nyamirambo, Kigali."
         path="/menu"
       />
       <PageHeader

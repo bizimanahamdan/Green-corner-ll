@@ -1,21 +1,24 @@
 # The Green Corner — Website & Admin Dashboard
 
-A premium website + real admin dashboard for The Green Corner, a smoothie &
-salad bar in Nyamirambo, Kigali. Built with React (Vite) + Tailwind CSS on the
+A premium website + real admin dashboard for The Green Corner, a grill pub
+in Nyamirambo, Kigali. Built with React (Vite) + Tailwind CSS on the
 frontend and Supabase (Postgres + Auth + Storage) on the backend.
 
 The public site works immediately with placeholder content — nothing to set up.
 Connecting Supabase (free tier, ~5 minutes) turns on the admin dashboard,
-reservation/order storage, real image uploads, and lets the site pull live
+order storage, real image uploads, and lets the site pull live
 content instead of demo data.
 
-**A note on content:** this project originally started as a bar & grill
-concept based on a different Kigali business's public listing. It was pivoted
-to a smoothie & salad bar once the real logo was provided. Because of that,
-we don't have a verified Google listing for this version — phone number,
-hours, prices and every menu item are placeholders clearly marked
-`PLACEHOLDER` throughout the code and the UI. None of it should be shown to
-a real customer until the owner confirms it.
+**A note on content:** this project's concept has changed twice during
+development — it started as a bar & grill idea, was pivoted to a smoothie &
+salad bar, and is now back to a grill pub (fire-grilled fish, brochettes,
+sides, drinks — confirmed by the owner). Because of that, we don't have a
+verified Google listing for this version — phone number, exact hours and
+pricing tier are placeholders clearly marked `PLACEHOLDER` throughout the
+code and the UI. None of it should be shown to a real customer until the
+owner confirms it. Menu items themselves (names, prices, descriptions) are
+confirmed real content from the owner, using stock photos as stand-ins until
+real food photography is available.
 
 ---
 
@@ -43,12 +46,12 @@ Open the printed local URL. The whole public site works right away on demo data.
    same way — this adds logo/hero-video support, a storage bucket for
    uploads, and sets sensible default hero images. Then run
    `supabase/004_reviews_and_social.sql` — this adds the reviews table and
-   Facebook/TikTok fields.
-   - **Already ran an older version of this schema?** If your admin dashboard
-     or live site is still showing old bar & grill content (grilled fish,
-     "booth seating", etc.), also run `supabase/003_reset_content.sql` — it
-     clears the old placeholder rows and replaces them with the current
-     smoothie & salad bar placeholders.
+   Facebook/TikTok fields. **Then run `supabase/005_reset_content_grill_pub.sql`**
+   — `schema.sql` still seeds its original smoothie & salad bar sample data,
+   so this step is required (not optional) to bring the database in line
+   with the current grill pub concept (fire-grilled fish, brochettes, sides,
+   drinks). The older `supabase/003_reset_content.sql` is kept for reference
+   only — don't run it, it reintroduces the smoothie/salad content.
 3. Go to **Project Settings → API** and copy the **Project URL** and **anon public key**.
 4. In this project, copy `.env.example` to `.env` and paste those two values in.
 5. In Netlify, add the same two variables under **Site settings → Environment variables**,

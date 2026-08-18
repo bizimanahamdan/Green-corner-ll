@@ -72,7 +72,7 @@ export default function WhatsAppModal() {
             aria-label={enCopy.close}
             className="h-8 w-8 flex items-center justify-center rounded-full text-ink-700/50 hover:bg-ink-900/5 hover:text-ink-900"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
             </svg>
           </button>

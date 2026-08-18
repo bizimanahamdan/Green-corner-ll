@@ -6,8 +6,8 @@ import { useBusinessInfo } from "../lib/useContent";
 
 const pillars = [
   { title: "Kigali, Nyamirambo", body: "Set in one of Kigali's most characterful neighborhoods, known for its own rhythm and street life." },
-  { title: "Whole ingredients", body: "Fruit, vegetables and simple add-ins — blended or tossed fresh, not pre-made." },
-  { title: "Smoothie & salad bar", body: "A quick, easy stop for something light and fresh, not a full sit-down restaurant." },
+  { title: "Fire-grilled, not fried", body: "Fish, goat and beef cooked over an open flame, seasoned with local spices." },
+  { title: "Grill pub", body: "A lively spot for good food and a cold drink, not a quiet sit-down restaurant." },
   { title: "Order ahead", body: "Message ahead on WhatsApp and pick up when it's ready." }
 ];
 
@@ -20,7 +20,7 @@ export default function About() {
     <>
       <SEO
         title="About Us"
-        description="The Green Corner is a smoothie and salad bar in Nyamirambo, Kigali, built around fresh, whole ingredients."
+        description="The Green Corner is a grill pub in Nyamirambo, Kigali, known for fire-grilled fish, goat and beef brochettes."
         path="/about"
       />
       <PageHeader eyebrow={t("pages.aboutEyebrow")} title={t("pages.aboutTitle")} />
@@ -30,16 +30,17 @@ export default function About() {
           <p>{b.description}</p>
           <p>
             The Green Corner sits in {b.neighborhood}, a lively, residential part of Kigali known for
-            its own identity and pace of life. It's built for anyone who wants something fresh and
-            simple — a smoothie on the way to work, a salad on a lunch break, a juice to cool down.
+            its own identity and pace of life. It's built for anyone who wants a proper fire-grilled
+            meal — a big grilled fish to share, a plate of brochettes after work, a cold beer with friends.
           </p>
         </div>
 
-        <div className="rounded-2xl bg-mint flex items-center justify-center p-12">
+        <div className="rounded-2xl bg-mint flex items-center justify-center overflow-hidden">
           <img
-            src="/images/illustrations/salad-bowl.svg"
-            alt="Illustration of a fresh salad bowl"
-            className="w-full max-w-xs"
+            src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=80&w=800"
+            alt="Fire-grilled fish at The Green Corner"
+            className="w-full h-full max-h-96 object-cover"
+            loading="lazy"
           />
         </div>
       </section>

@@ -3,8 +3,8 @@ import { useAdminTable } from "./useAdminTable";
 import { uploadMedia, MAX_IMAGE_MB } from "../lib/storage";
 import { isIllustration } from "../lib/media";
 
-const empty = { url: "", caption: "", category: "Smoothies", sort_order: 0 };
-const categories = ["Smoothies", "Juices", "Salads", "Bowls", "Ingredients", "Interior", "Atmosphere"];
+const empty = { url: "", caption: "", category: "Fish", sort_order: 0 };
+const categories = ["Fish", "Grilled Meats", "Sides", "Drinks", "Interior", "Atmosphere"];
 
 export default function AdminGallery() {
   const gallery = useAdminTable("gallery");
