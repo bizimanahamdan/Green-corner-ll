@@ -13,14 +13,25 @@ export function digitsOnly(value) {
 export function isConfirmedPhone(value) {
   if (!value || isPlaceholderText(value)) return false;
   const digits = digitsOnly(value);
-  if (digits.length < 10) return false;
+  if (digits.length < 9) return false;
   if (/^0+$/.test(digits)) return false;
   if (KNOWN_DUMMY_NUMBERS.has(digits)) return false;
   return true;
 }
 
+export function rwandaWhatsAppNumber(value) {
+  const digits = digitsOnly(value);
+  if (!digits || /^0+$/.test(digits)) return null;
+  if (KNOWN_DUMMY_NUMBERS.has(digits)) return null;
+  if (digits.startsWith("250") && digits.length >= 12) return digits;
+  if (digits.startsWith("0") && digits.length === 10) return `250${digits.slice(1)}`;
+  if (digits.length === 9 && digits.startsWith("7")) return `250${digits}`;
+  if (digits.length >= 11) return digits;
+  return null;
+}
+
 export function isConfirmedWhatsApp(value) {
-  return isConfirmedPhone(value);
+  return Boolean(rwandaWhatsAppNumber(value));
 }
 
 export function isConfirmedText(value) {
@@ -29,13 +40,14 @@ export function isConfirmedText(value) {
 
 export function telHref(value) {
   if (!isConfirmedPhone(value)) return null;
-  return `tel:+${digitsOnly(value)}`;
+  return `tel:${String(value).trim()}`;
 }
 
 export function whatsappHref(number, message = "") {
-  if (!isConfirmedWhatsApp(number)) return null;
+  const intl = rwandaWhatsAppNumber(number);
+  if (!intl) return null;
   const text = message ? `?text=${encodeURIComponent(message)}` : "";
-  return `https://wa.me/${digitsOnly(number)}${text}`;
+  return `https://wa.me/${intl}${text}`;
 }
 
 export function parsePrice(price) {
