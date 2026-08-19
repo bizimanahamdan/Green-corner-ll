@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Green Corner — Sale Presentation</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <link rel="icon" href="images/mark-bowl.png" />
+</head>
+<body>
+  <div class="progress"></div>
+
+  <header class="chrome chrome-top">
+    <div class="brand">
+      <img src="images/mark-bowl.png" alt="" />
+      The Green Corner
+    </div>
+    <div class="counter">01 / 20</div>
+  </header>
+
+  <footer class="chrome chrome-bottom">
+    <div class="hint">
+      <kbd>←</kbd><kbd>→</kbd> navigate
+      · <kbd>N</kbd> notes
+      · <kbd>O</kbd> overview
+      · <kbd>P</kbd> print
+    </div>
+    <div class="nav-btns">
+      <button id="toggle-notes" class="icon-btn" title="Speaker notes">N</button>
+      <button id="toggle-overview" class="icon-btn" title="Overview">O</button>
+      <button id="prev" aria-label="Previous">‹</button>
+      <button id="next" aria-label="Next">›</button>
+    </div>
+  </footer>
+
+  <div class="notes">
+    <h4>Speaker notes</h4>
+    <p class="notes-body"></p>
+  </div>
+
+  <div class="overview">
+    <p class="eyebrow">Jump to a slide</p>
+    <div class="overview-grid"></div>
+  </div>
+
+  <main class="deck">
+
+    <!-- 01 TITLE -->
+    <section class="slide photo is-active" data-title="Title"
+      data-notes="Open slowly. Let the photo sit. Then: this is not a mockup and not a template. It is a live restaurant platform, built for one grill pub in Nyamirambo, ready to transfer.">
+      <img class="full-bleed" src="images/hero-embers.jpg" alt="" />
+      <div class="veil"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">Sale deck · August 2026</p>
+        <h1>The Green<br />Corner</h1>
+        <p class="lede">A complete digital platform for a Nyamirambo grill pub. Website, admin, orders, and phone alerts — already built, already live, ready to hand over.</p>
+        <div class="pills">
+          <span class="pill">Customer website</span>
+          <span class="pill">Owner admin</span>
+          <span class="pill">Order-ahead</span>
+          <span class="pill">WhatsApp</span>
+          <span class="pill">English / Kinyarwanda</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 AGENDA -->
+    <section class="slide" data-title="Agenda"
+      data-notes="Keep this to 60 seconds. Promise: venue, product, operations, what transfers, what still belongs to the owner. No invented numbers anywhere in this deck.">
+      <p class="eyebrow">How this meeting runs</p>
+      <h2>Twenty minutes.<br />Five parts.</h2>
+      <div class="grid-2" style="margin-top:36px">
+        <ol class="check">
+          <li>The venue this was built for</li>
+          <li>The problem a grill pub actually has</li>
+          <li>The product, page by page</li>
+          <li>How the owner runs it every day</li>
+          <li>What transfers, what stays empty, next step</li>
+        </ol>
+        <div class="card">
+          <h3>A rule for this deck</h3>
+          <p>Nothing here is invented. Menu names and prices are owner-confirmed. Phone, hours, reviews, and photos stay empty until the owner publishes them. Empty is better than fake.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 THE ASSET -->
+    <section class="slide" data-title="The asset"
+      data-notes="This is the one-sentence offer. You are not selling a brochure. You are selling a running system the new owner can operate without a developer for daily work.">
+      <p class="eyebrow">What is for sale</p>
+      <p class="big-quote">A production website and operations desk for The Green Corner — not a theme, not a landing page, a system the owner can run.</p>
+      <div class="grid-4" style="margin-top:40px">
+        <div class="card"><div class="stat">8<span>Public pages</span></div></div>
+        <div class="card"><div class="stat">11<span>Admin screens</span></div></div>
+        <div class="card"><div class="stat">2<span>Languages</span></div></div>
+        <div class="card"><div class="stat">1<span>Live deploy</span></div></div>
+      </div>
+    </section>
+
+    <!-- 04 THE VENUE -->
+    <section class="slide photo" data-title="The venue"
+      data-notes="Set the place. Grill pub, not a smoothie bar, not a quiet restaurant. Nyamirambo. Fire-grilled fish, goat and beef brochettes, cold local beer.">
+      <img class="full-bleed" src="images/pub-night.jpg" alt="" />
+      <div class="veil-side"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">The venue</p>
+        <h2>A grill pub<br />in Nyamirambo.</h2>
+        <p class="lede">The Green Corner is a lively, no-frills spot in Kigali known for fire-grilled fish, goat and beef brochettes, and an ice-cold selection of local beers.</p>
+        <div class="pills">
+          <span class="pill">Grilled Fish</span>
+          <span class="pill">Brochettes</span>
+          <span class="pill">Cold Drinks</span>
+          <span class="pill">Nyamirambo, Kigali</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 PROBLEM -->
+    <section class="slide" data-title="The problem"
+      data-notes="Do not attack the owner. Attack the gap: hungry people cannot see tonight's grill, cannot order ahead, and the counter has no inbox.">
+      <p class="eyebrow">The problem</p>
+      <h2>The grill is on.<br />The internet is quiet.</h2>
+      <div class="grid-3" style="margin-top:32px">
+        <div class="card">
+          <h3>No living menu</h3>
+          <p>A printed board, a stale Facebook photo, or nothing. Prices change. Fish runs out. The public never sees it.</p>
+        </div>
+        <div class="card">
+          <h3>Orders die in chat</h3>
+          <p>WhatsApp is the real till in Kigali. Without a structured flow, the owner gets “hi”, then silence, then a no-show.</p>
+        </div>
+        <div class="card">
+          <h3>No desk for the owner</h3>
+          <p>There is no single place to post hours, tonight’s special, a photo, or to see who just ordered for pickup.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 SOLUTION -->
+    <section class="slide photo" data-title="The solution"
+      data-notes="Hold up one finger: one system. Customer site, owner desk, orders, WhatsApp, alerts. Then go into the tour.">
+      <img class="full-bleed" src="images/phone-order.jpg" alt="" />
+      <div class="veil"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">The solution</p>
+        <h2>One system.<br />Two sides.</h2>
+        <p class="lede">Guests browse the menu, build an order, and send it for pickup. The owner updates the site, sees new orders, and can get a push on the phone after the tab is closed.</p>
+      </div>
+    </section>
+
+    <!-- 07 PUBLIC SITE -->
+    <section class="slide" data-title="The public site"
+      data-notes="Walk the sitemap. Mention the live URL. Design is charcoal grill-bar, light/dark toggle, mobile action bar.">
+      <p class="eyebrow">Customer website</p>
+      <h2>Built to look like<br />the grill, not a café.</h2>
+      <div class="grid-2">
+        <div>
+          <ul class="check">
+            <li>Home — cinematic hero, featured plates, map</li>
+            <li>Menu — categories, prices, add-to-order</li>
+            <li>About — neighborhood grill-pub story</li>
+            <li>Gallery, Specials, Reviews — only when real</li>
+            <li>Location — official Green Corner map pin</li>
+            <li>Contact — order-ahead + message the house</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Live now</h3>
+          <p class="live" style="margin:10px 0 14px">nconer.netlify.app</p>
+          <p>Dark charcoal by default. Light theme on request. Sticky mobile actions. Open / Closed badge the moment hours are posted. SEO titles, Open Graph, and LocalBusiness structured data — only confirmed fields.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 MENU -->
+    <section class="slide photo" data-title="The menu"
+      data-notes="These prices are owner-confirmed. Do not add items that are not on this list. Photos on the live menu are stock stand-ins until real plates are uploaded.">
+      <img class="full-bleed" src="images/grilled-fish.jpg" alt="" />
+      <div class="veil-side"></div>
+      <div class="photo-copy" style="max-width:980px;width:100%">
+        <p class="eyebrow">Confirmed menu</p>
+        <h2>What people<br />come for.</h2>
+        <table class="menu-table">
+          <thead>
+            <tr><th>From the grill</th><th>Category</th><th>RWF</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Legendary Big Grilled Fish (Amafi Manini)</td><td>Signature Fish</td><td>18,500</td></tr>
+            <tr><td>Classic Goat Brochette (Zingalo)</td><td>Grilled Meats</td><td>1,500</td></tr>
+            <tr><td>Beef Brochette</td><td>Grilled Meats</td><td>1,200</td></tr>
+            <tr><td>Whole Roasted Potatoes (Ibirayi)</td><td>Sides</td><td>2,000</td></tr>
+            <tr><td>Fried Plantains (Mizuzu)</td><td>Sides</td><td>2,500</td></tr>
+            <tr><td>Ice Cold Local Beers — Skol, Mutzig, Primus</td><td>Drinks</td><td>1,500</td></tr>
+          </tbody>
+        </table>
+        <p class="tiny" style="margin-top:14px">Names, prices and descriptions provided by the owner. Menu photos are stand-ins until real plates are uploaded in Admin.</p>
+      </div>
+    </section>
+
+    <!-- 09 ORDERS -->
+    <section class="slide" data-title="Orders"
+      data-notes="Order-ahead is pickup, not table booking. Cart lives on the menu. Checkout writes to Supabase and can also send WhatsApp.">
+      <p class="eyebrow">How money starts</p>
+      <h2>Build an order.<br />Pick it up ready.</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>01 · Cart</h3>
+          <p>Guests add fish, brochettes, sides and drinks. Quantities, estimated total in RWF, drawer on every page.</p>
+        </div>
+        <div class="card">
+          <h3>02 · Order ahead</h3>
+          <p>Name, phone, pickup date and time, notes. Saved to the owner inbox with line items when the cart was used.</p>
+        </div>
+        <div class="card">
+          <h3>03 · Confirm</h3>
+          <p>The house confirms by phone or WhatsApp before pickup. No fake “payment complete” theatre.</p>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:22px">Online payment is not part of this build. The product takes the order. The grill takes the cash or MoMo the way the house already does.</p>
+    </section>
+
+    <!-- 10 WHATSAPP + I18N -->
+    <section class="slide" data-title="WhatsApp and language"
+      data-notes="WhatsApp button stays hidden until a real number is saved. Four intents, both languages. Site chrome is EN/RW; owner-typed content stays in the language it was written.">
+      <p class="eyebrow">Kigali-native</p>
+      <h2>English. Kinyarwanda.<br />WhatsApp first.</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Four ready messages</h3>
+          <p>Quick order · Group / tonight · Catering · A question. The guest picks a language, then a reason. The owner gets a message they can answer, not “hello”.</p>
+        </div>
+        <div class="card">
+          <h3>A bilingual house</h3>
+          <p>Navigation, buttons, empty states, cart and forms switch between English and Kinyarwanda. Menu names stay as the owner typed them — Amafi Manini, Zingalo, Ibirayi, Mizuzu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 LOCATION -->
+    <section class="slide photo" data-title="Location"
+      data-notes="Official Google embed for Green Corner is hardcoded. Directions still honour a goo.gl or maps_query URL from admin. Pin: maps.app.goo.gl/WCUh9TFjBn4mHRUW6">
+      <img class="full-bleed" src="images/kigali-night.jpg" alt="" />
+      <div class="veil"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">Find us</p>
+        <h2>Pinned on the<br />real map.</h2>
+        <p class="lede">Homepage and Location use the official Google Maps embed for Green Corner. Directions open the live pin. Hours and a live Open / Closed badge appear the day the owner posts them.</p>
+        <div class="cta-row">
+          <a class="cta ghost" href="https://maps.app.goo.gl/WCUh9TFjBn4mHRUW6" target="_blank" rel="noopener">Open the pin</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 ADMIN -->
+    <section class="slide photo" data-title="Admin"
+      data-notes="Login is a Supabase Auth user, not the Supabase dashboard password. Admin is forced dark. No setup jargon on the login screen.">
+      <img class="full-bleed" src="images/admin-desk.jpg" alt="" />
+      <div class="veil-side"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">Owner desk</p>
+        <h2>Change tonight<br />without a developer.</h2>
+        <div class="grid-2" style="margin-top:22px">
+          <ul class="check">
+            <li>Overview</li>
+            <li>Orders</li>
+            <li>Inquiries</li>
+            <li>Menu</li>
+            <li>Gallery</li>
+            <li>Specials</li>
+          </ul>
+          <ul class="check">
+            <li>Reviews</li>
+            <li>Hours</li>
+            <li>Business info</li>
+            <li>Logo &amp; hero media</li>
+            <li>Notifications</li>
+            <li>Protected login</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 LIVE OPS -->
+    <section class="slide" data-title="Live operations"
+      data-notes="Realtime badges on Orders and Inquiries. In-tab chime while the dashboard is open. This is the operations story.">
+      <p class="eyebrow">Operations</p>
+      <h2>The inbox the<br />counter never had.</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>New order cards</h3>
+          <p>Name, phone, pickup window, item count, notes. Status moves from new to handled. Badges on the sidebar.</p>
+        </div>
+        <div class="card">
+          <h3>Messages</h3>
+          <p>Catering, questions, groups. Same desk. Nothing buried in a personal WhatsApp until the owner chooses to take it there.</p>
+        </div>
+        <div class="card">
+          <h3>Live while open</h3>
+          <p>Supabase Realtime updates the dashboard. Optional chime in the tab so a new order is hard to miss during service.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 PUSH -->
+    <section class="slide" data-title="Push alerts"
+      data-notes="Be precise. Notification API is not background push. This build has a service worker, VAPID, and a Netlify function. iPhone needs Add to Home Screen.">
+      <p class="eyebrow">After the tab closes</p>
+      <h2>A new order can<br />reach the phone.</h2>
+      <p class="lede">Real Web Push — service worker plus VAPID — not a browser popup that dies when the laptop lid shuts. Enable once in Admin → Notifications. Test it, then close the tab.</p>
+      <div class="pills">
+        <span class="pill">Service worker</span>
+        <span class="pill">VAPID keys</span>
+        <span class="pill">Netlify function</span>
+        <span class="pill">iPhone: add to Home Screen</span>
+      </div>
+    </section>
+
+    <!-- 15 HONEST CONTENT -->
+    <section class="slide" data-title="Honest content"
+      data-notes="This is a trust slide. Buyers and owners should hear that we refused dummy phone numbers and fake reviews. That is a feature.">
+      <p class="eyebrow">Trust</p>
+      <h2>Empty is better<br />than fake.</h2>
+      <div class="grid-2">
+        <div>
+          <p class="lede" style="margin-top:0">The public site never shows PLACEHOLDER, a dummy WhatsApp, or a review nobody wrote. If the owner has not published it, the block stays hidden.</p>
+        </div>
+        <ul class="check later">
+          <li>Phone and WhatsApp — hidden until saved</li>
+          <li>Hours — empty state, not invented times</li>
+          <li>Reviews and specials — only real ones</li>
+          <li>Gallery — waits for venue photos</li>
+          <li>Social links — only if the column and URL exist</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 16 ARCHITECTURE -->
+    <section class="slide" data-title="Architecture"
+      data-notes="Keep this short unless the buyer is technical. Emphasize: no service-role key in the frontend. RLS. Netlify for hosting and the push function.">
+      <p class="eyebrow">Under the hood</p>
+      <h2>Modern, boring,<br />transferable.</h2>
+      <div class="arch">
+        <div class="card">
+          <h3>Frontend</h3>
+          <p>React 18, Vite, React Router, Tailwind. Oswald + Source Sans. Light / dark theme.</p>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <p>Supabase — Postgres, Auth, Storage, Row Level Security, Realtime.</p>
+        </div>
+        <div class="card">
+          <h3>Hosting</h3>
+          <p>Netlify. Environment keys at build time. Server-only secrets stay on the function.</p>
+        </div>
+        <div class="card">
+          <h3>Safety</h3>
+          <p>Anon key in the browser. Service-role and VAPID private key never ship to the client.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 WHAT TRANSFERS -->
+    <section class="slide" data-title="What transfers"
+      data-notes="Read the left column as the keys. Right column is remaining owner work — do not hide it. Commercial terms are a conversation, not a number in this deck.">
+      <p class="eyebrow">The handover</p>
+      <h2>What the buyer gets.</h2>
+      <div class="grid-2">
+        <div>
+          <p class="tiny" style="margin-bottom:4px">INCLUDED</p>
+          <ul class="check">
+            <li>Full source code on GitHub</li>
+            <li>Production site on Netlify</li>
+            <li>Admin dashboard and auth</li>
+            <li>Database schema and storage path</li>
+            <li>Order + inquiry inbox</li>
+            <li>Web Push architecture</li>
+            <li>Official Maps embed</li>
+            <li>This deck and the README</li>
+          </ul>
+        </div>
+        <div>
+          <p class="tiny" style="margin-bottom:4px">OWNER STILL SETS</p>
+          <ul class="check later">
+            <li>Confirmed phone and WhatsApp</li>
+            <li>Opening hours</li>
+            <li>Real plate and interior photos</li>
+            <li>A current logo if the smoothie lockup is retired</li>
+            <li>Promotions and guest quotes they may publish</li>
+            <li>Custom domain, if they want one</li>
+            <li>VAPID keys to turn background push on</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 BUY VS BUILD -->
+    <section class="slide" data-title="Buy vs rebuild"
+      data-notes="Do not quote a fake freelancer price. The point is time, risk, and a product already fitted to this venue.">
+      <p class="eyebrow">Why not start over</p>
+      <h2>Rebuild vs. take the keys.</h2>
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Start from scratch</th><th>This platform</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Time to a live grill site</td><td>Weeks to months</td><td>Already live</td></tr>
+          <tr><td>Daily menu and hours</td><td>Call a developer</td><td>Owner admin</td></tr>
+          <tr><td>WhatsApp + Kinyarwanda</td><td>Usually an extra</td><td>Built in</td></tr>
+          <tr><td>Orders and phone push</td><td>Usually an extra</td><td>Built in</td></tr>
+          <tr><td>Fake reviews and dummy numbers</td><td>Common on rushed sites</td><td>Never shown</td></tr>
+          <tr><td>Fit to this venue</td><td>Generic restaurant theme</td><td>Green Corner, Nyamirambo</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 19 LIVE + NEXT -->
+    <section class="slide" data-title="See it live"
+      data-notes="Open the live site if the room has a browser. Then the admin login story: create an Auth user, not the dashboard password.">
+      <p class="eyebrow">Proof</p>
+      <h2>See it. Then take it.</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Public site</h3>
+          <p class="live" style="margin:12px 0">nconer.netlify.app</p>
+          <p>Menu, cart, map, bilingual chrome, light and dark. What guests will use tonight.</p>
+          <div class="cta-row">
+            <a class="cta primary" href="https://nconer.netlify.app" target="_blank" rel="noopener">Open the site</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Owner desk</h3>
+          <p style="margin-top:12px">nconer.netlify.app/admin</p>
+          <p style="margin-top:12px">Login is a user created in Supabase Authentication — not the Supabase dashboard password. One account is enough to run the house.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 CLOSE -->
+    <section class="slide photo" data-title="Close"
+      data-notes="Stop talking. Ask who holds the keys, and what they want in the handover. Price is a conversation — do not invent one on the slide.">
+      <img class="full-bleed" src="images/handover.jpg" alt="" />
+      <div class="veil"></div>
+      <div class="photo-copy">
+        <p class="eyebrow">The ask</p>
+        <h1>Who holds<br />the keys?</h1>
+        <p class="lede">The product is built. The grill already has a digital house. Investment, access, and the handover date are the only things left to agree.</p>
+        <div class="cta-row">
+          <a class="cta primary" href="https://nconer.netlify.app" target="_blank" rel="noopener">Visit the live site</a>
+          <a class="cta ghost" href="https://maps.app.goo.gl/WCUh9TFjBn4mHRUW6" target="_blank" rel="noopener">See the pin</a>
+        </div>
+        <p class="tiny" style="margin-top:22px">The Green Corner · Nyamirambo, Kigali · Sale presentation, August 2026</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="deck.js"></script>
+</body>
+</html>
