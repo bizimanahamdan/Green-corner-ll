@@ -53,7 +53,7 @@ export default function AdminHours() {
       <h1 className="font-display text-2xl font-semibold mb-2">Opening Hours</h1>
       <p className="text-sm text-cream/50 mb-6">
         Hours stay hidden on the public site until you add them here. Use 12-hour times like 11:00 AM.
-        Type Closed in both fields for a day off.
+        Type Closed in both fields for a day off. Table bookings only offer times inside these hours.
       </p>
       <div className="admin-card p-6 max-w-2xl">
         {draft.length === 0 && !hours.loading && (

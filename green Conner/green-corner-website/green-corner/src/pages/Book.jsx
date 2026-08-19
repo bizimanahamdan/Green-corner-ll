@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
@@ -15,6 +15,15 @@ import {
   telHref,
   whatsappHref
 } from "../lib/business";
+import {
+  bookingSelectionError,
+  clampDateToTodayOrLater,
+  dayWindow,
+  formatSlotLabel,
+  hoursArePosted,
+  listBookableDates,
+  timeSlotsForDate
+} from "../lib/bookingHours";
 import { requestBackgroundPush } from "../lib/notifyAdmin";
 
 const OCCASIONS = [
@@ -33,10 +42,10 @@ function FormStatus({ status }) {
   );
 }
 
-const emptyForm = () => ({
+const emptyForm = (date = "") => ({
   name: "",
   phone: "",
-  date: kigaliTodayISO(),
+  date,
   time: "",
   guests: 2,
   occasion: "",
@@ -49,8 +58,13 @@ export default function Book() {
   const b = info || demo;
   const { data: hours } = useHours();
   const liveHours = hours || [];
+  const posted = hoursArePosted(liveHours);
+  const today = kigaliTodayISO();
 
-  const [form, setForm] = useState(emptyForm);
+  const bookableDates = useMemo(() => listBookableDates(liveHours), [liveHours]);
+  const firstOpen = bookableDates[0]?.iso || "";
+
+  const [form, setForm] = useState(() => emptyForm(today));
   const [status, setStatus] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -58,18 +72,50 @@ export default function Book() {
   const hasPhone = isConfirmedPhone(b.phone);
   const set = (patch) => setForm((prev) => ({ ...prev, ...patch }));
 
+  useEffect(() => {
+    if (!posted) return;
+    setForm((prev) => {
+      const nextDate = bookableDates.some((d) => d.iso === prev.date) ? prev.date : firstOpen;
+      if (!nextDate) return prev.date === "" ? prev : { ...prev, date: "", time: "" };
+      const slots = timeSlotsForDate(liveHours, nextDate);
+      const nextTime = slots.includes(prev.time) ? prev.time : "";
+      if (nextDate === prev.date && nextTime === prev.time) return prev;
+      return { ...prev, date: nextDate, time: nextTime };
+    });
+  }, [posted, firstOpen, liveHours, bookableDates]);
+
+  const slots = useMemo(
+    () => (form.date ? timeSlotsForDate(liveHours, form.date) : []),
+    [liveHours, form.date]
+  );
+  const window = form.date ? dayWindow(liveHours, form.date) : { status: "none" };
+  const lastDate = bookableDates[bookableDates.length - 1]?.iso || today;
+  const selectionError = bookingSelectionError(liveHours, form.date, form.time);
+
   const composedMessage = buildBookingMessage({ ...form, language });
   const waHref = hasWhatsApp ? whatsappHref(b.whatsapp, composedMessage) : null;
 
+  const pickDate = (iso) => {
+    const next = clampDateToTodayOrLater(iso);
+    const nextSlots = timeSlotsForDate(liveHours, next);
+    set({ date: next, time: nextSlots.includes(form.time) ? form.time : "" });
+    setStatus(null);
+  };
+
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.date || !form.time) {
+    if (!form.name.trim() || !form.phone.trim()) {
       setStatus({ ok: false, text: t("book.needDetails") });
       return;
     }
     const guests = Number(form.guests);
     if (!Number.isFinite(guests) || guests < 1 || guests > 30) {
       setStatus({ ok: false, text: t("book.needGuests") });
+      return;
+    }
+    const whenError = bookingSelectionError(liveHours, form.date, form.time);
+    if (whenError) {
+      setStatus({ ok: false, text: t(`book.${whenError}`) });
       return;
     }
 
@@ -120,13 +166,15 @@ export default function Book() {
       });
 
       setStatus({ ok: true, text: t("book.saved") });
-      setForm(emptyForm());
+      setForm(emptyForm(firstOpen || today));
     } catch {
       setStatus({ ok: false, text: t("book.failed") });
     } finally {
       setSubmitting(false);
     }
   };
+
+  const canSubmit = posted && !selectionError && !submitting;
 
   return (
     <>
@@ -170,29 +218,83 @@ export default function Book() {
                 className="field-input"
               />
             </div>
-            <div>
-              <label className="text-sm text-mute" htmlFor="b-date">{t("book.date")}</label>
-              <input
-                id="b-date"
-                required
-                type="date"
-                min={kigaliTodayISO()}
-                value={form.date}
-                onChange={(e) => set({ date: e.target.value })}
-                className="field-input"
-              />
-            </div>
-            <div>
-              <label className="text-sm text-mute" htmlFor="b-time">{t("book.time")}</label>
-              <input
-                id="b-time"
-                required
-                type="time"
-                value={form.time}
-                onChange={(e) => set({ time: e.target.value })}
-                className="field-input"
-              />
-            </div>
+          </div>
+
+          <div>
+            <label className="text-sm text-mute" htmlFor="b-date">{t("book.date")}</label>
+            <p className="text-xs text-mute mt-1 mb-2">{t("book.dateHint")}</p>
+            {posted && bookableDates.length > 0 && (
+              <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 mb-3">
+                {bookableDates.map((day) => {
+                  const on = form.date === day.iso;
+                  return (
+                    <button
+                      key={day.iso}
+                      type="button"
+                      onClick={() => pickDate(day.iso)}
+                      className={`min-w-[5.6rem] rounded-xl border px-3 py-2 text-left text-sm ${
+                        on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15 text-paper"
+                      }`}
+                    >
+                      <span className="block font-semibold">{day.isToday ? t("book.today") : day.label}</span>
+                      <span className="block text-xs text-mute mt-0.5">
+                        {day.window.status === "open" ? `${day.window.open}–${day.window.close}` : ""}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+            <input
+              id="b-date"
+              required
+              type="date"
+              min={today}
+              max={lastDate}
+              value={form.date}
+              disabled={!posted}
+              onChange={(e) => pickDate(e.target.value)}
+              className="field-input"
+            />
+            {posted && window.status === "closed" && (
+              <p className="text-sm text-ember-400 mt-2">{t("book.closedDay")}</p>
+            )}
+            {posted && window.status === "open" && (
+              <p className="text-sm text-mute mt-2">
+                {t("book.hoursThisDay")} {window.open} – {window.close}
+              </p>
+            )}
+            {!posted && <p className="text-sm text-ember-400 mt-2">{t("book.noHours")}</p>}
+          </div>
+
+          <div>
+            <p className="text-sm text-mute mb-2">{t("book.time")}</p>
+            {!posted ? (
+              <p className="text-sm text-mute">{t("book.hoursOnly")}</p>
+            ) : slots.length === 0 ? (
+              <p className="text-sm text-ember-400">{t("book.noSlots")}</p>
+            ) : (
+              <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+                {slots.map((slot) => {
+                  const on = form.time === slot;
+                  return (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => {
+                        set({ time: slot });
+                        setStatus(null);
+                      }}
+                      className={`rounded-full border px-3 py-2 text-sm min-h-[40px] ${
+                        on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15"
+                      }`}
+                    >
+                      {formatSlotLabel(slot)}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           <div>
@@ -253,7 +355,7 @@ export default function Book() {
             />
           </div>
 
-          <button type="submit" disabled={submitting} className="btn-primary w-full disabled:opacity-60">
+          <button type="submit" disabled={!canSubmit} className="btn-primary w-full disabled:opacity-60">
             {submitting ? t("contact.sending") : t("book.submit")}
           </button>
           <FormStatus status={status} />

@@ -118,7 +118,9 @@ export const translations = {
       yourOrder: "Your order",
       addFromMenu: "Add from the menu",
       emptyOrder: "Add at least one menu item, or describe what you'd like below.",
-      bookTableInstead: "Coming to sit down? Book a table"
+      bookTableInstead: "Coming to sit down? Book a table",
+      pastDate: "Choose today or a later pickup day.",
+      pastTime: "That pickup time has already passed."
     },
     book: {
       intro: "Tell us when you're coming. We'll confirm by phone or WhatsApp — this is a request, not a locked table.",
@@ -145,7 +147,18 @@ export const translations = {
       step2: "We check the night and confirm with you.",
       step3: "Come through when we say the table is yours.",
       hoursHeading: "Hours",
-      pickupInstead: "Want food to go instead? Order ahead and pick it up."
+      pickupInstead: "Want food to go instead? Order ahead and pick it up.",
+      today: "Today",
+      dateHint: "Today or later. Closed days cannot be selected.",
+      hoursThisDay: "Hours this day:",
+      hoursOnly: "Times follow the posted opening hours.",
+      closedDay: "We're closed that day. Choose another.",
+      pastDate: "Choose today or a later day.",
+      pastTime: "That time has already passed.",
+      needTime: "Pick a time during opening hours.",
+      outsideHours: "That time is outside opening hours.",
+      noHours: "Online table requests open once opening hours are posted.",
+      noSlots: "No times left that day. Try another day."
     },
     whatsappModal: {
       heading: "How can we help?",
@@ -277,7 +290,9 @@ export const translations = {
       yourOrder: "Ibyo watumije",
       addFromMenu: "Ongeraho kuri menu",
       emptyOrder: "Ongeraho ikiribwa kimwe, cyangwa wandike ibyo ushaka hepfo.",
-      bookTableInstead: "Muze kwicara? Fata ameza"
+      bookTableInstead: "Muze kwicara? Fata ameza",
+      pastDate: "Hitamo uyu munsi cyangwa umunsi uzaza.",
+      pastTime: "Iyo saha yo kubikura yashize."
     },
     book: {
       intro: "Tubwire igihe muzaza. Tuzahamagara cyangwa dukwandikire kuri WhatsApp — ubu ni ubusabe, si ameza yafunzwe.",
@@ -304,7 +319,18 @@ export const translations = {
       step2: "Tureba uwo mugoroba maze dukwemeze.",
       step3: "Uze iyo tubwiye ko ameza ari ayawe.",
       hoursHeading: "Amasaha",
-      pickupInstead: "Ushaka ibiryo wo gufata? Tumiza mbere."
+      pickupInstead: "Ushaka ibiryo wo gufata? Tumiza mbere.",
+      today: "Uyu munsi",
+      dateHint: "Uyu munsi cyangwa ejo. Iminsi dufunze ntishobora guhitamo.",
+      hoursThisDay: "Amasaha y'uyu munsi:",
+      hoursOnly: "Amasaha yo gufata ameza akurikiza amasaha y'akazi.",
+      closedDay: "Uwo munsi tufunze. Hitamo undi.",
+      pastDate: "Hitamo uyu munsi cyangwa umunsi uzaza.",
+      pastTime: "Iyo saha yashize.",
+      needTime: "Hitamo isaha iri mu masaha y'akazi.",
+      outsideHours: "Iyo saha ntabwo iri mu masaha y'akazi.",
+      noHours: "Gufata ameza kuri interineti bikora iyo amasaha yashyizweho.",
+      noSlots: "Nta saha isigaye uwo munsi. Gerageza undi."
     },
     whatsappModal: {
       heading: "Twagufasha gute?",

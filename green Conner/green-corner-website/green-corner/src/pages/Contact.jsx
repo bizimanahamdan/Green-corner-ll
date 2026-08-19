@@ -17,6 +17,7 @@ import {
   telHref,
   whatsappHref
 } from "../lib/business";
+import { clampDateToTodayOrLater, kigaliClock, minutesToHHMM } from "../lib/bookingHours";
 import { requestBackgroundPush } from "../lib/notifyAdmin";
 
 const emptyInquiry = { name: "", contact: "", message: "" };
@@ -65,9 +66,25 @@ export default function Contact() {
 
   const submitOrder = async (e) => {
     e.preventDefault();
-    if (!details.name || !details.phone || !details.date || !details.time) {
+    const pickupDate = clampDateToTodayOrLater(details.date);
+    if (pickupDate !== details.date) {
+      setDetails((prev) => ({ ...prev, date: pickupDate }));
+    }
+    if (!details.name || !details.phone || !pickupDate || !details.time) {
       setOrderStatus({ ok: false, text: t("contact.needDetails") });
       return;
+    }
+    if (pickupDate < todayISO()) {
+      setOrderStatus({ ok: false, text: t("contact.pastDate") });
+      return;
+    }
+    if (pickupDate === todayISO()) {
+      const now = kigaliClock();
+      const [hour, minute] = details.time.split(":").map(Number);
+      if (hour * 60 + minute <= now.minutes) {
+        setOrderStatus({ ok: false, text: t("contact.pastTime") });
+        return;
+      }
     }
     if (items.length === 0 && !details.notes.trim()) {
       setOrderStatus({ ok: false, text: t("contact.emptyOrder") });
@@ -227,11 +244,27 @@ export default function Contact() {
             </div>
             <div>
               <label className="text-sm text-mute" htmlFor="r-date">{t("contact.date")}</label>
-              <input id="r-date" required type="date" min={todayISO()} value={details.date} onChange={(e) => setDetails({ ...details, date: e.target.value })} className="field-input" />
+              <input
+                id="r-date"
+                required
+                type="date"
+                min={todayISO()}
+                value={details.date}
+                onChange={(e) => setDetails({ ...details, date: clampDateToTodayOrLater(e.target.value), time: "" })}
+                className="field-input"
+              />
             </div>
             <div>
               <label className="text-sm text-mute" htmlFor="r-time">{t("contact.time")}</label>
-              <input id="r-time" required type="time" value={details.time} onChange={(e) => setDetails({ ...details, time: e.target.value })} className="field-input" />
+              <input
+                id="r-time"
+                required
+                type="time"
+                min={details.date === todayISO() ? minutesToHHMM(Math.min(23 * 60 + 59, kigaliClock().minutes + 1)) : undefined}
+                value={details.time}
+                onChange={(e) => setDetails({ ...details, time: e.target.value })}
+                className="field-input"
+              />
             </div>
           </div>
 
