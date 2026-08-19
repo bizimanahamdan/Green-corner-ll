@@ -1,5 +1,7 @@
 import { kigaliTodayISO } from "./business";
 
+export { kigaliTodayISO };
+
 export const KIGALI_TZ = "Africa/Kigali";
 const SLOT_MINUTES = 30;
 const HORIZON_DAYS = 21;
