@@ -55,6 +55,24 @@ export function displayPrice(price) {
   return formatPrice(price) || "Ask staff";
 }
 
+export function mapsFallback(business) {
+  return [business?.neighborhood, business?.city].filter(Boolean).join(", ");
+}
+
+export function mapsDirectionsHref(mapsQuery, fallback = "") {
+  const value = String(mapsQuery || fallback || "").trim();
+  if (!value) return "https://www.google.com/maps";
+  if (/^https?:\/\//i.test(value)) return value;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(value)}`;
+}
+
+export function mapsEmbedSrc(mapsQuery, fallback = "") {
+  const value = String(mapsQuery || fallback || "").trim();
+  if (!value) return "";
+  if (/output=embed|\/maps\/embed/i.test(value)) return value;
+  return `https://www.google.com/maps?output=embed&q=${encodeURIComponent(value)}`;
+}
+
 export function instagramHref(handle) {
   if (!isConfirmedText(handle)) return null;
   const slug = String(handle).replace(/^@/, "").trim();

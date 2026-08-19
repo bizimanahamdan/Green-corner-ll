@@ -6,7 +6,7 @@ import { businessInfo as demo, hours as demoHours } from "../lib/demoData";
 import { useBusinessInfo, useMenu, useGallery, useHours, useSpecials, useReviews } from "../lib/useContent";
 import { isIllustration, isPlaceholderText } from "../lib/media";
 import { useLanguage } from "../lib/i18n/LanguageContext";
-import { displayPrice } from "../lib/business";
+import { displayPrice, mapsDirectionsHref, mapsEmbedSrc, mapsFallback } from "../lib/business";
 import { useCart } from "../lib/CartContext";
 
 const whyVisit = [
@@ -39,6 +39,9 @@ export default function Home() {
   const realGallery = (gallery || []).filter((img) => img.url && !isPlaceholderText(img.caption)).slice(0, 4);
   const realSpecials = (specials || []).filter((s) => !isPlaceholderText(s.description)).slice(0, 3);
   const realReviews = (reviews || []).filter((r) => !isPlaceholderText(r.quote)).slice(0, 3);
+  const fallback = mapsFallback(b);
+  const directionsHref = mapsDirectionsHref(b.mapsQuery, fallback);
+  const embedSrc = mapsEmbedSrc(b.mapsQuery, fallback);
 
   return (
     <>
@@ -209,7 +212,7 @@ export default function Home() {
             </div>
           </div>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapsQuery || `${b.neighborhood}, ${b.city}`)}`}
+            href={directionsHref}
             target="_blank"
             rel="noopener noreferrer"
             className="block rounded-2xl overflow-hidden border border-line/10 h-52 sm:h-64"
@@ -220,7 +223,7 @@ export default function Home() {
               className="h-full w-full pointer-events-none"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(b.mapsQuery || `${b.neighborhood}, ${b.city}`)}&output=embed`}
+              src={embedSrc}
             />
           </a>
         </div>

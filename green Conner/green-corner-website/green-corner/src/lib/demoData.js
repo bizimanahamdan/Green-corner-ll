@@ -21,7 +21,7 @@ export const businessInfo = {
   serviceOptions: ["Grilled Fish", "Brochettes", "Cold Drinks"],
   description:
     "The Green Corner is a grill pub in Nyamirambo, Kigali, known for fire-grilled fish, goat and beef brochettes, and an ice-cold selection of local beers. A lively, no-frills spot to eat well and unwind.",
-  mapsQuery: "Nyamirambo, Kigali, Rwanda",
+  mapsQuery: "https://maps.app.goo.gl/WCUh9TFjBn4mHRUW6",
   logoUrl: "/images/logo.png",
   heroMediaType: "images",
   heroVideoUrl: null,

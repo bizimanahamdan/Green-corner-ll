@@ -3,14 +3,16 @@ import SEO from "../components/SEO";
 import { useLanguage } from "../lib/i18n/LanguageContext";
 import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo, useHours } from "../lib/useContent";
-import { isConfirmedPhone, telHref } from "../lib/business";
+import { isConfirmedPhone, mapsDirectionsHref, mapsEmbedSrc, mapsFallback, telHref } from "../lib/business";
 
 export default function Location() {
   const { data: info } = useBusinessInfo();
   const b = info || demo;
   const { data: hours } = useHours();
   const { t } = useLanguage();
-  const mapQuery = encodeURIComponent(b.mapsQuery || `${b.neighborhood}, ${b.city}`);
+  const fallback = mapsFallback(b);
+  const directionsHref = mapsDirectionsHref(b.mapsQuery, fallback);
+  const embedSrc = mapsEmbedSrc(b.mapsQuery, fallback);
   const phoneHref = telHref(b.phone);
   const dayHours = hours || [];
 
@@ -34,7 +36,7 @@ export default function Location() {
               </p>
             )}
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+              href={directionsHref}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary mt-5 inline-flex"
@@ -66,7 +68,7 @@ export default function Location() {
             className="h-full w-full min-h-[360px]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+            src={embedSrc}
           />
         </div>
       </section>
