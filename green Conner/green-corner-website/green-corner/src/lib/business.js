@@ -55,22 +55,26 @@ export function displayPrice(price) {
   return formatPrice(price) || "Ask staff";
 }
 
+export const GREEN_CORNER_MAPS_LINK = "https://maps.app.goo.gl/WCUh9TFjBn4mHRUW6";
+
+export const GREEN_CORNER_MAP_EMBED =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5581.074783342215!2d30.04515947749625!3d-1.9739374980081856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca5c10ade3205%3A0x32acd7b0fa43e48a!2sGreen%20Corner!5e0!3m2!1sen!2srw!4v1787127910398!5m2!1sen!2srw";
+
 export function mapsFallback(business) {
   return [business?.neighborhood, business?.city].filter(Boolean).join(", ");
 }
 
 export function mapsDirectionsHref(mapsQuery, fallback = "") {
   const value = String(mapsQuery || fallback || "").trim();
-  if (!value) return "https://www.google.com/maps";
+  if (!value) return GREEN_CORNER_MAPS_LINK;
   if (/^https?:\/\//i.test(value)) return value;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(value)}`;
 }
 
-export function mapsEmbedSrc(mapsQuery, fallback = "") {
-  const value = String(mapsQuery || fallback || "").trim();
-  if (!value) return "";
-  if (/output=embed|\/maps\/embed/i.test(value)) return value;
-  return `https://www.google.com/maps?output=embed&q=${encodeURIComponent(value)}`;
+export function mapsEmbedSrc(mapsQuery = "") {
+  const value = String(mapsQuery || "").trim();
+  if (/\/maps\/embed/i.test(value)) return value;
+  return GREEN_CORNER_MAP_EMBED;
 }
 
 export function instagramHref(handle) {

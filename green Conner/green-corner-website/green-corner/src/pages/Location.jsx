@@ -63,11 +63,12 @@ export default function Location() {
         </div>
 
         <div className="rounded-2xl overflow-hidden border border-line/10 min-h-[360px]">
-          <iframe
+            <iframe
             title="The Green Corner location map"
             className="h-full w-full min-h-[360px]"
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
             src={embedSrc}
           />
         </div>

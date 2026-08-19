@@ -222,7 +222,8 @@ export default function Home() {
               title="The Green Corner location"
               className="h-full w-full pointer-events-none"
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
               src={embedSrc}
             />
           </a>
