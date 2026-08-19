@@ -129,6 +129,16 @@ function slotsFromRange(startMin, endMin) {
   return slots;
 }
 
+export function hoursSlotsForDate(hours, iso) {
+  const window = dayWindow(hours, iso);
+  const slots = [];
+  if (window.status === "open") {
+    const end = window.overnight ? window.closeMin + 1440 : window.closeMin;
+    slots.push(...slotsFromRange(window.openMin, end));
+  }
+  return [...new Set(slots)].sort();
+}
+
 export function timeSlotsForDate(hours, iso, now = new Date()) {
   const clock = kigaliClock(now);
   const today = clock.iso;

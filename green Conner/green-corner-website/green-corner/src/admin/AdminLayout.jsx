@@ -10,6 +10,7 @@ import AdminRealtime from "./AdminRealtime";
 const items = [
   { to: "/admin", label: "Overview", end: true },
   { to: "/admin/reservations", label: "Orders", badge: "orders" },
+  { to: "/admin/bookings", label: "Tables", badge: "bookings" },
   { to: "/admin/inquiries", label: "Inquiries", badge: "inquiries" },
   { to: "/admin/menu", label: "Menu" },
   { to: "/admin/gallery", label: "Gallery" },

@@ -7,6 +7,7 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [missing, setMissing] = useState(false);
 
   const refresh = useCallback(async () => {
     if (!supabase) {
@@ -22,11 +23,13 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
         ? await query.order(orderBy, { ascending })
         : await query;
       if (fetchError) {
-        const missing = /schema cache|does not exist|relation|Could not find the table/i.test(fetchError.message || "");
-        setError(missing ? "" : fetchError.message);
+        const tableMissing = /schema cache|does not exist|relation|Could not find the table/i.test(fetchError.message || "");
+        setMissing(tableMissing);
+        setError(tableMissing ? "" : fetchError.message);
         setRows([]);
         return;
       }
+      setMissing(false);
       setRows(data || []);
     } catch (err) {
       setError(err.message || "Could not load this table.");
@@ -94,5 +97,5 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
     await refresh();
   };
 
-  return { rows, loading, error, refresh, insert, update, remove };
+  return { rows, loading, error, missing, refresh, insert, update, remove };
 }
