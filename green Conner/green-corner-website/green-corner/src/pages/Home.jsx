@@ -207,7 +207,8 @@ export default function Home() {
               <p className="text-sm text-mute mt-3">{t("empty.hours")}</p>
             )}
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
-              <Link to="/location" className="btn-primary">{t("common.getDirections")}</Link>
+              <Link to="/book" className="btn-primary">{t("common.bookTable")}</Link>
+              <Link to="/location" className="btn-outline">{t("common.getDirections")}</Link>
               <Link to="/contact" className="btn-outline">{t("common.orderAhead")}</Link>
             </div>
           </div>

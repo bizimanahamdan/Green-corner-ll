@@ -48,6 +48,7 @@ Open the printed URL. The public site works on local demo data.
    - `supabase/005_reset_content_grill_pub.sql` (if this project already had older seed data)
    - `supabase/006_realtime_and_orders.sql`
    - `supabase/007_push_notifications.sql`
+   - `supabase/009_table_bookings.sql`
 3. Copy **Project URL** and **anon public key** into `.env` (see `.env.example`).
    Never put the service-role key in the frontend.
 4. Authentication → Users → Add user. That login is `/admin`.
@@ -60,6 +61,7 @@ Open the printed URL. The public site works on local demo data.
 
 - Menu, gallery, specials, reviews, hours, business info, logo/hero media
 - Incoming pickup orders (with line items when the customer built a cart)
+- Incoming table booking requests
 - Incoming messages
 - In-tab alerts + optional chime while the dashboard is open
 - **Background Web Push** so a new order can reach the phone after the tab is closed
@@ -111,6 +113,7 @@ in Admin → Business Info before it goes live.
 - Live Open / Closed badge once hours exist
 - Menu with add-to-order
 - Order-ahead form (saved to Supabase when connected)
+- Book-a-table request (confirmed by the house — not an automatic seat lock)
 - Smart WhatsApp flows (order, group/tonight, catering, question) — only if a
   real WhatsApp number is set
 - Sticky mobile actions

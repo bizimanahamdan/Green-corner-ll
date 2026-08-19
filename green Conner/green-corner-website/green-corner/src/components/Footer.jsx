@@ -34,6 +34,7 @@ export default function Footer() {
             <li><Link to="/gallery" className="hover:text-paper">{t("nav.gallery")}</Link></li>
             <li><Link to="/specials" className="hover:text-paper">{t("nav.specials")}</Link></li>
             <li><Link to="/reviews" className="hover:text-paper">{t("nav.reviews")}</Link></li>
+            <li><Link to="/book" className="hover:text-paper">{t("nav.bookTable")}</Link></li>
           </ul>
         </div>
 
@@ -69,7 +70,10 @@ export default function Footer() {
         <div>
           <p className="eyebrow text-leaf-300 mb-4">{t("footer.order")}</p>
           <p className="text-sm text-white/70 mb-4">{t("footer.orderNote")}</p>
-          <Link to="/contact" className="btn-citrus">{t("nav.orderAhead")}</Link>
+          <div className="flex flex-col gap-2">
+            <Link to="/book" className="btn-outline">{t("nav.bookTable")}</Link>
+            <Link to="/contact" className="btn-citrus">{t("nav.orderAhead")}</Link>
+          </div>
         </div>
       </div>
 

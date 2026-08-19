@@ -39,6 +39,17 @@ function inquiryCopy(row) {
   };
 }
 
+function bookingCopy(row) {
+  const when = [row.date, row.time].filter(Boolean).join(" at ");
+  const qty = row.guests ? `${row.guests} guest${row.guests === 1 ? "" : "s"}` : "table request";
+  return {
+    title: "New table request",
+    body: `${row.name || "A customer"} · ${qty}${when ? ` · ${when}` : ""}`,
+    url: "/admin/bookings",
+    tag: `booking-${row.id}`
+  };
+}
+
 async function sendToAll(env, payload, { onlyUserId } = {}) {
   const supabase = adminClient(env);
   if (!supabase) return { ok: false, error: "Server is missing SUPABASE_SERVICE_ROLE_KEY." };
@@ -84,7 +95,7 @@ async function loadFreshRow(supabase, table, body) {
 
   let query = supabase.from(table).select("*").order("created_at", { ascending: false }).limit(1);
   if (body.name) query = query.eq("name", body.name);
-  if (table === "reservations") {
+  if (table === "reservations" || table === "table_bookings") {
     if (body.phone) query = query.eq("phone", body.phone);
     if (body.date) query = query.eq("date", body.date);
     if (body.time) query = query.eq("time", body.time);
@@ -105,7 +116,7 @@ export async function handlePushNotify({ body, headers = {}, env: extraEnv = {},
   const env = envOf(extraEnv);
   const supabase = adminClient(env);
   const type = body?.type;
-  const table = body?.table || body?.record?.table || (type === "inquiry" ? "inquiries" : type === "reservation" ? "reservations" : body?.table);
+  const table = body?.table || body?.record?.table || (type === "inquiry" ? "inquiries" : type === "booking" ? "table_bookings" : type === "reservation" ? "reservations" : body?.table);
 
   if (type === "test") {
     if (!userId) return { status: 401, json: { ok: false, error: "Sign in to send a test push." } };
@@ -128,17 +139,19 @@ export async function handlePushNotify({ body, headers = {}, env: extraEnv = {},
   }
 
   const resolvedTable =
-    table === "inquiries" || body?.table === "inquiries" || type === "INSERT" && body?.table === "inquiries"
+    table === "inquiries" || body?.table === "inquiries"
       ? "inquiries"
-      : table === "reservations" || body?.table === "reservations" || type === "INSERT"
-        ? "reservations"
-        : table;
+      : table === "table_bookings" || body?.table === "table_bookings"
+        ? "table_bookings"
+        : table === "reservations" || body?.table === "reservations"
+          ? "reservations"
+          : table;
 
   if (!supabase) {
     return { status: 500, json: { ok: false, error: "Server is missing Supabase service credentials." } };
   }
 
-  if (resolvedTable !== "reservations" && resolvedTable !== "inquiries") {
+  if (resolvedTable !== "reservations" && resolvedTable !== "inquiries" && resolvedTable !== "table_bookings") {
     return { status: 400, json: { ok: false, error: "Unknown table." } };
   }
 
@@ -147,7 +160,12 @@ export async function handlePushNotify({ body, headers = {}, env: extraEnv = {},
   if (!isRecent(row)) return { status: 200, json: { ok: true, skipped: "stale" } };
   if (row.notified_at) return { status: 200, json: { ok: true, skipped: "already-notified" } };
 
-  const copy = resolvedTable === "inquiries" ? inquiryCopy(row) : reservationCopy(row);
+  const copy =
+    resolvedTable === "inquiries"
+      ? inquiryCopy(row)
+      : resolvedTable === "table_bookings"
+        ? bookingCopy(row)
+        : reservationCopy(row);
   const result = await sendToAll(env, copy);
   if (!result.ok) return { status: 500, json: result };
 

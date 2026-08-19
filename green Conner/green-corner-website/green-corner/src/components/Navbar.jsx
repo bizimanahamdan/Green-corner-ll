@@ -21,7 +21,8 @@ export default function Navbar() {
     { to: "/gallery", label: t("nav.gallery") },
     { to: "/specials", label: t("nav.specials") },
     { to: "/reviews", label: t("nav.reviews") },
-    { to: "/location", label: t("nav.location") }
+    { to: "/location", label: t("nav.location") },
+    { to: "/book", label: t("nav.bookTable") }
   ];
 
   useEffect(() => {

@@ -41,12 +41,15 @@ export default function AdminLayout() {
 
   const showPushHint = !pushOn;
   const { rows: reservations } = useAdminTable("reservations", { orderBy: "created_at", ascending: false });
+  const { rows: bookings } = useAdminTable("table_bookings", { orderBy: "created_at", ascending: false });
   const { rows: inquiries } = useAdminTable("inquiries", { orderBy: "created_at", ascending: false });
   const newOrders = reservations.filter((r) => r.status === "new").length;
+  const newBookings = bookings.filter((r) => r.status === "new").length;
   const newInquiries = inquiries.filter((i) => i.status === "new").length;
 
   const badgeFor = (key) => {
     if (key === "orders" && newOrders) return newOrders;
+    if (key === "bookings" && newBookings) return newBookings;
     if (key === "inquiries" && newInquiries) return newInquiries;
     return 0;
   };

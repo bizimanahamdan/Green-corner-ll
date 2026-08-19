@@ -17,6 +17,7 @@ import Specials from "./pages/Specials";
 import Reviews from "./pages/Reviews";
 import Location from "./pages/Location";
 import Contact from "./pages/Contact";
+import Book from "./pages/Book";
 import NotFound from "./pages/NotFound";
 
 import ProtectedRoute from "./admin/ProtectedRoute";
@@ -31,6 +32,7 @@ import AdminHours from "./admin/AdminHours";
 import AdminBusinessInfo from "./admin/AdminBusinessInfo";
 import AdminMedia from "./admin/AdminMedia";
 import AdminReservations from "./admin/AdminReservations";
+import AdminBookings from "./admin/AdminBookings";
 import AdminInquiries from "./admin/AdminInquiries";
 import AdminSettings from "./admin/AdminSettings";
 
@@ -63,6 +65,7 @@ export default function App() {
         <Route path="/reviews" element={<PublicLayout><Reviews /></PublicLayout>} />
         <Route path="/location" element={<PublicLayout><Location /></PublicLayout>} />
         <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+        <Route path="/book" element={<PublicLayout><Book /></PublicLayout>} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<ProtectedRoute />}>
@@ -76,6 +79,7 @@ export default function App() {
             <Route path="business-info" element={<AdminBusinessInfo />} />
             <Route path="media" element={<AdminMedia />} />
             <Route path="reservations" element={<AdminReservations />} />
+            <Route path="bookings" element={<AdminBookings />} />
             <Route path="inquiries" element={<AdminInquiries />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>

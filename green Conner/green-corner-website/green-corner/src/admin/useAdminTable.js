@@ -21,7 +21,12 @@ export function useAdminTable(table, { orderBy = "sort_order", ascending = true 
       const { data, error: fetchError } = orderBy
         ? await query.order(orderBy, { ascending })
         : await query;
-      if (fetchError) setError(fetchError.message);
+      if (fetchError) {
+        const missing = /schema cache|does not exist|relation|Could not find the table/i.test(fetchError.message || "");
+        setError(missing ? "" : fetchError.message);
+        setRows([]);
+        return;
+      }
       setRows(data || []);
     } catch (err) {
       setError(err.message || "Could not load this table.");

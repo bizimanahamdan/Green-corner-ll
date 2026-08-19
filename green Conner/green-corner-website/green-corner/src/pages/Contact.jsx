@@ -13,6 +13,7 @@ import {
   formatPrice,
   isConfirmedPhone,
   isConfirmedWhatsApp,
+  kigaliTodayISO,
   telHref,
   whatsappHref
 } from "../lib/business";
@@ -30,7 +31,7 @@ function FormStatus({ status }) {
 }
 
 function todayISO() {
-  return new Date().toISOString().slice(0, 10);
+  return kigaliTodayISO();
 }
 
 export default function Contact() {
@@ -167,6 +168,11 @@ export default function Contact() {
       <PageHeader eyebrow={t("pages.contactEyebrow")} title={t("pages.contactTitle")} />
 
       <section className="container-narrow py-10 sm:py-12 grid gap-8 lg:grid-cols-2">
+        <p className="lg:col-span-2 -mt-2">
+          <Link to="/book" className="text-sm text-leaf-400 hover:text-leaf-300">
+            {t("contact.bookTableInstead")} →
+          </Link>
+        </p>
         <form onSubmit={submitOrder} className="card-surface p-5 sm:p-8 space-y-4" noValidate>
           <h2 className="font-display text-xl font-semibold">{t("contact.orderAheadHeading")}</h2>
 

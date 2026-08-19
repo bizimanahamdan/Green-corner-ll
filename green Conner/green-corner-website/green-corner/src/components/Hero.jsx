@@ -68,6 +68,9 @@ export default function Hero() {
                 {t("common.orderAhead")}
               </Link>
             )}
+            <Link to="/book" className="btn-ghost-light">
+              {t("common.bookTable")}
+            </Link>
             <Link to="/location" className="btn-ghost-light">
               {t("common.getDirections")}
             </Link>

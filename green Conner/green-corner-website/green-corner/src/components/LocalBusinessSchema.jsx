@@ -21,7 +21,8 @@ export default function LocalBusinessSchema({ business, hours }) {
     name: business.name,
     url: SITE_URL,
     image: `${SITE_URL}${business.logoUrl || "/images/logo.png"}`,
-    servesCuisine: ["Rwandan", "Grill"]
+    servesCuisine: ["Rwandan", "Grill"],
+    acceptsReservations: "True"
   };
 
   if (!isPlaceholder(business.description)) data.description = business.description;

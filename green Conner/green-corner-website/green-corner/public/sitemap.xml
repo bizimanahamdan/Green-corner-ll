@@ -32,4 +32,8 @@
     <loc>https://the-green-corner.netlify.app/contact</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://the-green-corner.netlify.app/book</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>

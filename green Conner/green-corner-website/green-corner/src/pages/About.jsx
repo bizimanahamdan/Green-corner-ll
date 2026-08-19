@@ -8,7 +8,7 @@ const pillars = [
   { title: "Kigali, Nyamirambo", body: "Set in one of Kigali's most characterful neighborhoods, known for its own rhythm and street life." },
   { title: "Fire-grilled, not fried", body: "Fish, goat and beef cooked over an open flame, seasoned with local spices." },
   { title: "Grill pub", body: "A lively spot for good food and a cold drink, not a quiet sit-down restaurant." },
-  { title: "Order ahead", body: "Build an order on the site, or message ahead and pick up when it's ready." }
+  { title: "Order ahead or book", body: "Build an order on the site, request a table, or message ahead and pick up when it's ready." }
 ];
 
 export default function About() {

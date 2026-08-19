@@ -9,6 +9,12 @@ function reservationBody(row) {
   return `${row.name || "A customer"} · ${qty}${when ? ` · pickup ${when}` : ""}`;
 }
 
+function bookingBody(row) {
+  const when = [row.date, row.time].filter(Boolean).join(" at ");
+  const qty = row.guests ? `${row.guests} guest${row.guests === 1 ? "" : "s"}` : "table request";
+  return `${row.name || "A customer"} · ${qty}${when ? ` · ${when}` : ""}`;
+}
+
 export function useAdminNotifications() {
   const ready = useRef(false);
 
@@ -34,6 +40,25 @@ export function useAdminNotifications() {
             });
           }
           window.dispatchEvent(new CustomEvent("green-corner:inbox", { detail: { table: "reservations", row } }));
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "table_bookings" },
+        (payload) => {
+          if (!ready.current) return;
+          const row = payload.new || {};
+          const pageOpen = typeof document !== "undefined" && document.visibilityState === "visible";
+          if (pageOpen || !isBackgroundPushEnabled()) {
+            notifyAdminEvent({
+              id: `booking-${row.id}`,
+              title: "New table request",
+              body: bookingBody(row),
+              url: "/admin/bookings",
+              tag: `booking-${row.id}`
+            });
+          }
+          window.dispatchEvent(new CustomEvent("green-corner:inbox", { detail: { table: "table_bookings", row } }));
         }
       )
       .on(

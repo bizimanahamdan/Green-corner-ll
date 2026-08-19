@@ -77,6 +77,15 @@ export function mapsEmbedSrc(mapsQuery = "") {
   return GREEN_CORNER_MAP_EMBED;
 }
 
+export function kigaliTodayISO() {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Africa/Kigali",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(new Date());
+}
+
 export function instagramHref(handle) {
   if (!isConfirmedText(handle)) return null;
   const slug = String(handle).replace(/^@/, "").trim();
@@ -123,4 +132,35 @@ export function buildOrderMessage({ name, phone, date, time, items, notes, langu
   ]
     .filter(Boolean)
     .join("\n");
+}
+
+export function buildBookingMessage({ name, phone, date, time, guests, occasion, notes, language = "en" }) {
+  const rw = language === "rw";
+  return [
+    rw
+      ? "Muraho Green Corner! Ndashaka gufata ameza."
+      : "Hello Green Corner! I'd like to book a table.",
+    "",
+    name ? `${rw ? "Amazina" : "Name"}: ${name}` : null,
+    phone ? `${rw ? "Telefone" : "Phone"}: ${phone}` : null,
+    date || time ? `${rw ? "Igihe" : "When"}: ${[date, time].filter(Boolean).join(rw ? " · " : " at ")}` : null,
+    guests ? `${rw ? "Abashyitsi" : "Guests"}: ${guests}` : null,
+    occasion ? `${rw ? "Impamvu" : "Occasion"}: ${occasion}` : null,
+    notes ? `${rw ? "Icyo nifuza" : "Notes"}: ${notes}` : null
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+}
+
+export function buildBookingInquiryMessage(payload, language = "en") {
+  return buildBookingMessage({
+    name: payload.name,
+    phone: payload.phone,
+    date: payload.date,
+    time: payload.time,
+    guests: payload.guests,
+    occasion: payload.occasion,
+    notes: payload.message,
+    language
+  });
 }

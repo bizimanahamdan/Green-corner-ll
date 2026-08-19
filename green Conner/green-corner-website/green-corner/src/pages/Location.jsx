@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 import SEO from "../components/SEO";
 import { useLanguage } from "../lib/i18n/LanguageContext";
@@ -35,14 +36,19 @@ export default function Location() {
                 <a href={phoneHref} className="hover:text-leaf-400">{b.phone}</a>
               </p>
             )}
-            <a
-              href={directionsHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-5 inline-flex"
-            >
-              {t("common.getDirections")}
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 mt-5">
+              <a
+                href={directionsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex"
+              >
+                {t("common.getDirections")}
+              </a>
+              <Link to="/book" className="btn-outline inline-flex">
+                {t("common.bookTable")}
+              </Link>
+            </div>
           </div>
 
           <div className="card-surface p-6">
