@@ -29,7 +29,7 @@ export default function Location() {
       <section className="container-narrow py-10 sm:py-12 grid gap-8 lg:grid-cols-2">
         <div>
           <div className="card-surface p-6 mb-6">
-            <h2 className="font-display text-lg font-semibold mb-3">Address</h2>
+            <h2 className="font-display text-lg font-semibold mb-3">{t("location.address")}</h2>
             <p className="text-mute">{b.neighborhood}, {b.city}</p>
             {phoneHref && isConfirmedPhone(b.phone) && (
               <p className="text-mute mt-1">
@@ -52,7 +52,7 @@ export default function Location() {
           </div>
 
           <div className="card-surface p-6">
-            <h2 className="font-display text-lg font-semibold mb-3">Opening Hours</h2>
+            <h2 className="font-display text-lg font-semibold mb-3">{t("location.hours")}</h2>
             {dayHours.length === 0 ? (
               <p className="text-sm text-mute">{t("empty.hours")}</p>
             ) : (

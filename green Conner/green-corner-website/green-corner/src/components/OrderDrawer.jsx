@@ -56,7 +56,7 @@ export default function OrderDrawer() {
                 <li key={item.id} className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-medium text-sm">{item.name}</p>
-                    <p className="text-xs text-leaf-400 mt-0.5">{displayPrice(item.price)}</p>
+                    <p className="text-xs text-leaf-400 mt-0.5">{displayPrice(item.price) || t("common.askStaff")}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button

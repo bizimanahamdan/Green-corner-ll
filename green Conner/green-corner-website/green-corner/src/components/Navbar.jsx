@@ -16,12 +16,14 @@ export default function Navbar() {
   const location = useLocation();
 
   const links = [
+    { to: "/", label: t("nav.home") },
     { to: "/menu", label: t("nav.menu") },
     { to: "/about", label: t("nav.about") },
     { to: "/gallery", label: t("nav.gallery") },
     { to: "/specials", label: t("nav.specials") },
     { to: "/reviews", label: t("nav.reviews") },
     { to: "/location", label: t("nav.location") },
+    { to: "/contact", label: t("nav.contact") },
     { to: "/book", label: t("nav.bookTable") }
   ];
 
@@ -70,7 +72,7 @@ export default function Navbar() {
           <span className="sr-only">{b.name}</span>
         </NavLink>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClass}>
               {link.label}
@@ -86,7 +88,7 @@ export default function Navbar() {
           </button>
           {count > 0 && (
             <button type="button" onClick={openCart} className="relative text-sm font-medium text-paper">
-              Order
+              {t("nav.orderAhead")}
               <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-citrus-500 px-1 text-[11px] font-bold text-soot">
                 {count}
               </span>

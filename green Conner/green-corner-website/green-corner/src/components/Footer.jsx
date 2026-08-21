@@ -30,10 +30,12 @@ export default function Footer() {
         <div>
           <p className="eyebrow text-leaf-300 mb-4">{t("footer.explore")}</p>
           <ul className="space-y-2 text-sm text-mute">
+            <li><Link to="/" className="hover:text-paper">{t("nav.home")}</Link></li>
             <li><Link to="/menu" className="hover:text-paper">{t("nav.menu")}</Link></li>
             <li><Link to="/gallery" className="hover:text-paper">{t("nav.gallery")}</Link></li>
             <li><Link to="/specials" className="hover:text-paper">{t("nav.specials")}</Link></li>
             <li><Link to="/reviews" className="hover:text-paper">{t("nav.reviews")}</Link></li>
+            <li><Link to="/contact" className="hover:text-paper">{t("nav.contact")}</Link></li>
             <li><Link to="/book" className="hover:text-paper">{t("nav.bookTable")}</Link></li>
           </ul>
         </div>
@@ -41,6 +43,7 @@ export default function Footer() {
         <div>
           <p className="eyebrow text-leaf-300 mb-4">{t("footer.visit")}</p>
           <ul className="space-y-2 text-sm text-mute">
+            <li><Link to="/location" className="hover:text-paper">{t("nav.location")}</Link></li>
             <li>{b.neighborhood}, {b.city}</li>
             {phoneHref && isConfirmedPhone(b.phone) && (
               <li>

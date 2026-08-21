@@ -10,9 +10,9 @@ import { displayPrice, mapsDirectionsHref, mapsEmbedSrc, mapsFallback } from "..
 import { useCart } from "../lib/CartContext";
 
 const whyVisit = [
-  { title: "Fire-grilled to order", body: "Fish and brochettes go straight from the flame to your plate — nothing pre-cooked or reheated." },
-  { title: "Real Rwandan flavor", body: "Local spices, onions and garlic, cooked the way it's done in Nyamirambo." },
-  { title: "A place to unwind", body: "Good food, cold drinks, and a lively atmosphere in the heart of Nyamirambo." }
+  { titleKey: "home.why1Title", bodyKey: "home.why1Body" },
+  { titleKey: "home.why2Title", bodyKey: "home.why2Body" },
+  { titleKey: "home.why3Title", bodyKey: "home.why3Body" }
 ];
 
 function Stars({ rating }) {
@@ -57,7 +57,7 @@ export default function Home() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="eyebrow mb-3">{b.neighborhood}, {b.city}</p>
-            <h2 className="section-heading">A neighborhood grill worth the trip.</h2>
+            <h2 className="section-heading">{t("home.neighborhoodHeading")}</h2>
           </div>
           <p className="text-mute leading-relaxed">{b.description}</p>
         </div>
@@ -115,9 +115,9 @@ export default function Home() {
         <h2 className="section-heading mb-8">{t("home.whyHeading")}</h2>
         <div className="grid gap-5 sm:grid-cols-3">
           {whyVisit.map((w) => (
-            <div key={w.title} className="card-surface p-6">
-              <h3 className="font-display text-lg font-semibold text-leaf-400">{w.title}</h3>
-              <p className="mt-2 text-sm text-mute leading-relaxed">{w.body}</p>
+            <div key={w.titleKey} className="card-surface p-6">
+              <h3 className="font-display text-lg font-semibold text-leaf-400">{t(w.titleKey)}</h3>
+              <p className="mt-2 text-sm text-mute leading-relaxed">{t(w.bodyKey)}</p>
             </div>
           ))}
         </div>

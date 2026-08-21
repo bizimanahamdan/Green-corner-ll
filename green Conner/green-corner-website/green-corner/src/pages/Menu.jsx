@@ -29,7 +29,7 @@ export default function Menu() {
       <PageHeader
         eyebrow={t("pages.menuEyebrow")}
         title={t("pages.menuTitle")}
-        description="Prices are in Rwandan Francs (RF). Add items to build a pickup order."
+        description={t("menu.priceNote")}
       />
 
       <section className="container-narrow py-10 sm:py-12">
@@ -40,7 +40,7 @@ export default function Menu() {
               active === "all" ? "bg-leaf-500 border-leaf-500 text-white" : "border-line/15 text-mute"
             }`}
           >
-            All
+            {t("menu.all")}
           </button>
           {list.map((c) => (
             <button
@@ -85,11 +85,11 @@ export default function Menu() {
                             <h3 className="font-semibold leading-snug">
                               {item.name}
                               {unavailable && (
-                                <span className="ml-2 text-xs font-normal text-mute/70">(currently unavailable)</span>
+                                <span className="ml-2 text-xs font-normal text-mute/70">({t("menu.unavailable")})</span>
                               )}
                             </h3>
                             <span className="text-leaf-400 text-sm whitespace-nowrap">
-                              {isPlaceholderText(item.price) ? "Ask staff" : displayPrice(item.price)}
+                              {isPlaceholderText(item.price) || !displayPrice(item.price) ? t("common.askStaff") : displayPrice(item.price)}
                             </span>
                           </div>
                           {!isPlaceholderText(item.description) && item.description && (

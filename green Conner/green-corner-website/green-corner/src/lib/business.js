@@ -60,11 +60,11 @@ export function parsePrice(price) {
 export function formatPrice(price) {
   const n = typeof price === "number" ? price : parsePrice(price);
   if (n == null) return null;
-  return `RF ${n.toLocaleString("en-US")}`;
+  return `${n.toLocaleString("en-US")} RWF`;
 }
 
 export function displayPrice(price) {
-  return formatPrice(price) || "Ask staff";
+  return formatPrice(price);
 }
 
 export const GREEN_CORNER_MAPS_LINK = "https://maps.app.goo.gl/WCUh9TFjBn4mHRUW6";
@@ -108,11 +108,11 @@ export function instagramHref(handle) {
 export function buildOrderMessage({ name, phone, date, time, items, notes, language = "en" }) {
   const lines = language === "rw"
     ? [
-        "Muraho Green Corner! Ndashaka gutumiza kugira nzafate ibyo natumije.",
+        "Muraho Green Corner! Ndashaka gutumiza amafunguro nzafata iyo yahiye.",
         "",
         name ? `Amazina: ${name}` : null,
         phone ? `Telefone: ${phone}` : null,
-        date || time ? `Igihe cyo kubikura: ${[date, time].filter(Boolean).join(" · ")}` : null,
+        date || time ? `Igihe cyo kuyafata: ${[date, time].filter(Boolean).join(" · ")}` : null,
         "",
         "Ibyo natumije:"
       ]

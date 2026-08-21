@@ -5,10 +5,10 @@ import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo } from "../lib/useContent";
 
 const pillars = [
-  { title: "Kigali, Nyamirambo", body: "Set in one of Kigali's most characterful neighborhoods, known for its own rhythm and street life." },
-  { title: "Fire-grilled, not fried", body: "Fish, goat and beef cooked over an open flame, seasoned with local spices." },
-  { title: "Grill pub", body: "A lively spot for good food and a cold drink, not a quiet sit-down restaurant." },
-  { title: "Order ahead or book", body: "Build an order on the site, request a table, or message ahead and pick up when it's ready." }
+  { titleKey: "about.p1Title", bodyKey: "about.p1Body" },
+  { titleKey: "about.p2Title", bodyKey: "about.p2Body" },
+  { titleKey: "about.p3Title", bodyKey: "about.p3Body" },
+  { titleKey: "about.p4Title", bodyKey: "about.p4Body" }
 ];
 
 export default function About() {
@@ -28,11 +28,7 @@ export default function About() {
       <section className="container-narrow py-12 sm:py-14 grid gap-10 lg:grid-cols-2 lg:items-center">
         <div className="space-y-5 text-mute leading-relaxed">
           <p>{b.description}</p>
-          <p>
-            The Green Corner sits in {b.neighborhood}, a lively, residential part of Kigali known for
-            its own identity and pace of life. It's built for anyone who wants a proper fire-grilled
-            meal — a big grilled fish to share, a plate of brochettes after work, a cold beer with friends.
-          </p>
+          <p>{t("about.body")}</p>
         </div>
 
         <div className="rounded-2xl overflow-hidden bg-ink-900 min-h-[240px]">
@@ -47,12 +43,12 @@ export default function About() {
 
       <section className="band py-14 sm:py-16">
         <div className="container-narrow">
-          <h2 className="section-heading mb-8">What defines the experience</h2>
+          <h2 className="section-heading mb-8">{t("about.experienceHeading")}</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             {pillars.map((p) => (
-              <div key={p.title} className="card-surface p-6">
-                <h3 className="font-display text-lg font-semibold text-leaf-400">{p.title}</h3>
-                <p className="mt-2 text-sm text-mute">{p.body}</p>
+              <div key={p.titleKey} className="card-surface p-6">
+                <h3 className="font-display text-lg font-semibold text-leaf-400">{t(p.titleKey)}</h3>
+                <p className="mt-2 text-sm text-mute">{t(p.bodyKey)}</p>
               </div>
             ))}
           </div>
