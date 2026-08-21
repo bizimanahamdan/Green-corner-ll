@@ -17,6 +17,7 @@ import {
 } from "../lib/business";
 import {
   bookingSelectionError,
+  chipDateParts,
   clampDateToTodayOrLater,
   dayWindow,
   formatSlotLabel,
@@ -189,13 +190,15 @@ export default function Book() {
         description={t("book.intro")}
       />
 
-      <section className="container-narrow py-10 sm:py-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-        <form onSubmit={submit} className="card-surface p-5 sm:p-8 space-y-4" noValidate>
-          <h2 className="font-display text-xl font-semibold">{t("book.formHeading")}</h2>
-          <p className="text-sm text-mute">{t("book.requestNote")}</p>
+      <section className="container-narrow py-8 sm:py-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start min-w-0">
+        <form onSubmit={submit} className="card-surface p-4 sm:p-8 space-y-5 overflow-hidden min-w-0" noValidate>
+          <div>
+            <h2 className="font-display text-xl font-semibold">{t("book.formHeading")}</h2>
+            <p className="text-sm text-mute mt-1 leading-relaxed">{t("book.requestNote")}</p>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div>
+            <div className="min-w-0">
               <label className="text-sm text-mute" htmlFor="b-name">{t("contact.name")}</label>
               <input
                 id="b-name"
@@ -206,13 +209,14 @@ export default function Book() {
                 className="field-input"
               />
             </div>
-            <div>
+            <div className="min-w-0">
               <label className="text-sm text-mute" htmlFor="b-phone">{t("contact.phone")}</label>
               <input
                 id="b-phone"
                 required
                 type="tel"
                 autoComplete="tel"
+                inputMode="tel"
                 value={form.phone}
                 onChange={(e) => set({ phone: e.target.value })}
                 className="field-input"
@@ -220,31 +224,38 @@ export default function Book() {
             </div>
           </div>
 
-          <div>
-            <label className="text-sm text-mute" htmlFor="b-date">{t("book.date")}</label>
-            <p className="text-xs text-mute mt-1 mb-2">{t("book.dateHint")}</p>
+          <div className="min-w-0">
+            <p className="text-sm text-mute" id="b-date-label">{t("book.date")}</p>
+            <p className="text-xs text-mute mt-1 mb-3">{t("book.dateHint")}</p>
             {posted && bookableDates.length > 0 && (
-              <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 mb-3">
-                {bookableDates.map((day) => {
-                  const on = form.date === day.iso;
-                  return (
-                    <button
-                      key={day.iso}
-                      type="button"
-                      onClick={() => pickDate(day.iso)}
-                      className={`min-w-[5.6rem] rounded-xl border px-3 py-2 text-left text-sm ${
-                        on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15 text-paper"
-                      }`}
-                    >
-                      <span className="block font-semibold">{day.isToday ? t("book.today") : day.label}</span>
-                      <span className="block text-xs text-mute mt-0.5">
-                        {day.window.status === "open" ? `${day.window.open}–${day.window.close}` : ""}
-                      </span>
-                    </button>
-                  );
-                })}
+              <div className="-mx-4 sm:-mx-8 mb-3">
+                <div className="date-scroller px-4 sm:px-8" role="listbox" aria-labelledby="b-date-label">
+                  {bookableDates.map((day) => {
+                    const on = form.date === day.iso;
+                    const parts = chipDateParts(day.iso);
+                    return (
+                      <button
+                        key={day.iso}
+                        type="button"
+                        role="option"
+                        aria-selected={on}
+                        onClick={() => pickDate(day.iso)}
+                        className={`date-chip border ${
+                          on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15 text-paper"
+                        }`}
+                      >
+                        <span className="block text-[11px] uppercase tracking-wide text-mute">
+                          {day.isToday ? t("book.today") : parts.weekday}
+                        </span>
+                        <span className="block font-display text-lg leading-none mt-1">{parts.day}</span>
+                        <span className="block text-[11px] text-mute mt-1">{parts.month}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             )}
+            <label className="sr-only" htmlFor="b-date">{t("book.date")}</label>
             <input
               id="b-date"
               required
@@ -254,13 +265,13 @@ export default function Book() {
               value={form.date}
               disabled={!posted}
               onChange={(e) => pickDate(e.target.value)}
-              className="field-input"
+              className="field-input hidden sm:block"
             />
             {posted && window.status === "closed" && (
               <p className="text-sm text-ember-400 mt-2">{t("book.closedDay")}</p>
             )}
             {posted && window.status === "open" && (
-              <p className="text-sm text-mute mt-2">
+              <p className="text-sm text-mute mt-2 leading-relaxed">
                 {t("book.hoursThisDay")} {window.open} – {window.close}
               </p>
             )}
@@ -274,7 +285,7 @@ export default function Book() {
             ) : slots.length === 0 ? (
               <p className="text-sm text-ember-400">{t("book.noSlots")}</p>
             ) : (
-              <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+              <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-4 gap-2">
                 {slots.map((slot) => {
                   const on = form.time === slot;
                   return (
@@ -285,7 +296,7 @@ export default function Book() {
                         set({ time: slot });
                         setStatus(null);
                       }}
-                      className={`rounded-full border px-3 py-2 text-sm min-h-[40px] ${
+                      className={`rounded-full border px-2 py-2 text-xs sm:text-sm min-h-[44px] ${
                         on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15"
                       }`}
                     >
@@ -391,9 +402,11 @@ export default function Book() {
             ) : (
               <ul className="divide-y divide-line/10">
                 {liveHours.map((h) => (
-                  <li key={h.day} className="flex justify-between py-2 text-sm text-mute gap-3">
-                    <span>{h.day}</span>
-                    <span className="text-right">{h.open} – {h.close}</span>
+                  <li key={h.day} className="flex justify-between py-2 text-sm text-mute gap-3 min-w-0">
+                    <span className="shrink-0">{h.day}</span>
+                    <span className="text-right break-words">
+                      {h.open && h.close ? `${h.open} – ${h.close}` : "—"}
+                    </span>
                   </li>
                 ))}
               </ul>

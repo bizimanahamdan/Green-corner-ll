@@ -50,6 +50,15 @@ export function shortDateLabel(iso) {
   }).format(new Date(`${iso}T12:00:00+02:00`));
 }
 
+export function chipDateParts(iso) {
+  const date = new Date(`${iso}T12:00:00+02:00`);
+  return {
+    weekday: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, weekday: "short" }).format(date),
+    day: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, day: "numeric" }).format(date),
+    month: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, month: "short" }).format(date)
+  };
+}
+
 export function parseClockToMinutes(value) {
   if (!value || typeof value !== "string") return null;
   const raw = value.trim();

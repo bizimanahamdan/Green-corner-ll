@@ -114,6 +114,37 @@ html {
   @apply bg-char-900 border-y border-line/10;
 }
 
-.text-muted {
-  @apply text-mute;
+.date-scroller {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
+}
+
+.date-scroller::-webkit-scrollbar {
+  height: 3px;
+}
+
+.date-scroller::-webkit-scrollbar-thumb {
+  background: rgb(var(--gc-line) / 0.2);
+  border-radius: 99px;
+}
+
+.date-chip {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 4.85rem;
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.45rem 0.65rem;
+  text-align: center;
+  min-height: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .date-chip {
+    width: 5.5rem;
+  }
 }
