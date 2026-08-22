@@ -209,9 +209,9 @@ export const translations = {
     nav: {
       home: "Ahabanza",
       menu: "Menu",
-      about: "Ibyacu",
+      about: "Abo turi bo",
       gallery: "Amafoto",
-      specials: "Ibihariwe",
+      specials: "Ibyihariye",
       reviews: "Ibitekerezo",
       location: "Aho turi",
       contact: "Tuvugishe",
