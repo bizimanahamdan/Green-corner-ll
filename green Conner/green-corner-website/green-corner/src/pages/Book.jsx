@@ -345,7 +345,7 @@ export default function Book() {
                     key={opt.id}
                     type="button"
                     onClick={() => set({ occasion: on ? "" : label })}
-                    className={`chip ${on ? "border-ember-400 text-ember-400" : ""}`}
+                    className={`chip ${on ? "border-ember-400 text-ember-400 hover:border-ember-400 hover:bg-ember-500/10" : ""}`}
                   >
                     {label}
                   </button>
