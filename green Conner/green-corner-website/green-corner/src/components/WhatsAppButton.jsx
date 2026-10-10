@@ -1,18 +1,20 @@
 import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo } from "../lib/useContent";
 import { useWhatsAppModal } from "../lib/WhatsAppModalContext";
+import { useLanguage } from "../lib/i18n/LanguageContext";
 import { isConfirmedWhatsApp } from "../lib/business";
 
 export default function WhatsAppButton() {
   const { openModal } = useWhatsAppModal();
   const { data: info } = useBusinessInfo();
+  const { t } = useLanguage();
   const b = info || demo;
   if (!isConfirmedWhatsApp(b.whatsapp)) return null;
 
   return (
     <button
       onClick={openModal}
-      aria-label="Message The Green Corner on WhatsApp"
+      aria-label={t("common.whatsappCta")}
       className="hidden sm:flex fixed bottom-5 right-5 z-40 h-14 w-14 items-center justify-center rounded-full bg-[#1aad4b] text-white shadow-lg shadow-ink-900/20 transition-transform hover:scale-105"
     >
       <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">

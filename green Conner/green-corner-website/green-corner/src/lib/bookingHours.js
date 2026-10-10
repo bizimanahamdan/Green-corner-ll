@@ -50,12 +50,18 @@ export function shortDateLabel(iso) {
   }).format(new Date(`${iso}T12:00:00+02:00`));
 }
 
-export function chipDateParts(iso) {
+// Display locale only. Weekday *matching* against stored hours rows stays on
+// "en-US" (see weekdayFromISO) because the owner-entered day names are the key.
+export function displayLocale(language) {
+  return language === "fr" ? "fr-FR" : "en-GB";
+}
+
+export function chipDateParts(iso, locale = "en-GB") {
   const date = new Date(`${iso}T12:00:00+02:00`);
   return {
-    weekday: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, weekday: "short" }).format(date),
-    day: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, day: "numeric" }).format(date),
-    month: new Intl.DateTimeFormat("en-GB", { timeZone: KIGALI_TZ, month: "short" }).format(date)
+    weekday: new Intl.DateTimeFormat(locale, { timeZone: KIGALI_TZ, weekday: "short" }).format(date),
+    day: new Intl.DateTimeFormat(locale, { timeZone: KIGALI_TZ, day: "numeric" }).format(date),
+    month: new Intl.DateTimeFormat(locale, { timeZone: KIGALI_TZ, month: "short" }).format(date)
   };
 }
 
@@ -93,8 +99,13 @@ export function minutesToHHMM(mins) {
   return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 }
 
-export function formatSlotLabel(hhmm) {
+export function formatSlotLabel(hhmm, locale = "en-GB") {
   const [hour, minute] = String(hhmm).split(":").map(Number);
+  if (!Number.isFinite(hour) || !Number.isFinite(minute)) return String(hhmm);
+  if (String(locale).startsWith("fr")) {
+    // 24-hour clock reads naturally in French.
+    return `${String(((hour % 24) + 24) % 24).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+  }
   const suffix = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 || 12;
   return `${hour12}:${String(minute).padStart(2, "0")} ${suffix}`;

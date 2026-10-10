@@ -22,7 +22,7 @@ export default function MobileActionBar() {
     <nav
       className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-char-950 border-t border-line/10"
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
-      aria-label="Quick actions"
+      aria-label={t("common.quickActions")}
     >
       <div className={`grid ${cols === 3 ? "grid-cols-3" : cols === 2 ? "grid-cols-2" : "grid-cols-1"}`}>
         {hasPhone && (

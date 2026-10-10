@@ -106,15 +106,15 @@ export function instagramHref(handle) {
 }
 
 export function buildOrderMessage({ name, phone, date, time, items, notes, language = "en" }) {
-  const lines = language === "rw"
+  const lines = language === "fr"
     ? [
-        "Muraho Green Corner! Ndashaka gutumiza amafunguro nzafata iyo yahiye.",
+        "Bonjour Green Corner ! Je souhaite passer une commande à emporter.",
         "",
-        name ? `Amazina: ${name}` : null,
-        phone ? `Telefone: ${phone}` : null,
-        date || time ? `Igihe cyo kuyafata: ${[date, time].filter(Boolean).join(" · ")}` : null,
+        name ? `Nom : ${name}` : null,
+        phone ? `Téléphone : ${phone}` : null,
+        date || time ? `Retrait : ${[date, time].filter(Boolean).join(" à ")}` : null,
         "",
-        "Ibyo natumije:"
+        "Commande :"
       ]
     : [
         "Hello Green Corner! I'd like to place an order for pickup.",
@@ -126,9 +126,11 @@ export function buildOrderMessage({ name, phone, date, time, items, notes, langu
         "Order:"
       ];
 
+  const fr = language === "fr";
+
   const itemLines = (items || []).map((item) => {
     const price = formatPrice(item.price);
-    return `- ${item.qty}x ${item.name}${price ? ` (${price})` : ""}`;
+    return `- ${item.qty}${fr ? " × " : "x "}${item.name}${price ? ` (${price})` : ""}`;
   });
 
   const total = (items || []).reduce((sum, item) => {
@@ -138,27 +140,30 @@ export function buildOrderMessage({ name, phone, date, time, items, notes, langu
 
   return [
     ...lines.filter((line) => line !== null),
-    ...(itemLines.length ? itemLines : [language === "rw" ? "- (ntacyo cyanditswe)" : "- (no items listed yet)"]),
-    total ? `\n${language === "rw" ? "Igiteranyo" : "Estimated total"}: ${formatPrice(total)}` : null,
-    notes ? `\n${language === "rw" ? "Icyo nifuza" : "Notes"}: ${notes}` : null
+    ...(itemLines.length ? itemLines : [fr ? "- (aucun plat indiqué)" : "- (no items listed yet)"]),
+    total ? `\n${fr ? "Total estimé :" : "Estimated total:"} ${formatPrice(total)}` : null,
+    notes ? `\n${fr ? "Précisions :" : "Notes:"} ${notes}` : null
   ]
     .filter(Boolean)
     .join("\n");
 }
 
 export function buildBookingMessage({ name, phone, date, time, guests, occasion, notes, language = "en" }) {
-  const rw = language === "rw";
+  const fr = language === "fr";
+  const label = (frLabel, enLabel) => (fr ? `${frLabel} : ` : `${enLabel}: `);
   return [
-    rw
-      ? "Muraho Green Corner! Ndashaka gufata ameza."
+    fr
+      ? "Bonjour Green Corner ! Je souhaite réserver une table."
       : "Hello Green Corner! I'd like to book a table.",
     "",
-    name ? `${rw ? "Amazina" : "Name"}: ${name}` : null,
-    phone ? `${rw ? "Telefone" : "Phone"}: ${phone}` : null,
-    date || time ? `${rw ? "Igihe" : "When"}: ${[date, time].filter(Boolean).join(rw ? " · " : " at ")}` : null,
-    guests ? `${rw ? "Abashyitsi" : "Guests"}: ${guests}` : null,
-    occasion ? `${rw ? "Impamvu" : "Occasion"}: ${occasion}` : null,
-    notes ? `${rw ? "Icyo nifuza" : "Notes"}: ${notes}` : null
+    name ? `${label("Nom", "Name")}${name}` : null,
+    phone ? `${label("Téléphone", "Phone")}${phone}` : null,
+    date || time
+      ? `${label("Quand", "When")}${[date, time].filter(Boolean).join(fr ? " à " : " at ")}`
+      : null,
+    guests ? `${label("Personnes", "Guests")}${guests}` : null,
+    occasion ? `${label("Occasion", "Occasion")}${occasion}` : null,
+    notes ? `${label("Précisions", "Notes")}${notes}` : null
   ]
     .filter((line) => line !== null)
     .join("\n");

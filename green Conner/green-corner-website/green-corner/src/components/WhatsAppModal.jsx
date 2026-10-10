@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { businessInfo as demo } from "../lib/demoData";
 import { useBusinessInfo } from "../lib/useContent";
 import { useWhatsAppModal } from "../lib/WhatsAppModalContext";
-import { useLanguage } from "../lib/i18n/LanguageContext";
+import { normalizeLanguage, useLanguage } from "../lib/i18n/LanguageContext";
 import { translations } from "../lib/i18n/translations";
 import { isConfirmedWhatsApp, whatsappHref } from "../lib/business";
 
@@ -43,10 +43,10 @@ export default function WhatsAppModal() {
 
   if (!open || !available) return null;
 
-  const copy = translations[language].whatsappModal;
+  const copy = translations[language]?.whatsappModal ?? translations.en.whatsappModal;
 
   function sendMessage(langCode) {
-    const text = translations[langCode].whatsappModal[selected.messageKey];
+    const text = translations[normalizeLanguage(langCode)].whatsappModal[selected.messageKey];
     const href = whatsappHref(b.whatsapp, text);
     if (href) window.open(href, "_blank", "noopener,noreferrer");
     closeModal();
@@ -100,8 +100,8 @@ export default function WhatsAppModal() {
               <button onClick={() => sendMessage("en")} className="btn-primary justify-center">
                 English
               </button>
-              <button onClick={() => sendMessage("rw")} className="btn-outline justify-center">
-                Kinyarwanda
+              <button onClick={() => sendMessage("fr")} className="btn-outline justify-center">
+                Français
               </button>
             </div>
             <button

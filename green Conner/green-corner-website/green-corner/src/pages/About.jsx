@@ -34,7 +34,7 @@ export default function About() {
         <div className="rounded-2xl overflow-hidden bg-ink-900 min-h-[240px]">
           <img
             src="/images/hero-embers.jpg"
-            alt="Charcoal grill fire"
+            alt={t("about.imageAlt")}
             className="w-full h-full max-h-96 object-cover"
             loading="lazy"
           />

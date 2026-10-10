@@ -47,8 +47,8 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-5 font-display text-[2.4rem] sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight uppercase">
-            Fire-grilled fish
-            <span className="text-citrus-400"> &amp; brochettes.</span>
+            {t("home.heroLine1")}
+            <span className="text-citrus-400"> {t("home.heroLine2")}</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">

@@ -82,9 +82,9 @@ export default function Navbar() {
           <button
             onClick={toggleLanguage}
             className="text-xs font-semibold border border-line/20 rounded-full px-3 py-1.5 text-paper/75 hover:border-ember-400 hover:text-ember-400 transition-colors min-h-[36px]"
-            aria-label="Switch language"
+            aria-label={t("common.switchLanguage")}
           >
-            {language === "en" ? "RW" : "EN"}
+            {language === "en" ? "FR" : "EN"}
           </button>
           {count > 0 && (
             <button type="button" onClick={openCart} className="relative text-sm font-medium text-paper">
@@ -105,7 +105,7 @@ export default function Navbar() {
               type="button"
               onClick={openCart}
               className="relative p-2 text-paper"
-              aria-label={`Open order, ${count} items`}
+              aria-label={t("common.openOrder", { count })}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" strokeLinecap="round" strokeLinejoin="round" />
@@ -120,13 +120,13 @@ export default function Navbar() {
           <button
             onClick={toggleLanguage}
             className="text-xs font-semibold border border-line/20 rounded-full px-2.5 py-1 min-h-[36px] text-paper/75"
-            aria-label="Switch language"
+            aria-label={t("common.switchLanguage")}
           >
-            {language === "en" ? "RW" : "EN"}
+            {language === "en" ? "FR" : "EN"}
           </button>
           <button
             className="p-2 text-paper"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("common.closeMenu") : t("common.openMenu")}
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
             onClick={() => setOpen((v) => !v)}

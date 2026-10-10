@@ -16,8 +16,9 @@ const whyVisit = [
 ];
 
 function Stars({ rating }) {
+  const { t } = useLanguage();
   return (
-    <span className="text-citrus-500" aria-label={`${rating} out of 5 stars`}>
+    <span className="text-citrus-500" aria-label={t("common.stars", { rating })}>
       {"★".repeat(rating)}
       <span className="text-line/20">{"★".repeat(5 - rating)}</span>
     </span>
@@ -217,10 +218,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block rounded-2xl overflow-hidden border border-line/10 h-52 sm:h-64"
-            aria-label="Open location in Google Maps"
+            aria-label={t("location.openMaps")}
           >
             <iframe
-              title="The Green Corner location"
+              title={t("location.mapTitle")}
               className="h-full w-full pointer-events-none"
               loading="lazy"
               allowFullScreen

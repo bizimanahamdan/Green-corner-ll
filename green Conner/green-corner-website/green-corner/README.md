@@ -109,7 +109,7 @@ in Admin → Business Info before it goes live.
 
 ## 6. Customer features
 
-- English / Kinyarwanda chrome
+- English / French chrome (default English, toggle in the navbar)
 - Live Open / Closed badge once hours exist
 - Menu with add-to-order
 - Order-ahead form (saved to Supabase when connected)

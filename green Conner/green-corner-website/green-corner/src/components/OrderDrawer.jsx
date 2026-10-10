@@ -63,7 +63,7 @@ export default function OrderDrawer() {
                       type="button"
                       className="h-9 w-9 rounded-full border border-line/15"
                       onClick={() => setQty(item.id, item.qty - 1)}
-                      aria-label="Decrease quantity"
+                      aria-label={t("common.decrease")}
                     >
                       −
                     </button>
@@ -72,7 +72,7 @@ export default function OrderDrawer() {
                       type="button"
                       className="h-9 w-9 rounded-full border border-line/15"
                       onClick={() => setQty(item.id, item.qty + 1)}
-                      aria-label="Increase quantity"
+                      aria-label={t("common.increase")}
                     >
                       +
                     </button>

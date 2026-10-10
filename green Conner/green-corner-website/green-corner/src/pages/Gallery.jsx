@@ -42,7 +42,7 @@ export default function Gallery() {
                     filter === c ? "bg-leaf-500 border-leaf-500 text-white" : "border-line/15 text-mute"
                   }`}
                 >
-                  {c}
+                  {c === "All" ? t("menu.all") : c}
                 </button>
               ))}
             </div>

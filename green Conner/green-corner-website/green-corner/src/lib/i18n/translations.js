@@ -37,9 +37,20 @@ export const translations = {
       close: "Close",
       back: "Back",
       lightTheme: "Switch to light theme",
-      darkTheme: "Switch to dark theme"
+      darkTheme: "Switch to dark theme",
+      switchLanguage: "Switch language",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      openOrder: "Open order, {count} items",
+      quickActions: "Quick actions",
+      decrease: "Decrease quantity",
+      increase: "Increase quantity",
+      whatsappCta: "Message The Green Corner on WhatsApp",
+      stars: "{rating} out of 5 stars"
     },
     home: {
+      heroLine1: "Fire-grilled fish",
+      heroLine2: "& brochettes.",
       whySection: "Why visit",
       whyHeading: "What to expect at the grill",
       featuredSection: "From the grill",
@@ -66,14 +77,20 @@ export const translations = {
     },
     location: {
       address: "Address",
-      hours: "Opening Hours"
+      hours: "Opening Hours",
+      openMaps: "Open location in Google Maps",
+      mapTitle: "The Green Corner location"
     },
     menu: {
       all: "All",
       unavailable: "currently unavailable",
       priceNote: "Prices are in Rwandan Francs (RWF). Add items to build a pickup order."
     },
+    reviews: {
+      googleBasedOn: "Based on {count} Google reviews"
+    },
     about: {
+      imageAlt: "Charcoal grill fire",
       experienceHeading: "What defines the experience",
       body: "The Green Corner sits in Nyamirambo, a lively, residential part of Kigali known for its own identity and pace of life. It's built for anyone who wants a proper fire-grilled meal — a big grilled fish to share, a plate of brochettes after work, a cold beer with friends.",
       p1Title: "Kigali, Nyamirambo",
@@ -151,7 +168,8 @@ export const translations = {
       emptyOrder: "Add at least one menu item, or describe what you'd like below.",
       bookTableInstead: "Coming to sit down? Book a table",
       pastDate: "Choose today or a later pickup day.",
-      pastTime: "That pickup time has already passed."
+      pastTime: "That pickup time has already passed.",
+      phoneOrEmail: "Phone or Email"
     },
     book: {
       intro: "Tell us when you're coming. We'll confirm by phone or WhatsApp — this is a request, not a locked table.",
@@ -193,7 +211,7 @@ export const translations = {
     },
     whatsappModal: {
       heading: "How can we help?",
-      languagePrompt: "Choose a language / Hitamo ururimi",
+      languagePrompt: "Choose a language / Choisissez une langue",
       quickOrderLabel: "Quick order",
       quickOrderMessage: "Hello Green Corner! I'd like to place an order for pickup. Please help me with today's grill menu.",
       tableLabel: "Book a table",
@@ -203,68 +221,239 @@ export const translations = {
       questionLabel: "A question",
       questionMessage: "Hello Green Corner! I have a question.",
       close: "Close"
+    },
+    notFound: {
+      title: "Page Not Found",
+      heading: "This table isn't set.",
+      body: "The page you're looking for doesn't exist.",
+      back: "Back to Home"
     }
   },
-  rw: {
+  fr: {
     nav: {
-      home: "Ahabanza",
+      home: "Accueil",
       menu: "Menu",
-      about: "Abo turi bo",
-      gallery: "Amafoto",
-      specials: "Ibyihariye",
-      reviews: "Ibitekerezo",
-      location: "Aho turi",
-      contact: "Tuvugishe",
-      bookTable: "Fata ameza",
-      orderAhead: "Tumiza"
+      about: "À propos",
+      gallery: "Galerie",
+      specials: "Promotions",
+      reviews: "Avis",
+      location: "Adresse",
+      contact: "Contact",
+      bookTable: "Réserver",
+      orderAhead: "Commander"
+    },
+    openStatus: {
+      openNow: "Ouvert",
+      closes: "ferme à",
+      closed: "Fermé",
+      opens: "ouvre à",
+      closedToday: "Fermé aujourd'hui"
     },
     common: {
-      viewMenu: "Reba menu",
-      getDirections: "Inzira",
-      orderAhead: "Tumiza",
-      bookTable: "Fata ameza",
-      addToOrder: "Ongeramo",
-      added: "Byongeweho",
-      call: "Hamagara",
+      viewMenu: "Voir le menu",
+      getDirections: "Itinéraire",
+      orderAhead: "Commander",
+      bookTable: "Réserver une table",
+      addToOrder: "Ajouter",
+      added: "Ajouté",
+      askStaff: "Sur demande",
+      call: "Appeler",
       whatsapp: "WhatsApp",
-      readMore: "Soma ibindi",
-      close: "Funga",
-      back: "Subira",
-      lightTheme: "Hindura ujye ku cyeru",
-      darkTheme: "Hindura ujye ku kiririmbwe"
-    },
-    menu: {
-      all: "Byose"
-    },
-    cart: {
-      checkout: "Komeza",
-      clear: "Siba"
+      readMore: "Lire la suite",
+      loading: "Chargement…",
+      close: "Fermer",
+      back: "Retour",
+      lightTheme: "Passer au thème clair",
+      darkTheme: "Passer au thème sombre",
+      switchLanguage: "Changer de langue",
+      openMenu: "Ouvrir le menu",
+      closeMenu: "Fermer le menu",
+      openOrder: "Ouvrir la commande, {count} articles",
+      quickActions: "Actions rapides",
+      decrease: "Diminuer la quantité",
+      increase: "Augmenter la quantité",
+      whatsappCta: "Écrire à The Green Corner sur WhatsApp",
+      stars: "{rating} étoiles sur 5"
     },
     home: {
-      fullMenu: "Menu yose",
-      fullGallery: "Amafoto yose"
+      heroLine1: "Poisson grillé",
+      heroLine2: "& brochettes.",
+      whySection: "Pourquoi venir",
+      whyHeading: "Ce qui vous attend au grill",
+      featuredSection: "Tout droit du grill",
+      featuredHeading: "Ce que les clients viennent chercher",
+      fullMenu: "Tout le menu →",
+      gallerySection: "En images",
+      galleryHeading: "Depuis le comptoir",
+      fullGallery: "Toute la galerie →",
+      findUsSection: "Nous trouver",
+      orderNote: "Passez nous voir, réservez une table, ou commandez à l'avance et récupérez votre plat quand il est prêt.",
+      specialsSection: "Ce soir",
+      specialsHeading: "À l'affiche",
+      reviewsSection: "Nos clients",
+      reviewsHeading: "Ce qu'ils en disent",
+      ctaHeading: "Une petite faim ? Commandez à l'avance ou passez nous voir.",
+      ctaBody: "Composez votre commande sur le menu, ou écrivez-nous et nous la préparerons.",
+      neighborhoodHeading: "Un grill de quartier qui vaut le détour.",
+      why1Title: "Grillé à la commande",
+      why1Body: "Poisson et brochettes passent directement de la braise à votre assiette — rien de précuit ni de réchauffé.",
+      why2Title: "Le vrai goût rwandais",
+      why2Body: "Épices locales, oignons et ail, préparés comme on le fait à Nyamirambo.",
+      why3Title: "Un lieu pour se détendre",
+      why3Body: "De bons plats, des boissons fraîches et une ambiance animée au cœur de Nyamirambo."
+    },
+    location: {
+      address: "Adresse",
+      hours: "Horaires d'ouverture",
+      openMaps: "Ouvrir l'adresse dans Google Maps",
+      mapTitle: "Adresse de The Green Corner"
+    },
+    menu: {
+      all: "Tout",
+      unavailable: "actuellement indisponible",
+      priceNote: "Prix en francs rwandais (RWF). Ajoutez des plats pour composer une commande à emporter."
+    },
+    reviews: {
+      googleBasedOn: "Basé sur {count} avis Google"
+    },
+    about: {
+      imageAlt: "Feu de grill au charbon",
+      experienceHeading: "Ce qui fait l'expérience",
+      body: "The Green Corner se trouve à Nyamirambo, un quartier vivant et résidentiel de Kigali, connu pour son identité et son rythme de vie propres. L'adresse s'adresse à tous ceux qui veulent un vrai repas grillé au feu de bois — un grand poisson grillé à partager, une assiette de brochettes après le travail, une bière fraîche entre amis.",
+      p1Title: "Kigali, Nyamirambo",
+      p1Body: "Installé dans l'un des quartiers les plus typiques de Kigali, connu pour son rythme et sa vie de rue.",
+      p2Title: "Grillé, jamais frit",
+      p2Body: "Poisson, chèvre et bœuf cuits sur flamme, assaisonnés d'épices locales.",
+      p3Title: "Grill pub",
+      p3Body: "Un lieu animé pour bien manger et boire frais, pas un restaurant feutré.",
+      p4Title: "Commandez ou réservez",
+      p4Body: "Composez votre commande sur le site, demandez une table, ou écrivez-nous à l'avance et récupérez quand c'est prêt."
+    },
+    cart: {
+      title: "Votre commande",
+      empty: "Votre commande est vide. Ajoutez des plats depuis le menu.",
+      checkout: "Continuer la commande",
+      clear: "Vider",
+      total: "Total estimé",
+      qty: "Qté"
+    },
+    footer: {
+      explore: "Explorer",
+      visit: "Nous trouver",
+      order: "Commander",
+      orderNote: "Commandez à l'avance ou envoyez-nous un message : nous confirmons avant le retrait.",
+      rights: "Tous droits réservés."
+    },
+    pages: {
+      menuEyebrow: "Notre menu",
+      menuTitle: "Poisson grillé, brochettes & boissons fraîches",
+      aboutEyebrow: "À propos",
+      aboutTitle: "Un grill de quartier à Nyamirambo",
+      galleryEyebrow: "Galerie",
+      galleryTitle: "The Green Corner en images",
+      specialsEyebrow: "Promotions",
+      specialsTitle: "À l'affiche au grill",
+      reviewsEyebrow: "Avis",
+      reviewsTitle: "Ce que disent nos clients",
+      locationEyebrow: "Adresse & horaires",
+      locationTitle: "Trouver The Green Corner",
+      contactEyebrow: "Commande & contact",
+      contactTitle: "Commandez à l'avance ou envoyez un message",
+      bookEyebrow: "Nous trouver",
+      bookTitle: "Réserver une table"
+    },
+    empty: {
+      gallery: "Les photos du grill et des assiettes apparaîtront ici.",
+      specials: "Aucune promotion en cours. Consultez le menu ou écrivez-nous.",
+      reviews: "Les avis des clients apparaîtront ici dès qu'ils seront ajoutés.",
+      hours: "Les horaires ne sont pas encore publiés. Écrivez-nous pour savoir si le grill est allumé aujourd'hui.",
+      phone: "Le numéro de téléphone apparaîtra ici dès qu'il sera indiqué."
     },
     contact: {
-      submitOrder: "Ohereza",
-      submitMessage: "Ohereza",
-      sending: "Turiko…",
-      sendWhatsApp: "Tumiza kuri WhatsApp",
-      addFromMenu: "Ongeramo kuri menu",
-      bookTableInstead: "Ushaka kwicara? Fata ameza"
+      orderAheadHeading: "Commander à l'avance",
+      sendMessageHeading: "Envoyer un message",
+      name: "Nom",
+      phone: "Téléphone",
+      date: "Date de retrait",
+      time: "Heure de retrait",
+      people: "Nombre d'articles",
+      orderDetails: "Autre chose à nous préciser ?",
+      orderDetailsPlaceholder: "ex. bien épicé, sans oignons, appelez-moi quand c'est prêt",
+      message: "Message",
+      submitOrder: "Envoyer la demande de commande",
+      submitMessage: "Envoyer le message",
+      sending: "Envoi en cours…",
+      orderSaved: "Demande de commande reçue. Nous confirmons par téléphone ou WhatsApp avant le retrait.",
+      messageSaved: "Message envoyé. Nous revenons vers vous rapidement.",
+      needDetails: "Merci d'indiquer votre nom, votre téléphone, la date et l'heure de retrait.",
+      needAll: "Merci de remplir tous les champs.",
+      failed: "Une erreur est survenue. Essayez WhatsApp, ou passez nous voir à Nyamirambo.",
+      noBackend: "Les demandes en ligne ne sont pas encore connectées. Envoyez cette commande sur WhatsApp, ou passez nous voir à Nyamirambo.",
+      sendWhatsApp: "Envoyer cette commande sur WhatsApp",
+      yourOrder: "Votre commande",
+      addFromMenu: "Ajouter depuis le menu",
+      emptyOrder: "Ajoutez au moins un plat du menu, ou décrivez ci-dessous ce que vous souhaitez.",
+      bookTableInstead: "Vous venez vous installer ? Réservez une table",
+      pastDate: "Choisissez aujourd'hui ou une date de retrait ultérieure.",
+      pastTime: "Cette heure de retrait est déjà passée.",
+      phoneOrEmail: "Téléphone ou e-mail"
     },
     book: {
-      submit: "Ohereza",
-      sendWhatsApp: "Saba kuri WhatsApp",
-      fewer: "Gabanya",
-      more: "Ongera",
-      today: "Uyu munsi"
+      intro: "Dites-nous quand vous venez. Nous confirmons par téléphone ou WhatsApp — il s'agit d'une demande, pas d'une table bloquée.",
+      formHeading: "Demander une table",
+      requestNote: "Les clients sans réservation sont toujours bienvenus. La demande nous aide simplement à garder de la place pour votre groupe.",
+      date: "Date",
+      time: "Heure",
+      guests: "Nombre de personnes",
+      fewer: "Moins de personnes",
+      more: "Plus de personnes",
+      largeGroup: "Vous venez à 8 ou plus ? Ajoutez une note pour que nous vous disions ce que nous pouvons réserver.",
+      occasion: "Pour quelle occasion ? Facultatif.",
+      notes: "Autre chose à nous préciser ?",
+      notesPlaceholder: "ex. une chaise haute, un anniversaire, nous aurons un peu de retard",
+      submit: "Envoyer la demande de table",
+      saved: "Demande reçue. Nous confirmons par téléphone ou WhatsApp avant de bloquer la table.",
+      needDetails: "Merci d'indiquer votre nom, votre téléphone, la date et l'heure.",
+      needGuests: "Indiquez-nous le nombre de personnes.",
+      failed: "Une erreur est survenue. Essayez WhatsApp, ou passez nous voir à Nyamirambo.",
+      noBackend: "Les réservations en ligne ne sont pas encore connectées. Envoyez cette demande sur WhatsApp, ou passez nous voir à Nyamirambo.",
+      sendWhatsApp: "Envoyer cette demande sur WhatsApp",
+      whatNext: "La suite",
+      step1: "Vous envoyez la demande.",
+      step2: "Nous vérifions la soirée et vous confirmons.",
+      step3: "Venez quand nous vous confirmons que la table est à vous.",
+      hoursHeading: "Horaires",
+      pickupInstead: "Vous préférez à emporter ? Commandez à l'avance et venez récupérer.",
+      today: "Aujourd'hui",
+      dateHint: "Aujourd'hui ou plus tard. Les jours de fermeture ne peuvent pas être sélectionnés.",
+      hoursThisDay: "Horaires ce jour-là :",
+      hoursOnly: "Les heures suivent les horaires d'ouverture publiés.",
+      closedDay: "Nous sommes fermés ce jour-là. Choisissez une autre date.",
+      pastDate: "Choisissez aujourd'hui ou une date ultérieure.",
+      pastTime: "Cette heure est déjà passée.",
+      needTime: "Choisissez une heure pendant les horaires d'ouverture.",
+      outsideHours: "Cette heure est en dehors des horaires d'ouverture.",
+      noHours: "Les demandes de table en ligne ouvriront dès que les horaires seront publiés.",
+      noSlots: "Plus aucun créneau ce jour-là. Essayez une autre date."
     },
     whatsappModal: {
-      quickOrderLabel: "Tumiza vuba",
-      tableLabel: "Fata ameza",
-      cateringLabel: "Ibirori",
-      questionLabel: "Ikibazo",
-      close: "Funga"
+      heading: "Comment pouvons-nous vous aider ?",
+      languagePrompt: "Choose a language / Choisissez une langue",
+      quickOrderLabel: "Commande rapide",
+      quickOrderMessage: "Bonjour Green Corner ! Je souhaite passer une commande à emporter. Pouvez-vous m'aider avec le menu du grill d'aujourd'hui ?",
+      tableLabel: "Réserver une table",
+      tableMessage: "Bonjour Green Corner ! Je souhaite réserver une table. Pouvez-vous me dire si vous pouvez en garder une ?",
+      cateringLabel: "Traiteur / grande commande",
+      cateringMessage: "Bonjour Green Corner ! Je souhaite passer une commande plus importante pour un événement. Pouvez-vous me dire ce que vous pouvez préparer ?",
+      questionLabel: "Une question",
+      questionMessage: "Bonjour Green Corner ! J'ai une question.",
+      close: "Fermer"
+    },
+    notFound: {
+      title: "Page introuvable",
+      heading: "Cette table n'est pas dressée.",
+      body: "La page que vous cherchez n'existe pas.",
+      back: "Retour à l'accueil"
     }
   }
 };

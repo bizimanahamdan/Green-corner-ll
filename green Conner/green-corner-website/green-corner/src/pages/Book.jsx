@@ -18,6 +18,7 @@ import {
 import {
   bookingSelectionError,
   chipDateParts,
+  displayLocale,
   clampDateToTodayOrLater,
   dayWindow,
   formatSlotLabel,
@@ -28,10 +29,10 @@ import {
 import { requestBackgroundPush } from "../lib/notifyAdmin";
 
 const OCCASIONS = [
-  { id: "friends", en: "Friends", rw: "Inshuti" },
-  { id: "afterWork", en: "After work", rw: "Nyuma y'akazi" },
-  { id: "birthday", en: "Birthday", rw: "Isabukuru" },
-  { id: "other", en: "Other", rw: "Ikindi" }
+  { id: "friends", en: "Friends", fr: "Entre amis" },
+  { id: "afterWork", en: "After work", fr: "Après le travail" },
+  { id: "birthday", en: "Birthday", fr: "Anniversaire" },
+  { id: "other", en: "Other", fr: "Autre" }
 ];
 
 function FormStatus({ status }) {
@@ -55,6 +56,7 @@ const emptyForm = (date = "") => ({
 
 export default function Book() {
   const { t, language } = useLanguage();
+  const locale = displayLocale(language);
   const { data: info } = useBusinessInfo();
   const b = info || demo;
   const { data: hours } = useHours();
@@ -232,7 +234,7 @@ export default function Book() {
                 <div className="date-scroller px-4 sm:px-8" role="listbox" aria-labelledby="b-date-label">
                   {bookableDates.map((day) => {
                     const on = form.date === day.iso;
-                    const parts = chipDateParts(day.iso);
+                    const parts = chipDateParts(day.iso, locale);
                     return (
                       <button
                         key={day.iso}
@@ -300,7 +302,7 @@ export default function Book() {
                         on ? "border-ember-400 text-ember-400 bg-ember-500/10" : "border-line/15"
                       }`}
                     >
-                      {formatSlotLabel(slot)}
+                      {formatSlotLabel(slot, locale)}
                     </button>
                   );
                 })}
@@ -338,7 +340,7 @@ export default function Book() {
             <p className="text-sm text-mute mb-2">{t("book.occasion")}</p>
             <div className="flex flex-wrap gap-2">
               {OCCASIONS.map((opt) => {
-                const label = language === "rw" ? opt.rw : opt.en;
+                const label = language === "fr" ? opt.fr : opt.en;
                 const on = form.occasion === label;
                 return (
                   <button

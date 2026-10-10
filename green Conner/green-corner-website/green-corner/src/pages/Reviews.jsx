@@ -7,8 +7,9 @@ import { useLanguage } from "../lib/i18n/LanguageContext";
 import { isPlaceholderText } from "../lib/media";
 
 function Stars({ rating }) {
+  const { t } = useLanguage();
   return (
-    <span className="text-citrus-500" aria-label={`${rating} out of 5 stars`}>
+    <span className="text-citrus-500" aria-label={t("common.stars", { rating })}>
       {"★".repeat(rating)}
       <span className="text-white/20">{"★".repeat(5 - rating)}</span>
     </span>
@@ -36,7 +37,7 @@ export default function Reviews() {
         {hasRating && (
           <div className="card-surface p-10 text-center max-w-xl mx-auto mb-12">
             <p className="font-display text-6xl font-semibold text-citrus-500">{b.googleRating}★</p>
-            <p className="mt-3 text-mute">Based on {b.googleReviewCount} Google reviews</p>
+            <p className="mt-3 text-mute">{t("reviews.googleBasedOn", { count: b.googleReviewCount })}</p>
           </div>
         )}
 

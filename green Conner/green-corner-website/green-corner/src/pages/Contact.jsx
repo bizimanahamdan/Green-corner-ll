@@ -203,9 +203,9 @@ export default function Contact() {
                   <li key={item.id} className="flex items-center justify-between gap-3 text-sm">
                     <span className="min-w-0 truncate">{item.name}</span>
                     <span className="flex items-center gap-2 flex-shrink-0">
-                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label="Decrease">−</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty - 1)} aria-label={t("common.decrease")}>−</button>
                       <span className="w-5 text-center">{item.qty}</span>
-                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label="Increase">+</button>
+                      <button type="button" className="h-8 w-8 rounded-full border border-line/15" onClick={() => setQty(item.id, item.qty + 1)} aria-label={t("common.increase")}>+</button>
                     </span>
                   </li>
                 ))}
@@ -306,7 +306,7 @@ export default function Contact() {
             <input id="i-name" required value={inquiry.name} onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })} className="field-input" />
           </div>
           <div>
-            <label className="text-sm text-mute" htmlFor="i-contact">Phone or Email</label>
+            <label className="text-sm text-mute" htmlFor="i-contact">{t("contact.phoneOrEmail")}</label>
             <input id="i-contact" required value={inquiry.contact} onChange={(e) => setInquiry({ ...inquiry, contact: e.target.value })} className="field-input" />
           </div>
           <div>

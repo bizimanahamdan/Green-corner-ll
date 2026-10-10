@@ -70,7 +70,7 @@ export default function Location() {
 
         <div className="rounded-2xl overflow-hidden border border-line/10 min-h-[360px]">
             <iframe
-            title="The Green Corner location map"
+            title={t("location.mapTitle")}
             className="h-full w-full min-h-[360px]"
             loading="lazy"
             allowFullScreen
